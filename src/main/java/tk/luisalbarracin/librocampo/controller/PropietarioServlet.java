@@ -11,7 +11,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import tk.luisalbarracin.librocampo.dao.PropietarioDao;
+import tk.luisalbarracin.librocampo.dao.Dao;
 import tk.luisalbarracin.librocampo.dao.PropietarioDaoFactory;
 import tk.luisalbarracin.librocampo.modelo.Propietario;
 
@@ -21,7 +21,7 @@ import tk.luisalbarracin.librocampo.modelo.Propietario;
 @WebServlet("/")
 public class PropietarioServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private PropietarioDao propietarioDao;
+	private Dao propietarioDao;
 	
     /**
      * Default constructor. 
@@ -85,7 +85,7 @@ public class PropietarioServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		Integer id = Integer.parseInt(request.getParameter("id"));
 		
-		Propietario propietarioActual = this.propietarioDao.buscar(id);
+		Propietario propietarioActual = (Propietario) this.propietarioDao.buscar(id);
 		
 		request.setAttribute("propietario", propietarioActual);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("propietario.jsp");

@@ -9,124 +9,123 @@ import java.util.List;
 import tk.luisalbarracin.librocampo.modelo.Propietario;
 import tk.luisalbarracin.librocampo.util.ConexionMySQL;
 
-public class PropietarioDaoMySQL implements PropietarioDao {
-	
+public class PropietarioDaoMySQL implements Dao<Propietario> {
+
 	private ConexionMySQL conexion;
-	
+
 	private static final String INSERTAR = "INSERT INTO propietario (nombre, apellido, noCedula, telefono, expedicionCedula) VALUES (?, ?, ?, ?, ?);";
 	private static final String ACTUALIZAR = "UPDATE propietario SET nombre = ?, apellido = ?, noCedula = ?, telefono = ?, expedicionCedula = ? WHERE id = ?;";
 	private static final String ELIMINAR = "DELETE * FROM propietario WHERE id = ?;";
 	private static final String BUSCAR = "SELECT * FROM propietario WHERE id = ?;";
 	private static final String LISTAR = "SELECT * FROM propietario";
-	
+
 	public PropietarioDaoMySQL() {
 		this.conexion = ConexionMySQL.getConexion();
 	}
-	
+
 	public void insertar(Propietario propietario) {
 		try {
 			PreparedStatement preparedStatement = conexion.setPreparedStatement(INSERTAR);
-			
+
 			preparedStatement.setString(1, propietario.getNombre());
 			preparedStatement.setString(2, propietario.getApellido());
 			preparedStatement.setString(3, propietario.getNoCedula());
 			preparedStatement.setString(4, propietario.getTelefono());
 			preparedStatement.setString(5, propietario.getExpedicionCedula());
-			
+
 			conexion.execute();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void actualizar(Propietario propietario) throws SQLException {
 		try {
 			PreparedStatement preparedStatement = conexion.setPreparedStatement(ACTUALIZAR);
-		
+
 			preparedStatement.setString(1, propietario.getNombre());
 			preparedStatement.setString(2, propietario.getApellido());
 			preparedStatement.setString(3, propietario.getNoCedula());
 			preparedStatement.setString(4, propietario.getTelefono());
 			preparedStatement.setString(5, propietario.getExpedicionCedula());
 			preparedStatement.setInt(6, propietario.getId());
-			
+
 			conexion.execute();
-			
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void eliminar(Integer id) throws SQLException {
 		try {
 			PreparedStatement preparedStatement = conexion.setPreparedStatement(ELIMINAR);
-			
+
 			preparedStatement.setInt(1, id);
-			
+
 			conexion.execute();
-			
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
-	
+
 	public Propietario buscar(Integer id) {
 		Propietario propietario = null;
 		try {
 			PreparedStatement preparedStatement = conexion.setPreparedStatement(BUSCAR);
-		
+
 			preparedStatement.setInt(1, id);
-			
+
 			ResultSet rs = conexion.query();
-			
-			while(rs.next()) {
-				
+
+			while (rs.next()) {
+
 				String nombre = rs.getString("nombre");
 				String apellido = rs.getString("apellido");
 				String noCedula = rs.getString("noCedula");
 				String telefono = rs.getString("telefono");
 				String expedicionCedula = rs.getString("expedicionCedula");
-				
+
 				propietario = new Propietario(nombre, apellido, noCedula, telefono, expedicionCedula);
 			}
-			
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return propietario;
-		
+
 	}
-	
+
 	public List<Propietario> selectAll() {
 		List<Propietario> propietarios = new ArrayList<>();
-		
+
 		try {
 			PreparedStatement preparedStatement = conexion.setPreparedStatement(LISTAR);
 			ResultSet rs = conexion.query();
-			
-			while(rs.next()) {
+
+			while (rs.next()) {
 				Integer id = rs.getInt("id");
 				String nombre = rs.getString("nombre");
 				String apellido = rs.getString("apellido");
 				String noCedula = rs.getString("noCedula");
 				String telefono = rs.getString("telefono");
 				String expedicionCedula = rs.getString("expedicionCedula");
-				
+
 				propietarios.add(new Propietario(id, nombre, apellido, noCedula, telefono, expedicionCedula));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		return propietarios;
-		
-	}
 
+		return propietarios;
+
+	}
 }
