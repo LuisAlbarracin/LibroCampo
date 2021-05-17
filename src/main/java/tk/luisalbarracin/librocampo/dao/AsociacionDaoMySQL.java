@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import tk.luisalbarracin.librocampo.modelo.Asociacion;
-import tk.luisalbarracin.librocampo.modelo.Propietario;
 import tk.luisalbarracin.librocampo.util.ConexionMySQL;
 
 public class AsociacionDaoMySQL implements Dao<Asociacion> {

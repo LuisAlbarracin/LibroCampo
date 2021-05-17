@@ -1,9 +1,15 @@
 package tk.luisalbarracin.librocampo.dao;
 
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
+import tk.luisalbarracin.librocampo.modelo.Asociacion;
 import tk.luisalbarracin.librocampo.modelo.Finca;
+import tk.luisalbarracin.librocampo.modelo.Propietario;
 import tk.luisalbarracin.librocampo.util.ConexionMySQL;
 
 public class FincaDaoMySQL implements Dao<Finca> {
@@ -17,34 +23,147 @@ public class FincaDaoMySQL implements Dao<Finca> {
 	private static final String LISTAR = "SELECT * FROM finca";
 
 
+	public FincaDaoMySQL() {
+		this.conexion = ConexionMySQL.getConexion();
+	}
+	
 	@Override
-	public void insertar(Finca objeto) throws SQLException {
+	public void insertar(Finca finca) throws SQLException {
 		// TODO Auto-generated method stub
-		
+		try {
+			PreparedStatement preparedStatement = conexion.setPreparedStatement(INSERTAR);
+
+			preparedStatement.setString(1, finca.getNombre());
+			preparedStatement.setFloat(2, finca.getArea());
+			preparedStatement.setInt(3, finca.getAsociacion().getId());
+			preparedStatement.setFloat(4, finca.getAreaPalma());
+			preparedStatement.setString(5, finca.getPlano());
+			preparedStatement.setInt(6, finca.getPropietario().getId());
+			preparedStatement.setString(7, finca.getVereda());
+			preparedStatement.setDate(8, (Date) finca.getInicioSiembra());
+			
+			conexion.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public Finca buscar(Integer id) {
 		// TODO Auto-generated method stub
-		return null;
+		Finca finca = null;
+		try {
+			PreparedStatement preparedStatement = conexion.setPreparedStatement(BUSCAR);
+
+			preparedStatement.setInt(1, id);
+
+			ResultSet rs = conexion.query();
+
+			while (rs.next()) {
+
+				String nombre = rs.getString("nombre");
+				Float area = rs.getFloat("area");
+				Integer asociacionId = rs.getInt("asociacion");
+				Float areaPalma = rs.getFloat("areaPalma");
+				String plano = rs.getString("plano");
+				Integer propietarioId = rs.getInt("propietario");
+				String vereda = rs.getString("vereda");
+				Date inicioSiembra = rs.getDate("inicioSiembra");
+				
+				Asociacion asociacion = new Asociacion();
+				asociacion.setId(asociacionId);
+				
+				Propietario propietario = new Propietario();
+				propietario.setId(propietarioId);
+				
+				finca = new Finca(id, nombre, area, asociacion, areaPalma, plano, propietario, vereda, inicioSiembra);
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return finca;
 	}
 
 	@Override
 	public List<Finca> selectAll() {
 		// TODO Auto-generated method stub
-		return null;
+		List<Finca> fincas = new ArrayList<>();
+
+		try {
+			PreparedStatement preparedStatement = conexion.setPreparedStatement(LISTAR);
+			ResultSet rs = conexion.query();
+
+			while (rs.next()) {
+				Integer id = rs.getInt("id");
+				String nombre = rs.getString("nombre");
+				Float area = rs.getFloat("area");
+				Integer asociacionId = rs.getInt("asociacion");
+				Float areaPalma = rs.getFloat("areaPalma");
+				String plano = rs.getString("plano");
+				Integer propietarioId = rs.getInt("propietario");
+				String vereda = rs.getString("vereda");
+				Date inicioSiembra = rs.getDate("inicioSiembra");
+				
+				Asociacion asociacion = new Asociacion();
+				asociacion.setId(asociacionId);
+				
+				Propietario propietario = new Propietario();
+				propietario.setId(propietarioId);
+				
+				fincas.add(new Finca(id, nombre, area, asociacion, areaPalma, plano, propietario, vereda, inicioSiembra));
+			
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return fincas;
 	}
 
 	@Override
 	public void eliminar(Integer id) throws SQLException {
 		// TODO Auto-generated method stub
-		
+		try {
+			PreparedStatement preparedStatement = conexion.setPreparedStatement(ELIMINAR);
+
+			preparedStatement.setInt(1, id);
+
+			conexion.execute();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 
 	@Override
-	public void actualizar(Finca objeto) throws SQLException {
+	public void actualizar(Finca finca) throws SQLException {
 		// TODO Auto-generated method stub
-		
+		try {
+			PreparedStatement preparedStatement = conexion.setPreparedStatement(ACTUALIZAR);
+
+			preparedStatement.setString(1, finca.getNombre());
+			preparedStatement.setFloat(2, finca.getArea());
+			preparedStatement.setInt(3, finca.getAsociacion().getId());
+			preparedStatement.setFloat(4, finca.getAreaPalma());
+			preparedStatement.setString(5, finca.getPlano());
+			preparedStatement.setInt(6, finca.getPropietario().getId());
+			preparedStatement.setString(7, finca.getVereda());
+			preparedStatement.setDate(8, (Date) finca.getInicioSiembra());
+			preparedStatement.setInt(9, finca.getId());
+
+			conexion.execute();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
