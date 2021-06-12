@@ -9,7 +9,7 @@ import java.util.List;
 import tk.luisalbarracin.librocampo.modelo.Fertilizante;
 import tk.luisalbarracin.librocampo.util.ConexionMySQL;
 
-public class FertilizanteDaoMySQL implements Dao<Fertilizante> {
+public class FertilizanteDaoMySQL implements FertilizanteDao{
 
 	private ConexionMySQL conexion;
 

@@ -9,7 +9,7 @@ import java.util.List;
 import tk.luisalbarracin.librocampo.modelo.Propietario;
 import tk.luisalbarracin.librocampo.util.ConexionMySQL;
 
-public class PropietarioDaoMySQL implements Dao<Propietario> {
+public class PropietarioDaoMySQL implements PropietarioDao {
 
 	private ConexionMySQL conexion;
 

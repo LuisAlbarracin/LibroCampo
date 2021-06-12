@@ -11,7 +11,7 @@ import tk.luisalbarracin.librocampo.modelo.Calidad;
 import tk.luisalbarracin.librocampo.modelo.Cultivo;
 import tk.luisalbarracin.librocampo.util.ConexionMySQL;
 
-public class CalidadDaoMySQL implements Dao<Calidad> {
+public class CalidadDaoMySQL implements CalidadDao {
 
 	private ConexionMySQL conexion;
 

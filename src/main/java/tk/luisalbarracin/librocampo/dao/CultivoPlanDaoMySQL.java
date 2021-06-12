@@ -11,7 +11,7 @@ import tk.luisalbarracin.librocampo.modelo.CultivoPlan;
 import tk.luisalbarracin.librocampo.modelo.PlanFertilizante;
 import tk.luisalbarracin.librocampo.util.ConexionMySQL;
 
-public class CultivoPlanDaoMySQL implements Dao<CultivoPlan> {
+public class CultivoPlanDaoMySQL implements CultivoPlanDao {
 
 	private ConexionMySQL conexion;
 

@@ -48,6 +48,31 @@ public class Finca {
 	}
 
 
+	public Finca(Integer id, String nombre, Float area, Asociacion asociacion, Float areaPalma, Propietario propietario,
+			String vereda) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.area = area;
+		this.asociacion = asociacion;
+		this.areaPalma = areaPalma;
+		this.propietario = propietario;
+		this.vereda = vereda;
+	}
+
+
+	public Finca(String nombre, Float area, Asociacion asociacion, Float areaPalma, Propietario propietario,
+			String vereda) {
+		super();
+		this.nombre = nombre;
+		this.area = area;
+		this.asociacion = asociacion;
+		this.areaPalma = areaPalma;
+		this.propietario = propietario;
+		this.vereda = vereda;
+	}
+
+
 	public Integer getId() {
 		return id;
 	}

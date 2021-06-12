@@ -12,7 +12,7 @@ import tk.luisalbarracin.librocampo.modelo.Finca;
 import tk.luisalbarracin.librocampo.modelo.Propietario;
 import tk.luisalbarracin.librocampo.util.ConexionMySQL;
 
-public class FincaDaoMySQL implements Dao<Finca> {
+public class FincaDaoMySQL implements FincaDao {
 	
 	private ConexionMySQL conexion;
 

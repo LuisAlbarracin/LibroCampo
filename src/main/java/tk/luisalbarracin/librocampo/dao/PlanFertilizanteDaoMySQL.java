@@ -10,7 +10,7 @@ import tk.luisalbarracin.librocampo.modelo.Fertilizante;
 import tk.luisalbarracin.librocampo.modelo.PlanFertilizante;
 import tk.luisalbarracin.librocampo.util.ConexionMySQL;
 
-public class PlanFertilizanteDaoMySQL implements Dao<PlanFertilizante> {
+public class PlanFertilizanteDaoMySQL implements PlanFertilizanteDao {
 
 	private ConexionMySQL conexion;
 

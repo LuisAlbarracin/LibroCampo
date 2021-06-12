@@ -10,7 +10,7 @@ import tk.luisalbarracin.librocampo.modelo.Cultivo;
 import tk.luisalbarracin.librocampo.modelo.Finca;
 import tk.luisalbarracin.librocampo.util.ConexionMySQL;
 
-public class CultivoDaoMySQL implements Dao<Cultivo> {
+public class CultivoDaoMySQL implements CultivoDao {
 
 	private ConexionMySQL conexion;
 

@@ -11,7 +11,7 @@ import tk.luisalbarracin.librocampo.modelo.Cosecha;
 import tk.luisalbarracin.librocampo.modelo.Cultivo;
 import tk.luisalbarracin.librocampo.util.ConexionMySQL;
 
-public class CosechaDaoMySQL implements Dao<Cosecha> {
+public class CosechaDaoMySQL implements CosechaDao {
 
 	private ConexionMySQL conexion;
 
