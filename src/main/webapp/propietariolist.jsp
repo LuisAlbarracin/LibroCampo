@@ -37,7 +37,7 @@
 				<hr>
 				<div class="container text-left">
 
-					<a href="<%=request.getContextPath()%>/new" class="btn btn-success">Agregar
+					<a href="<%=request.getContextPath()%>/propietario/new" class="btn btn-success">Agregar
 						Nuevo Propietario</a>
 				</div>
 				<br>
@@ -60,11 +60,12 @@
 								<td><c:out value="${propietario.id}" /></td>
 								<td><c:out value="${propietario.nombre}" /></td>
 								<td><c:out value="${propietario.apellido}" /></td>
+								<td><c:out value="${propietario.telefono}" /></td>
 								<td><c:out value="${propietario.noCedula}" /></td>
 								<td><c:out value="${propietario.expedicionCedula} " /></td>
-								<td><a href="edit?id=<c:out value='${propietario.id}' />">Editar</a>
+								<td><a href="propietario/edit?id=<c:out value='${propietario.id}' />">Editar</a>
 									&nbsp;&nbsp;&nbsp;&nbsp; <a
-									href="delete?id=<c:out value='${propietario.id}' />">Eliminar</a></td>
+									href="propietario/delete?id=<c:out value='${propietario.id}' />">Eliminar</a></td>
 							</tr>
 						</c:forEach>
 						<!-- } -->

@@ -34,10 +34,10 @@
 				<div class="card-body">
 
 					<c:if test="${propietario != null}">
-						<form action="update" method="post">
+						<form action="propietario/update" method="post">
 					</c:if>
 					<c:if test="${propietario == null}">
-						<form action="insert" method="post">
+						<form action="propietario/insert" method="post">
 					</c:if>
 
 					<caption>
@@ -86,6 +86,8 @@
 							value="<c:out value='${propietario.expedicionCedula}' />"
 							class="form-control" name="expedicionCedula">
 					</fieldset>
+					
+
 
 					<button type="submit" class="btn btn-success m-3">Guardar</button>
 					</form>
