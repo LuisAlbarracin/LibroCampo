@@ -12,13 +12,13 @@ import jakarta.servlet.http.HttpServletResponse;
  * Servlet implementation class CultivoPlan
  */
 @WebServlet("/cultivoplan")
-public class CultivoPlan extends HttpServlet {
+public class CultivoPlanServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * Default constructor. 
      */
-    public CultivoPlan() {
+    public CultivoPlanServlet() {
         // TODO Auto-generated constructor stub
     }
 

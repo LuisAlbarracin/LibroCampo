@@ -14,8 +14,10 @@ import tk.luisalbarracin.librocampo.modelo.Propietario;
  */
 public interface PropietarioDao {
 	public void insertar(Propietario propietario) throws SQLException;
+	public void registrar(Propietario propietario) throws SQLException;
 	public Propietario buscar(Integer id);
 	public List<Propietario> selectAll();
 	public void eliminar(Integer id) throws SQLException;
 	public void actualizar(Propietario propietario) throws SQLException;
+	public Integer login(String email, String contrasenia);
 }

@@ -1,7 +1,8 @@
 package tk.luisalbarracin.librocampo.modelo;
 
 public class CultivoPlan {
-
+	
+	private Integer id;
 	private Cultivo cultivo;
 	private PlanFertilizante plan;
 	private Integer mes;
@@ -19,6 +20,27 @@ public class CultivoPlan {
 		this.anio = anio;
 	}
 	
+	
+	public CultivoPlan(Integer id, Cultivo cultivo, PlanFertilizante plan, Integer mes, Integer anio) {
+		super();
+		this.id = id;
+		this.cultivo = cultivo;
+		this.plan = plan;
+		this.mes = mes;
+		this.anio = anio;
+	}
+
+	
+	
+	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 	public Cultivo getCultivo() {
 		return cultivo;
 	}

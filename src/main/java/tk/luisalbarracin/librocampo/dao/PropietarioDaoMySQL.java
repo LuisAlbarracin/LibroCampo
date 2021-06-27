@@ -18,6 +18,9 @@ public class PropietarioDaoMySQL implements PropietarioDao {
 	private static final String ELIMINAR = "DELETE * FROM propietario WHERE id = ?;";
 	private static final String BUSCAR = "SELECT * FROM propietario WHERE id = ?;";
 	private static final String LISTAR = "SELECT * FROM propietario";
+	private static final String LOGIN = "SELECT id FROM propietario WHERE email=? AND contrasenia=?";
+	private static final String REGISTRAR = "INSERT INTO propietario (nombre, apellido, noCedula, email, contrasenia) VALUES (?, ?, ?, ?, ?);";
+	
 
 	public PropietarioDaoMySQL() {
 		this.conexion = ConexionMySQL.getConexion();
@@ -127,5 +130,47 @@ public class PropietarioDaoMySQL implements PropietarioDao {
 
 		return propietarios;
 
+	}
+	
+	public Integer login(String email, String contrasenia) {
+		Integer idPropietario = 0;
+		try {
+			PreparedStatement preparedStatement = conexion.setPreparedStatement(LOGIN);
+
+			preparedStatement.setString(1, email);
+			preparedStatement.setString(2, contrasenia);
+
+			ResultSet rs = conexion.query();
+
+			while (rs.next()) {
+
+				idPropietario = rs.getInt("id");
+
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return idPropietario;
+		
+	}
+	
+	public void registrar(Propietario propietario) {
+		try {
+			PreparedStatement preparedStatement = conexion.setPreparedStatement(REGISTRAR);
+
+			preparedStatement.setString(1, propietario.getNombre());
+			preparedStatement.setString(2, propietario.getApellido());
+			preparedStatement.setString(3, propietario.getNoCedula());
+			preparedStatement.setString(4, propietario.getEmail());
+			preparedStatement.setString(5, propietario.getContrasenia());
+
+			conexion.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

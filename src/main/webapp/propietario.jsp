@@ -67,6 +67,18 @@
 							value="<c:out value='${propietario.apellido}' />"
 							class="form-control" name="apellido">
 					</fieldset>
+					
+					<fieldset class="form-group">
+						<label>Email del Propietario</label> <input type="email"
+							value="<c:out value='${propietario.email}' />"
+							class="form-control" name="email">
+					</fieldset>
+					
+					<fieldset class="form-group">
+						<label>Contraseña del Propietario</label> <input type="password"
+							value="<c:out value='${propietario.contrasenia}' />"
+							class="form-control" name="contrasenia">
+					</fieldset>
 
 					<fieldset class="form-group">
 						<label>Número de Cedula del Propietario</label> <input type="text"

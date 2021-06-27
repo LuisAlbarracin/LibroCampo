@@ -47,6 +47,8 @@
 							<th>ID</th>
 							<th>Nombre</th>
 							<th>Apellido</th>
+							<th>Email</th>
+							<th>Password</th>
 							<th>Telefono</th>
 							<th>Número Cedula</th>
 							<th>Lugar de Expedicion</th>
@@ -60,6 +62,8 @@
 								<td><c:out value="${propietario.id}" /></td>
 								<td><c:out value="${propietario.nombre}" /></td>
 								<td><c:out value="${propietario.apellido}" /></td>
+								<td><c:out value="${propietario.email}" /></td>
+								<td><c:out value="${propietario.contrasenia}" /></td>
 								<td><c:out value="${propietario.telefono}" /></td>
 								<td><c:out value="${propietario.noCedula}" /></td>
 								<td><c:out value="${propietario.expedicionCedula} " /></td>

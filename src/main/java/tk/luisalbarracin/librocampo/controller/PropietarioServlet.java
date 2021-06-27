@@ -18,7 +18,7 @@ import tk.luisalbarracin.librocampo.modelo.Propietario;
 /**
  * Servlet implementation class PropietarioServlet
  */
-@WebServlet("/")
+@WebServlet("/propietario" )
 public class PropietarioServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private PropietarioDao propietarioDao;
@@ -48,20 +48,26 @@ public class PropietarioServlet extends HttpServlet {
 
 		try {
 			switch (action) {
-			case "/new":
+			case "/propietario/new":
 				showNewForm(request, response);
 				break;
-			case "/insert":
+			case "/propietario/insert":
 				insertarPropietario(request, response);
 				break;
-			case "/delete":
+			case "/propietario/registrar":
+				registrarPropietario(request, response);
+				break;
+			case "/propietario/delete":
 				eliminarPropietario(request, response);
 				break;
-			case "/edit":
+			case "/propietario/edit":
 				showEditForm(request, response);
 				break;
-			case "/update":
+			case "/propietario/update":
 				actualizarPropietario(request, response);
+				break;
+			case "/propietario/login":
+				loginPropietario(request, response);
 				break;
 			default:
 				listPropietarios(request, response);
@@ -109,8 +115,10 @@ public class PropietarioServlet extends HttpServlet {
 		String noCedula = request.getParameter("noCedula");
 		String telefono = request.getParameter("telefono");
 		String expedicionCedula = request.getParameter("expedicionCedula");
+		String email = request.getParameter("email");
+		String contrasenia = request.getParameter("contrasenia");
 		
-		Propietario propietario = new Propietario(id, nombre, apellido, noCedula, telefono, expedicionCedula);
+		Propietario propietario = new Propietario(id, nombre, apellido, noCedula, telefono, expedicionCedula, email, contrasenia);
 		this.propietarioDao.actualizar(propietario);
 		
 		response.sendRedirect("list");
@@ -133,17 +141,53 @@ public class PropietarioServlet extends HttpServlet {
 		String coCedula = request.getParameter("noCedula");
 		String telefono = request.getParameter("telefono");
 		String expedicionCedula = request.getParameter("expedicionCedula");
+		String email = request.getParameter("email");
+		String contrasenia = request.getParameter("contrasenia");
 		
-		Propietario propietario = new Propietario(nombre, apellido, coCedula, telefono, expedicionCedula);
+		Propietario propietario = new Propietario(nombre, apellido, coCedula, telefono, expedicionCedula, email, contrasenia);
+		
 		this.propietarioDao.insertar(propietario);
 		
-		response.sendRedirect("list");
+		response.sendRedirect("/propietario");
 	}
 
 	private void showNewForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		RequestDispatcher dispatcher = request.getRequestDispatcher("propietario.jsp");
 		dispatcher.forward(request, response);
+	}
+	
+	private void loginPropietario(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
+		// TODO Auto-generated method stub
+		
+		String email = request.getParameter("nombre");
+		String contrasenia = request.getParameter("apellido");
+		
+		
+		//this.propietarioDao.insertar(propietario);
+		
+		response.sendRedirect("list");
+	}
+	
+	private void registrarPropietario(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
+		// TODO Auto-generated method stub
+		
+		String nombre = request.getParameter("nombre");
+		String apellido = request.getParameter("apellido");
+		String coCedula = request.getParameter("noCedula");
+		String email = request.getParameter("email");
+		String contrasenia = request.getParameter("contrasenia");
+		
+		Propietario propietario = new Propietario();
+		propietario.setNombre(nombre);
+		propietario.setApellido(apellido);
+		propietario.setNoCedula(coCedula);
+		propietario.setEmail(email);
+		propietario.setContrasenia(contrasenia);
+		
+		this.propietarioDao.registrar(propietario);
+		
+		response.sendRedirect("/propietario");
 	}
 
 }
