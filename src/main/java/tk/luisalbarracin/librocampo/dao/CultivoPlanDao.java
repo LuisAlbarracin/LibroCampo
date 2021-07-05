@@ -18,4 +18,8 @@ public interface CultivoPlanDao {
 	public List<CultivoPlan> selectAll();
 	public void eliminar(Integer id) throws SQLException;
 	public void actualizar(CultivoPlan objeto) throws SQLException;
+	public List<CultivoPlan> selectByCultivo(Integer byCultivo);
+	public List<CultivoPlan> selectByPlan(Integer byPlan);
+	public List<CultivoPlan> selectByAnio(Integer byAnio);
+	public List<CultivoPlan> selectByMes(Integer byMes);
 }

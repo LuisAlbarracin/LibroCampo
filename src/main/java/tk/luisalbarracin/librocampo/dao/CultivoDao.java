@@ -18,4 +18,5 @@ public interface CultivoDao {
 	public List<Cultivo> selectAll();
 	public void eliminar(Integer id) throws SQLException;
 	public void actualizar(Cultivo objeto) throws SQLException;
+	public List<Cultivo> selectByFinca(Integer cultivoFinca);
 }

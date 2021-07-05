@@ -19,6 +19,7 @@ public class CultivoDaoMySQL implements CultivoDao {
 	private static final String ELIMINAR = "DELETE * FROM cultivo WHERE id = ?;";
 	private static final String BUSCAR = "SELECT * FROM cultivo WHERE id = ?;";
 	private static final String LISTAR = "SELECT * FROM cultivo";
+	private static final String LISTAR_BY_FINCA = "SELECT * FROM cultivo WHERE finca = ?";
 	
 	
 	public CultivoDaoMySQL() {
@@ -132,6 +133,36 @@ public class CultivoDaoMySQL implements CultivoDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public List<Cultivo> selectByFinca(Integer cultivoFinca) {
+		List<Cultivo> cultivos = new ArrayList<>();
+
+		try {
+			PreparedStatement preparedStatement = conexion.setPreparedStatement(LISTAR_BY_FINCA);
+			preparedStatement.setInt(1, cultivoFinca);
+			
+			ResultSet rs = conexion.query();
+
+			while (rs.next()) {
+				
+				Integer id = rs.getInt("id");
+				Integer fincaId = rs.getInt("finca");
+				Integer numero = rs.getInt("numero");
+				
+				Finca finca = new Finca();
+				finca.setId(fincaId);
+				
+				cultivos.add(new Cultivo(id, finca, numero));
+			
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return cultivos;
 	}
 
 }

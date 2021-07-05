@@ -20,6 +20,10 @@ public class CultivoPlanDaoMySQL implements CultivoPlanDao {
 	private static final String ELIMINAR = "DELETE * FROM cultivoplan WHERE id = ?;";
 	private static final String BUSCAR = "SELECT * FROM cultivoplan WHERE id = ?;";
 	private static final String LISTAR = "SELECT * FROM cultivoplan";
+	private static final String LISTAR_BY_CULTIVO = "SELECT * FROM cultivoplan WHERE cultivo = ?";
+	private static final String LISTAR_BY_PLAN = "SELECT * FROM cultivoplan WHERE plan = ?";
+	private static final String LISTAR_BY_ANIO = "SELECT * FROM cultivoplan WHERE anio = ?";
+	private static final String LISTAR_BY_MES = "SELECT * FROM cultivoplan WHERE mes = ?";
 	
 	
 	public CultivoPlanDaoMySQL() {
@@ -144,6 +148,134 @@ public class CultivoPlanDaoMySQL implements CultivoPlanDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public List<CultivoPlan> selectByCultivo(Integer byCultivo) {
+		List<CultivoPlan> cultivoPlan = new ArrayList<>();
+
+		try {
+			PreparedStatement preparedStatement = conexion.setPreparedStatement(LISTAR_BY_CULTIVO);
+			preparedStatement.setInt(1, byCultivo);
+			
+			ResultSet rs = conexion.query();
+
+			while (rs.next()) {
+				Integer cultivoId = rs.getInt("cultivo");
+				Integer planId = rs.getInt("plan");
+				Integer mes = rs.getInt("mes");
+				Integer anio = rs.getInt("anio");
+				
+				Cultivo cultivo = new Cultivo();
+				cultivo.setId(cultivoId);
+				
+				PlanFertilizante plan = new PlanFertilizante();
+				plan.setId(planId);
+				
+				cultivoPlan.add(new CultivoPlan(cultivo, plan, mes, anio));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return cultivoPlan;
+	}
+
+	@Override
+	public List<CultivoPlan> selectByPlan(Integer byPlan) {
+		List<CultivoPlan> cultivoPlan = new ArrayList<>();
+
+		try {
+			PreparedStatement preparedStatement = conexion.setPreparedStatement(LISTAR_BY_PLAN);
+			preparedStatement.setInt(1, byPlan);
+			
+			ResultSet rs = conexion.query();
+
+			while (rs.next()) {
+				Integer cultivoId = rs.getInt("cultivo");
+				Integer planId = rs.getInt("plan");
+				Integer mes = rs.getInt("mes");
+				Integer anio = rs.getInt("anio");
+				
+				Cultivo cultivo = new Cultivo();
+				cultivo.setId(cultivoId);
+				
+				PlanFertilizante plan = new PlanFertilizante();
+				plan.setId(planId);
+				
+				cultivoPlan.add(new CultivoPlan(cultivo, plan, mes, anio));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return cultivoPlan;
+	}
+
+	@Override
+	public List<CultivoPlan> selectByAnio(Integer byAnio) {
+		List<CultivoPlan> cultivoPlan = new ArrayList<>();
+
+		try {
+			PreparedStatement preparedStatement = conexion.setPreparedStatement(LISTAR_BY_ANIO);
+			preparedStatement.setInt(1, byAnio);
+			
+			ResultSet rs = conexion.query();
+
+			while (rs.next()) {
+				Integer cultivoId = rs.getInt("cultivo");
+				Integer planId = rs.getInt("plan");
+				Integer mes = rs.getInt("mes");
+				Integer anio = rs.getInt("anio");
+				
+				Cultivo cultivo = new Cultivo();
+				cultivo.setId(cultivoId);
+				
+				PlanFertilizante plan = new PlanFertilizante();
+				plan.setId(planId);
+				
+				cultivoPlan.add(new CultivoPlan(cultivo, plan, mes, anio));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return cultivoPlan;
+	}
+
+	@Override
+	public List<CultivoPlan> selectByMes(Integer byMes) {
+		List<CultivoPlan> cultivoPlan = new ArrayList<>();
+
+		try {
+			PreparedStatement preparedStatement = conexion.setPreparedStatement(LISTAR_BY_MES);
+			preparedStatement.setInt(1, byMes);
+			
+			ResultSet rs = conexion.query();
+
+			while (rs.next()) {
+				Integer cultivoId = rs.getInt("cultivo");
+				Integer planId = rs.getInt("plan");
+				Integer mes = rs.getInt("mes");
+				Integer anio = rs.getInt("anio");
+				
+				Cultivo cultivo = new Cultivo();
+				cultivo.setId(cultivoId);
+				
+				PlanFertilizante plan = new PlanFertilizante();
+				plan.setId(planId);
+				
+				cultivoPlan.add(new CultivoPlan(cultivo, plan, mes, anio));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return cultivoPlan;
 	}
 
 }

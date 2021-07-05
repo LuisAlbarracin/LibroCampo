@@ -1,19 +1,31 @@
 package tk.luisalbarracin.librocampo.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
+
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import tk.luisalbarracin.librocampo.dao.CultivoDao;
+import tk.luisalbarracin.librocampo.dao.CultivoDaoMySQL;
+import tk.luisalbarracin.librocampo.dao.FincaDao;
+import tk.luisalbarracin.librocampo.dao.FincaDaoMySQL;
+import tk.luisalbarracin.librocampo.modelo.Cultivo;
+import tk.luisalbarracin.librocampo.modelo.Finca;
 
 /**
  * Servlet implementation class CultivoServlet
  */
-@WebServlet("/cultivo")
+@WebServlet("/cultivo/*")
 public class CultivoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private CultivoDao cultivoDao;
+	private FincaDao fincaDao;
 
     /**
      * Default constructor. 
@@ -26,15 +38,43 @@ public class CultivoServlet extends HttpServlet {
 	 * @see Servlet#init(ServletConfig)
 	 */
 	public void init(ServletConfig config) throws ServletException {
-		// TODO Auto-generated method stub
+		this.cultivoDao = new CultivoDaoMySQL();
+		this.fincaDao = new FincaDaoMySQL();
 	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		String action = request.getServletPath();
+
+		try {
+			switch (action) {
+			case "/new":
+				showNewForm(request, response);
+				break;
+			case "/insert":
+				insertarCultivo(request, response);
+				break;
+			case "/delete":
+				eliminarCultivo(request, response);
+				break;
+			case "/edit":
+				showEditForm(request, response);
+				break;
+			case "/update":
+				actualizarCultivo(request, response);
+				break;
+			default:
+				listCultivos(request, response);
+				break;
+
+			}
+		} catch (SQLException e) {
+			throw new ServletException(e);
+		}
+		
 	}
 
 	/**
@@ -44,5 +84,77 @@ public class CultivoServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
+	
+	private void showEditForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		Integer id = Integer.parseInt(request.getParameter("id"));
+		
+		Cultivo cultivoActual = this.cultivoDao.buscar(id);
+		List<Finca> fincas = this.fincaDao.selectAll();
+		
+		request.setAttribute("cultivo", cultivoActual);
+		request.setAttribute("fincas", fincas);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("cultivo.jsp");
+		dispatcher.forward(request, response);
+	}
+
+	private void listCultivos(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
+		// TODO Auto-generated method stub
+		List<Cultivo> cultivos = this.cultivoDao.selectAll();
+		
+		request.setAttribute("cultivos", cultivos);
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("cultivolist.jsp");
+		dispatcher.forward(request, response);
+	}
+
+	private void actualizarCultivo(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
+		// TODO Auto-generated method stub
+		Integer id = Integer.parseInt(request.getParameter("id"));
+		Integer fincaId = Integer.parseInt(request.getParameter("finca"));
+		Integer numero = Integer.parseInt(request.getParameter("numero"));
+		
+		Finca finca = this.fincaDao.buscar(fincaId);
+		
+		Cultivo cultivo = new Cultivo(id, finca, numero);
+		this.cultivoDao.actualizar(cultivo);
+		
+		response.sendRedirect("list");
+	}
+
+	private void eliminarCultivo(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
+		// TODO Auto-generated method stub
+		Integer id = Integer.parseInt(request.getParameter("id"));
+		
+		this.cultivoDao.eliminar(id);
+		
+		response.sendRedirect("list");
+	}
+
+	private void insertarCultivo(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
+		// TODO Auto-generated method stub
+		Integer fincaId = Integer.parseInt(request.getParameter("finca"));
+		Integer numero = Integer.parseInt(request.getParameter("numero"));
+		
+		Finca finca = this.fincaDao.buscar(fincaId);
+		
+		Cultivo cultivo = new Cultivo(finca, numero);
+		
+		
+		this.cultivoDao.insertar(cultivo);
+		
+		response.sendRedirect("list");
+	}
+
+	private void showNewForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		List<Finca> fincas = this.fincaDao.selectAll();
+		request.setAttribute("fincas", fincas);
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("cultivo.jsp");
+		dispatcher.forward(request, response);
+	}
+
+	
 
 }

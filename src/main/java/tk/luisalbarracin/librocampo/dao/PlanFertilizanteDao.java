@@ -18,4 +18,5 @@ public interface PlanFertilizanteDao {
 	public List<PlanFertilizante> selectAll();
 	public void eliminar(Integer id) throws SQLException;
 	public void actualizar(PlanFertilizante objeto) throws SQLException;
+	public List<PlanFertilizante> selectByFertilizante(Integer byFertilizante);
 }

@@ -18,7 +18,7 @@ import tk.luisalbarracin.librocampo.modelo.Fertilizante;
 /**
  * Servlet implementation class FertilizanteServlet
  */
-@WebServlet("/fertilizante")
+@WebServlet("/fertilizante/*")
 public class FertilizanteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private FertilizanteDao fertilizanteDao;

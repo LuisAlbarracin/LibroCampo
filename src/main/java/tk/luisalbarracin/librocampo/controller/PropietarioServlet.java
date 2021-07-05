@@ -18,7 +18,7 @@ import tk.luisalbarracin.librocampo.modelo.Propietario;
 /**
  * Servlet implementation class PropietarioServlet
  */
-@WebServlet("/propietario" )
+@WebServlet("/propietario/*" )
 public class PropietarioServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private PropietarioDao propietarioDao;
@@ -44,29 +44,32 @@ public class PropietarioServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		//String action = request.getServletPath();
 		String action = request.getServletPath();
+		System.out.println(action);
 
+		
 		try {
 			switch (action) {
-			case "/propietario/new":
+			case "propietario/new":
 				showNewForm(request, response);
 				break;
-			case "/propietario/insert":
+			case "propietario/insert":
 				insertarPropietario(request, response);
 				break;
-			case "/propietario/registrar":
+			case "propietario/registrar":
 				registrarPropietario(request, response);
 				break;
-			case "/propietario/delete":
+			case "propietario/delete":
 				eliminarPropietario(request, response);
 				break;
-			case "/propietario/edit":
+			case "propietario/edit":
 				showEditForm(request, response);
 				break;
-			case "/propietario/update":
+			case "propietario/update":
 				actualizarPropietario(request, response);
 				break;
-			case "/propietario/login":
+			case "propietario/login":
 				loginPropietario(request, response);
 				break;
 			default:
@@ -77,6 +80,8 @@ public class PropietarioServlet extends HttpServlet {
 		} catch (SQLException e) {
 			throw new ServletException(e);
 		}
+		
+		
 	}
 
 	/**
@@ -94,7 +99,7 @@ public class PropietarioServlet extends HttpServlet {
 		Propietario propietarioActual = (Propietario) this.propietarioDao.buscar(id);
 		
 		request.setAttribute("propietario", propietarioActual);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("propietario.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/propietario.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -103,7 +108,7 @@ public class PropietarioServlet extends HttpServlet {
 		List<Propietario> propietarios = this.propietarioDao.selectAll();
 		request.setAttribute("propietarios", propietarios);
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("propietariolist.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/propietariolist.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -153,7 +158,8 @@ public class PropietarioServlet extends HttpServlet {
 
 	private void showNewForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		RequestDispatcher dispatcher = request.getRequestDispatcher("propietario.jsp");
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/propietario.jsp");
 		dispatcher.forward(request, response);
 	}
 	
@@ -164,9 +170,10 @@ public class PropietarioServlet extends HttpServlet {
 		String contrasenia = request.getParameter("apellido");
 		
 		
-		//this.propietarioDao.insertar(propietario);
+		this.propietarioDao.login(email, contrasenia);
 		
-		response.sendRedirect("list");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/propietariolist.jsp");
+		dispatcher.forward(request, response);
 	}
 	
 	private void registrarPropietario(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
@@ -187,7 +194,8 @@ public class PropietarioServlet extends HttpServlet {
 		
 		this.propietarioDao.registrar(propietario);
 		
-		response.sendRedirect("/propietario");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/propietariolist.jsp");
+		dispatcher.forward(request, response);
 	}
 
 }

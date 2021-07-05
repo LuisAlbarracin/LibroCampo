@@ -21,6 +21,8 @@ public class FincaDaoMySQL implements FincaDao {
 	private static final String ELIMINAR = "DELETE * FROM finca WHERE id = ?;";
 	private static final String BUSCAR = "SELECT * FROM finca WHERE id = ?;";
 	private static final String LISTAR = "SELECT * FROM finca";
+	private static final String LISTAR_BY_PROPIETARIO = "SELECT * FROM finca WHERE propietario = ?";
+	private static final String LISTAR_BY_ASOCIACION = "SELECT * FROM finca WHERE asociacion = ?";
 
 
 	public FincaDaoMySQL() {
@@ -164,6 +166,81 @@ public class FincaDaoMySQL implements FincaDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public List<Finca> selectByPropietario(Integer propietarioFinca) {
+		List<Finca> fincas = new ArrayList<>();
+
+		try {
+			PreparedStatement preparedStatement = conexion.setPreparedStatement(LISTAR_BY_PROPIETARIO);
+			preparedStatement.setInt(1, propietarioFinca);
+			
+			ResultSet rs = conexion.query();
+
+			while (rs.next()) {
+				Integer id = rs.getInt("id");
+				String nombre = rs.getString("nombre");
+				Float area = rs.getFloat("area");
+				Integer asociacionId = rs.getInt("asociacion");
+				Float areaPalma = rs.getFloat("areaPalma");
+				String plano = rs.getString("plano");
+				Integer propietarioId = rs.getInt("propietario");
+				String vereda = rs.getString("vereda");
+				Date inicioSiembra = rs.getDate("inicioSiembra");
+				
+				Asociacion asociacion = new Asociacion();
+				asociacion.setId(asociacionId);
+				
+				Propietario propietario = new Propietario();
+				propietario.setId(propietarioId);
+				
+				fincas.add(new Finca(id, nombre, area, asociacion, areaPalma, plano, propietario, vereda, inicioSiembra));
+			
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return fincas;
+	}
+
+	@Override
+	public List<Finca> selectByAsociacion(Integer asociacionFinca) {
+		List<Finca> fincas = new ArrayList<>();
+
+		try {
+			PreparedStatement preparedStatement = conexion.setPreparedStatement(LISTAR_BY_ASOCIACION);
+			preparedStatement.setInt(1, asociacionFinca);
+			
+			ResultSet rs = conexion.query();
+
+			while (rs.next()) {
+				Integer id = rs.getInt("id");
+				String nombre = rs.getString("nombre");
+				Float area = rs.getFloat("area");
+				Integer asociacionId = rs.getInt("asociacion");
+				Float areaPalma = rs.getFloat("areaPalma");
+				String plano = rs.getString("plano");
+				Integer propietarioId = rs.getInt("propietario");
+				String vereda = rs.getString("vereda");
+				Date inicioSiembra = rs.getDate("inicioSiembra");
+				
+				Asociacion asociacion = new Asociacion();
+				asociacion.setId(asociacionId);
+				
+				Propietario propietario = new Propietario();
+				propietario.setId(propietarioId);
+				
+				fincas.add(new Finca(id, nombre, area, asociacion, areaPalma, plano, propietario, vereda, inicioSiembra));
+			
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return fincas;
 	}
 
 }

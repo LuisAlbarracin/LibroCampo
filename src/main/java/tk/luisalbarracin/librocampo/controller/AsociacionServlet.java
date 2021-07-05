@@ -18,7 +18,7 @@ import tk.luisalbarracin.librocampo.modelo.Asociacion;
 /**
  * Servlet implementation class AsociacionServlet
  */
-@WebServlet("/asociacion")
+@WebServlet("/asociacion/*")
 public class AsociacionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private AsociacionDao asociacionDao;

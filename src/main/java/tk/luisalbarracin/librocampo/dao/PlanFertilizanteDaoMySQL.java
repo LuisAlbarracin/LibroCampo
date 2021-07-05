@@ -14,11 +14,12 @@ public class PlanFertilizanteDaoMySQL implements PlanFertilizanteDao {
 
 	private ConexionMySQL conexion;
 
-	private static final String INSERTAR = "INSERT INTO planfertilizante (fertilizante, numeroBultos, gramosPalma) VALUES (?, ?, ?);";
+	private static final String INSERTAR = "INSERT INTO planfertilizante (nombre, fertilizante, numeroBultos, gramosPalma) VALUES (?, ?, ?, ?);";
 	private static final String ACTUALIZAR = "UPDATE planfertilizante SET fertilizante = ?, numeroBultos = ?, gramosPalma = ?WHERE id = ?;";
 	private static final String ELIMINAR = "DELETE * FROM planfertilizante WHERE id = ?;";
 	private static final String BUSCAR = "SELECT * FROM planfertilizante WHERE id = ?;";
 	private static final String LISTAR = "SELECT * FROM planfertilizante";
+	private static final String LISTAR_BY_FERTILIZANTE = "SELECT * FROM planfertilizante WHERE fertilizante = ?";
 	
 	
 	public PlanFertilizanteDaoMySQL() {
@@ -32,9 +33,10 @@ public class PlanFertilizanteDaoMySQL implements PlanFertilizanteDao {
 		try {
 			PreparedStatement preparedStatement = conexion.setPreparedStatement(INSERTAR);
 
-			preparedStatement.setInt(1, planFertilizante.getFertilizante().getId());
-			preparedStatement.setInt(2, planFertilizante.getNumeroBultos());
-			preparedStatement.setFloat(3, planFertilizante.getGramosPalma());
+			preparedStatement.setString(1, planFertilizante.getNombre());
+			preparedStatement.setInt(2, planFertilizante.getFertilizante().getId());
+			preparedStatement.setInt(3, planFertilizante.getNumeroBultos());
+			preparedStatement.setFloat(4, planFertilizante.getGramosPalma());
 			
 			conexion.execute();
 		} catch (SQLException e) {
@@ -55,7 +57,8 @@ public class PlanFertilizanteDaoMySQL implements PlanFertilizanteDao {
 			ResultSet rs = conexion.query();
 
 			while (rs.next()) {
-
+				
+				String nombre = rs.getString("nombre");
 				Integer fertilizanteId = rs.getInt("fertilizante");
 				Integer numeroBultos = rs.getInt("numeroBultos");
 				Float gramosPalma = rs.getFloat("gramosPalma");
@@ -63,7 +66,7 @@ public class PlanFertilizanteDaoMySQL implements PlanFertilizanteDao {
 				Fertilizante fertilizante = new Fertilizante();
 				fertilizante.setId(fertilizanteId);
 				
-				planFertilizante = new PlanFertilizante(id, fertilizante, numeroBultos, gramosPalma);
+				planFertilizante = new PlanFertilizante(id, nombre, fertilizante, numeroBultos, gramosPalma);
 			}
 
 		} catch (SQLException e) {
@@ -86,6 +89,7 @@ public class PlanFertilizanteDaoMySQL implements PlanFertilizanteDao {
 
 			while (rs.next()) {
 				Integer id = rs.getInt("id");
+				String nombre = rs.getString("nombre");
 				Integer fertilizanteId = rs.getInt("fertilizante");
 				Integer numeroBultos = rs.getInt("numeroBultos");
 				Float gramosPalma = rs.getFloat("gramosPalma");
@@ -93,7 +97,7 @@ public class PlanFertilizanteDaoMySQL implements PlanFertilizanteDao {
 				Fertilizante fertilizante = new Fertilizante();
 				fertilizante.setId(fertilizanteId);
 				
-				planesFertilizantes.add(new PlanFertilizante(id, fertilizante, numeroBultos, gramosPalma));
+				planesFertilizantes.add(new PlanFertilizante(id, nombre, fertilizante, numeroBultos, gramosPalma));
 				
 			}
 		} catch (SQLException e) {
@@ -127,9 +131,10 @@ public class PlanFertilizanteDaoMySQL implements PlanFertilizanteDao {
 			PreparedStatement preparedStatement = conexion.setPreparedStatement(ACTUALIZAR);
 
 			preparedStatement.setInt(1, planFertilizante.getFertilizante().getId());
-			preparedStatement.setInt(2, planFertilizante.getNumeroBultos());
-			preparedStatement.setFloat(3, planFertilizante.getGramosPalma());
-			preparedStatement.setInt(4, planFertilizante.getId());
+			preparedStatement.setString(2, planFertilizante.getNombre());
+			preparedStatement.setInt(3, planFertilizante.getNumeroBultos());
+			preparedStatement.setFloat(4, planFertilizante.getGramosPalma());
+			preparedStatement.setInt(5, planFertilizante.getId());
 
 			conexion.execute();
 
@@ -137,6 +142,38 @@ public class PlanFertilizanteDaoMySQL implements PlanFertilizanteDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+
+	@Override
+	public List<PlanFertilizante> selectByFertilizante(Integer byFertilizante) {
+		List<PlanFertilizante> planesFertilizantes = new ArrayList<>();
+
+		try {
+			PreparedStatement preparedStatement = conexion.setPreparedStatement(LISTAR_BY_FERTILIZANTE);
+			preparedStatement.setInt(1, byFertilizante);
+			
+			ResultSet rs = conexion.query();
+
+			while (rs.next()) {
+				Integer id = rs.getInt("id");
+				String nombre = rs.getString("nombre");
+				Integer fertilizanteId = rs.getInt("fertilizante");
+				Integer numeroBultos = rs.getInt("numeroBultos");
+				Float gramosPalma = rs.getFloat("gramosPalma");
+				
+				Fertilizante fertilizante = new Fertilizante();
+				fertilizante.setId(fertilizanteId);
+				
+				planesFertilizantes.add(new PlanFertilizante(id, nombre, fertilizante, numeroBultos, gramosPalma));
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return planesFertilizantes;
 	}
 
 }

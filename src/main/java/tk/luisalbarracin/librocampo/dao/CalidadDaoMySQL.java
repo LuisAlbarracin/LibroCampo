@@ -20,6 +20,7 @@ public class CalidadDaoMySQL implements CalidadDao {
 	private static final String ELIMINAR = "DELETE * FROM calidad WHERE id = ?;";
 	private static final String BUSCAR = "SELECT * FROM calidad WHERE id = ?;";
 	private static final String LISTAR = "SELECT * FROM calidad";
+	private static final String LISTAR_BY_CULTIVO = "SELECT * FROM calidad WHERE cultivo = ?";
 	
 	
 	public CalidadDaoMySQL() {
@@ -153,6 +154,39 @@ public class CalidadDaoMySQL implements CalidadDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public List<Calidad> selectByCultivo(Integer calidadCultivo) {
+		List<Calidad> calidades = new ArrayList<>();
+
+		try {
+			PreparedStatement preparedStatement = conexion.setPreparedStatement(LISTAR_BY_CULTIVO);
+			preparedStatement.setInt(1, calidadCultivo);
+			
+			ResultSet rs = conexion.query();
+
+			while (rs.next()) {
+				Integer id = rs.getInt("id");
+				Integer idCultivo = rs.getInt("cultivo");
+				Date fecha = rs.getDate("fecha");
+				Float porcentajeVerdes = rs.getFloat("porcentajeVerdes");
+				Float porcentajeSobremaduros = rs.getFloat("porcentajeSobremaduros");
+				Float porcentajePedunculoLargo = rs.getFloat("porcentajePedunculoLargo");
+				Float porcentajePodridos = rs.getFloat("porcentajePodridos");
+				Boolean impurezas = rs.getBoolean("impurezas");
+				
+				Cultivo cultivo = new Cultivo();
+				cultivo.setId(idCultivo);
+				
+				calidades.add(new Calidad(id, cultivo, fecha, porcentajeVerdes, porcentajeSobremaduros, porcentajePedunculoLargo, porcentajePodridos, impurezas));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return calidades;
 	}
 
 }

@@ -18,4 +18,6 @@ public interface FincaDao {
 	public List<Finca> selectAll();
 	public void eliminar(Integer id) throws SQLException;
 	public void actualizar(Finca objeto) throws SQLException;
+	public List<Finca> selectByPropietario(Integer propietario);
+	public List<Finca> selectByAsociacion(Integer asociacion);
 }

@@ -18,4 +18,5 @@ public interface CosechaDao {
 	public List<Cosecha> selectAll();
 	public void eliminar(Integer id) throws SQLException;
 	public void actualizar(Cosecha objeto) throws SQLException;
+	public List<Cosecha> selectByCultivo(Integer cosechaCultivo);
 }

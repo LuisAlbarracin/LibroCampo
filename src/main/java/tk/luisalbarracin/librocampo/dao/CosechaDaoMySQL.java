@@ -20,6 +20,7 @@ public class CosechaDaoMySQL implements CosechaDao {
 	private static final String ELIMINAR = "DELETE * FROM cosecha WHERE id = ?;";
 	private static final String BUSCAR = "SELECT * FROM cosecha WHERE id = ?;";
 	private static final String LISTAR = "SELECT * FROM cosecha";
+	private static final String LISTAR_BY_CULTIVO = "SELECT * FROM cosecha WHERE cosecha = ?";
 	
 	
 	public CosechaDaoMySQL() {
@@ -142,6 +143,37 @@ public class CosechaDaoMySQL implements CosechaDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public List<Cosecha> selectByCultivo(Integer cosechaCultivo) {
+		List<Cosecha> cosechas = new ArrayList<>();
+
+		try {
+			PreparedStatement preparedStatement = conexion.setPreparedStatement(LISTAR_BY_CULTIVO);
+			preparedStatement.setInt(1, cosechaCultivo);
+			
+			ResultSet rs = conexion.query();
+
+			while (rs.next()) {
+				Integer id = rs.getInt("id");
+				Integer cultivoId = rs.getInt("cultivo");
+				Date fecha = rs.getDate("fecha");
+				Integer numeroRacimos = rs.getInt("numeroRacimos");
+				Float pesoTotal = rs.getFloat("pesoTotal");
+				Float precioVenta = rs.getFloat("precioVenta");
+
+				Cultivo cultivo = new Cultivo();
+				cultivo.setId(cultivoId);
+				
+				cosechas.add(new Cosecha(id, cultivo, fecha, numeroRacimos, pesoTotal, precioVenta));	
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return cosechas;
 	}
 
 }

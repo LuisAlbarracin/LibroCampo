@@ -22,4 +22,6 @@ public interface CalidadDao {
 	public void eliminar(Integer id) throws SQLException;
 
 	public void actualizar(Calidad objeto) throws SQLException;
+	
+	public List<Calidad> selectByCultivo(Integer calidadCultivo);
 }

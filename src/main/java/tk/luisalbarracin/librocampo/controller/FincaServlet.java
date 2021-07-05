@@ -24,7 +24,7 @@ import tk.luisalbarracin.librocampo.modelo.Propietario;
 /**
  * Servlet implementation class FincaServlet
  */
-@WebServlet("/finca")
+@WebServlet("/finca/*")
 public class FincaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private FincaDao fincaDao;
@@ -102,7 +102,7 @@ public class FincaServlet extends HttpServlet {
 
 	private void listFincas(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
 		// TODO Auto-generated method stub
-		List<Finca> fincas = this.fincaDao.selectAll();
+		List<Finca> fincas = this.fincaDao.selectByPropietario(1);
 		request.setAttribute("fincas", fincas);
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("fincalist.jsp");
@@ -141,7 +141,6 @@ public class FincaServlet extends HttpServlet {
 	private void insertarFinca(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
 		// TODO Auto-generated method stub
 		
-		Integer id = Integer.parseInt(request.getParameter("id"));
 		String nombre = request.getParameter("nombre");
 		Float area = Float.parseFloat(request.getParameter("area"));
 		Integer asociacionId = Integer.parseInt(request.getParameter("asociacion"));
