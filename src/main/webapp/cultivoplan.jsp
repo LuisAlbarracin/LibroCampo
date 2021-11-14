@@ -34,10 +34,10 @@
 				<div class="card-body">
 
 					<c:if test="${cultivoplan != null}">
-						<form action="cultivoplan/update" method="post">
+						<form action="<%=request.getContextPath()%>/cultivoplan/update" method="post">
 					</c:if>
 					<c:if test="${cultivoplan == null}">
-						<form action="cultivoplan/insert" method="post">
+						<form action="<%=request.getContextPath()%>/cultivoplan/insert" method="post">
 					</c:if>
 
 					<caption>

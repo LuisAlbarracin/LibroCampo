@@ -52,23 +52,23 @@ public class CultivoPlanServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String action = request.getServletPath();
+		String action = request.getRequestURI();
 
 		try {
 			switch (action) {
-			case "/new":
+			case "/libroCampo/cultivoplan/new":
 				showNewForm(request, response);
 				break;
-			case "/insert":
+			case "/libroCampo/cultivoplan/insert":
 				insertarCultivoPlan(request, response);
 				break;
-			case "/delete":
+			case "/libroCampo/cultivoplan/delete":
 				eliminarCultivoPlan(request, response);
 				break;
-			case "/edit":
+			case "/libroCampo/cultivoplan/edit":
 				showEditForm(request, response);
 				break;
-			case "/update":
+			case "/libroCampo/cultivoplan/update":
 				actualizarCultivoPlan(request, response);
 				break;
 			default:

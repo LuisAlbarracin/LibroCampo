@@ -20,30 +20,12 @@ public class Propietario implements Serializable {
 	public Propietario() {
 		super();
 	}
-
-	public Propietario(Integer id, String nombre, String apellido, String noCedula, String telefono,
-			String expedicionCedula) {
-		super();
-		this.id = id;
-		this.nombre = nombre;
-		this.apellido = apellido;
-		this.noCedula = noCedula;
-		this.telefono = telefono;
-		this.expedicionCedula = expedicionCedula;
-	}
-
-	public Propietario(String nombre, String apellido, String noCedula, String telefono, String expedicionCedula) {
-		super();
-		this.nombre = nombre;
-		this.apellido = apellido;
-		this.noCedula = noCedula;
-		this.telefono = telefono;
-		this.expedicionCedula = expedicionCedula;
-	}
+	
+	
+	
 
 	public Propietario(String nombre, String apellido, String noCedula, String telefono, String expedicionCedula,
 			String email, String contrasenia) {
-		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.noCedula = noCedula;
@@ -52,6 +34,9 @@ public class Propietario implements Serializable {
 		this.email = email;
 		this.contrasenia = contrasenia;
 	}
+
+
+
 
 	public Propietario(Integer id, String nombre, String apellido, String noCedula, String telefono,
 			String expedicionCedula, String email, String contrasenia) {
@@ -65,6 +50,30 @@ public class Propietario implements Serializable {
 		this.email = email;
 		this.contrasenia = contrasenia;
 	}
+	
+	
+
+
+	public Propietario(Integer id, String nombre, String apellido, String noCedula, String telefono,
+			String expedicionCedula) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.noCedula = noCedula;
+		this.telefono = telefono;
+		this.expedicionCedula = expedicionCedula;
+	}
+
+
+	public Propietario(String nombre, String apellido, String noCedula,String telefono, String expedicionCedula) {
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.noCedula = noCedula;
+		this.expedicionCedula = expedicionCedula;
+		this.telefono = telefono;
+	}
+
 
 	public String getEmail() {
 		return email;
@@ -133,5 +142,7 @@ public class Propietario implements Serializable {
 	public void setExpedicionCedula(String expedicionCedula) {
 		this.expedicionCedula = expedicionCedula;
 	}
+	
+	
 
 }

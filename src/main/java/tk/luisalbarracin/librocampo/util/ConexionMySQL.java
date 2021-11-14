@@ -40,6 +40,7 @@ public class ConexionMySQL {
 
 	public static ConexionMySQL getConexion() {
 		if (db == null) {
+			System.out.println("Se crea la conexion");
 			db = new ConexionMySQL();
 		}
 
@@ -71,4 +72,5 @@ public class ConexionMySQL {
 	
 			return this.preparedStatement;
 	}
+	
 }

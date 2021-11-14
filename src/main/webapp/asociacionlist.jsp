@@ -57,9 +57,9 @@
 								<td><c:out value="${asociacion.id}" /></td>
 								<td><c:out value="${asociacion.nombre}" /></td>
 								<td><c:out value="${asociacion.descripcion}" /></td>
-								<td><a href="asociacion/edit?id=<c:out value='${asociacion.id}' />">Editar</a>
+								<td><a href="<%=request.getContextPath()%>/asociacion/edit?id=<c:out value='${asociacion.id}' />">Editar</a>
 									&nbsp;&nbsp;&nbsp;&nbsp; <a
-									href="asociacion/delete?id=<c:out value='${asociacion.id}' />">Eliminar</a></td>
+									href="<%=request.getContextPath()%>/asociacion/delete?id=<c:out value='${asociacion.id}' />">Eliminar</a></td>
 							</tr>
 						</c:forEach>
 						<!-- } -->

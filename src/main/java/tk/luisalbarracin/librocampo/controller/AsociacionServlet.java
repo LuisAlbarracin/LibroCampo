@@ -40,23 +40,23 @@ public class AsociacionServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String action = request.getServletPath();
+		String action = request.getRequestURI();
 
 		try {
 			switch (action) {
-			case "/new":
+			case "/libroCampo/asociacion/new":
 				showNewForm(request, response);
 				break;
-			case "/insert":
+			case "/libroCampo/asociacion/insert":
 				insertarAsociacion(request, response);
 				break;
-			case "/delete":
+			case "/libroCampo/asociacion/delete":
 				eliminarAsociacion(request, response);
 				break;
-			case "/edit":
+			case "/libroCampo/asociacion/edit":
 				showEditForm(request, response);
 				break;
-			case "/update":
+			case "/libroCampo/asociacion/update":
 				actualizarAsociacion(request, response);
 				break;
 			default:

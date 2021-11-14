@@ -40,23 +40,23 @@ public class FertilizanteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String action = request.getServletPath();
+		String action = request.getRequestURI();
 
 		try {
 			switch (action) {
-			case "/new":
+			case "/libroCampo/fertilizante/new":
 				showNewForm(request, response);
 				break;
-			case "/insert":
+			case "/libroCampo/fertilizante/insert":
 				insertarFertilizante(request, response);
 				break;
-			case "/delete":
+			case "/libroCampo/fertilizante/delete":
 				eliminarFertilizante(request, response);
 				break;
-			case "/edit":
+			case "/libroCampo/fertilizante/edit":
 				showEditForm(request, response);
 				break;
-			case "/update":
+			case "/libroCampo/fertilizante/update":
 				actualizarFertilizante(request, response);
 				break;
 			default:

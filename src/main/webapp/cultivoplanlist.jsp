@@ -61,9 +61,9 @@
 								<td><c:out value="${cultivoplan.plan}" /></td>
 								<td><c:out value="${cultivoplan.anio}" /></td>
 								<td><c:out value="${cultivoplan.mes} " /></td>
-								<td><a href="cultivoplan/edit?id=<c:out value='${cultivoplan.id}' />">Editar</a>
+								<td><a href="<%=request.getContextPath()%>/cultivoplan/edit?id=<c:out value='${cultivoplan.id}' />">Editar</a>
 									&nbsp;&nbsp;&nbsp;&nbsp; <a
-									href="cultivoplan/delete?id=<c:out value='${cultivoplan.id}' />">Eliminar</a></td>
+									href="<%=request.getContextPath()%>/cultivoplan/delete?id=<c:out value='${cultivoplan.id}' />">Eliminar</a></td>
 							</tr>
 						</c:forEach>
 						<!-- } -->

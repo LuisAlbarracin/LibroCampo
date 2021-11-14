@@ -21,7 +21,7 @@
 			</div>
 
 			<ul class="navbar-nav">
-				<li><a href="<%=request.getContextPath()%>/list"
+				<li><a href="<%=request.getContextPath()%>/planfertilizante/list"
 					class="nav-link">Plan Fertilizante</a></li>
 			</ul>
 
@@ -59,9 +59,9 @@
 								<td><c:out value="${planfertilizante.fertilizante.nombre}" /></td>
 								<td><c:out value="${planfertilizante.numeroBultos}" /></td>
 								<td><c:out value="${planfertilizante.gramosPalma}" /></td>
-								<td><a href="planfertilizante/edit?id=<c:out value='${planfertilizante.id}' />">Editar</a>
+								<td><a href="<%=request.getContextPath()%>/planfertilizante/edit?id=<c:out value='${planfertilizante.id}' />">Editar</a>
 									&nbsp;&nbsp;&nbsp;&nbsp; <a
-									href="planfertilizante/delete?id=<c:out value='${planfertilizante.id}' />">Eliminar</a></td>
+									href="<%=request.getContextPath()%>/planfertilizante/delete?id=<c:out value='${planfertilizante.id}' />">Eliminar</a></td>
 							</tr>
 						</c:forEach>
 						<!-- } -->

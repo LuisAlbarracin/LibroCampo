@@ -58,9 +58,9 @@
 								<td><c:out value="${cultivo.finca.nombre}" /></td>
 								<td><c:out value="${cultivo.numero}" /></td>
 								
-								<td><a href="cultivo/edit?id=<c:out value='${cultivo.id}' />">Editar</a>
+								<td><a href="<%=request.getContextPath()%>/cultivo/edit?id=<c:out value='${cultivo.id}' />">Editar</a>
 									&nbsp;&nbsp;&nbsp;&nbsp; <a
-									href="cultivo/delete?id=<c:out value='${cultivo.id}' />">Eliminar</a></td>
+									href="<%=request.getContextPath()%>/cultivo/delete?id=<c:out value='${cultivo.id}' />">Eliminar</a></td>
 							</tr>
 						</c:forEach>
 						<!-- } -->

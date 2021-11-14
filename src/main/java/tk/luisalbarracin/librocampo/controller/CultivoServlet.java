@@ -47,23 +47,23 @@ public class CultivoServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String action = request.getServletPath();
+		String action = request.getRequestURI();
 
 		try {
 			switch (action) {
-			case "/new":
+			case "/libroCampo/cultivo/new":
 				showNewForm(request, response);
 				break;
-			case "/insert":
+			case "/libroCampo/cultivo/insert":
 				insertarCultivo(request, response);
 				break;
-			case "/delete":
+			case "/libroCampo/cultivo/delete":
 				eliminarCultivo(request, response);
 				break;
-			case "/edit":
+			case "/libroCampo/cultivo/edit":
 				showEditForm(request, response);
 				break;
-			case "/update":
+			case "/libroCampo/cultivo/update":
 				actualizarCultivo(request, response);
 				break;
 			default:

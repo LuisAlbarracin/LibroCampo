@@ -68,9 +68,9 @@
 								<td><c:out value="${finca.vereda} " /></td>
 								<td><c:out value="${finca.inicioSiembra} " /></td>
 								
-								<td><a href="finca/edit?id=<c:out value='${finca.id}' />">Editar</a>
+								<td><a href="<%=request.getContextPath()%>/finca/edit?id=<c:out value='${finca.id}' />">Editar</a>
 									&nbsp;&nbsp;&nbsp;&nbsp; <a
-									href="finca/delete?id=<c:out value='${finca.id}' />">Eliminar</a></td>
+									href="<%=request.getContextPath()%>/finca/delete?id=<c:out value='${finca.id}' />">Eliminar</a></td>
 							</tr>
 						</c:forEach>
 						<!-- } -->

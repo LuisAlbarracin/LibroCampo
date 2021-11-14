@@ -21,7 +21,7 @@
 			</div>
 
 			<ul class="navbar-nav">
-				<li><a href="<%=request.getContextPath()%>/list"
+				<li><a href="<%=request.getContextPath()%>/propietario/list"
 					class="nav-link">Propietarios</a></li>
 			</ul>
 
@@ -48,7 +48,7 @@
 							<th>Nombre</th>
 							<th>Apellido</th>
 							<th>Email</th>
-							<th>Password</th>
+							<th>Contraseña</th>
 							<th>Telefono</th>
 							<th>Número Cedula</th>
 							<th>Lugar de Expedicion</th>
@@ -67,9 +67,9 @@
 								<td><c:out value="${propietario.telefono}" /></td>
 								<td><c:out value="${propietario.noCedula}" /></td>
 								<td><c:out value="${propietario.expedicionCedula} " /></td>
-								<td><a href="propietario/edit?id=<c:out value='${propietario.id}' />">Editar</a>
+								<td><a href="<%=request.getContextPath()%>/propietario/edit?id=<c:out value='${propietario.id}' />">Editar</a>
 									&nbsp;&nbsp;&nbsp;&nbsp; <a
-									href="propietario/delete?id=<c:out value='${propietario.id}' />">Eliminar</a></td>
+									href="<%=request.getContextPath()%>/propietario/delete?id=<c:out value='${propietario.id}' />">Eliminar</a></td>
 							</tr>
 						</c:forEach>
 						<!-- } -->

@@ -13,8 +13,8 @@ public class PropietarioDaoMySQL implements PropietarioDao {
 
 	private ConexionMySQL conexion;
 
-	private static final String INSERTAR = "INSERT INTO propietario (nombre, apellido, noCedula, telefono, expedicionCedula) VALUES (?, ?, ?, ?, ?);";
-	private static final String ACTUALIZAR = "UPDATE propietario SET nombre = ?, apellido = ?, noCedula = ?, telefono = ?, expedicionCedula = ? WHERE id = ?;";
+	private static final String INSERTAR = "INSERT INTO propietario (nombre, apellido, noCedula, telefono, expedicionCedula, email, contrasenia) VALUES (?, ?, ?, ?, ?, ?, ?);";
+	private static final String ACTUALIZAR = "UPDATE propietario SET nombre = ?, apellido = ?, noCedula = ?, telefono = ?, expedicionCedula = ?, email = ?, contrasenia = ? WHERE id = ?;";
 	private static final String ELIMINAR = "DELETE * FROM propietario WHERE id = ?;";
 	private static final String BUSCAR = "SELECT * FROM propietario WHERE id = ?;";
 	private static final String LISTAR = "SELECT * FROM propietario";
@@ -35,6 +35,8 @@ public class PropietarioDaoMySQL implements PropietarioDao {
 			preparedStatement.setString(3, propietario.getNoCedula());
 			preparedStatement.setString(4, propietario.getTelefono());
 			preparedStatement.setString(5, propietario.getExpedicionCedula());
+			preparedStatement.setString(6, propietario.getEmail());
+			preparedStatement.setString(7, propietario.getContrasenia());
 
 			conexion.execute();
 		} catch (SQLException e) {
@@ -52,6 +54,8 @@ public class PropietarioDaoMySQL implements PropietarioDao {
 			preparedStatement.setString(3, propietario.getNoCedula());
 			preparedStatement.setString(4, propietario.getTelefono());
 			preparedStatement.setString(5, propietario.getExpedicionCedula());
+			preparedStatement.setString(6, propietario.getEmail());
+			preparedStatement.setString(7, propietario.getContrasenia());
 			preparedStatement.setInt(6, propietario.getId());
 
 			conexion.execute();
@@ -93,8 +97,10 @@ public class PropietarioDaoMySQL implements PropietarioDao {
 				String noCedula = rs.getString("noCedula");
 				String telefono = rs.getString("telefono");
 				String expedicionCedula = rs.getString("expedicionCedula");
+				String email = rs.getString("email");
+				String contrasenia = rs.getString("contrasenia");
 
-				propietario = new Propietario(nombre, apellido, noCedula, telefono, expedicionCedula);
+				propietario = new Propietario(nombre, apellido, noCedula, telefono, expedicionCedula, email, contrasenia);
 			}
 
 		} catch (SQLException e) {
@@ -120,8 +126,10 @@ public class PropietarioDaoMySQL implements PropietarioDao {
 				String noCedula = rs.getString("noCedula");
 				String telefono = rs.getString("telefono");
 				String expedicionCedula = rs.getString("expedicionCedula");
+				String email = rs.getString("email");
+				String contrasenia = rs.getString("contrasenia");
 
-				propietarios.add(new Propietario(id, nombre, apellido, noCedula, telefono, expedicionCedula));
+				propietarios.add(new Propietario(id, nombre, apellido, noCedula, telefono, expedicionCedula, email, contrasenia));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -167,10 +175,13 @@ public class PropietarioDaoMySQL implements PropietarioDao {
 			preparedStatement.setString(4, propietario.getEmail());
 			preparedStatement.setString(5, propietario.getContrasenia());
 
+			System.out.println("Entre en Registrar DAO");
 			conexion.execute();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
+			e.getMessage();
 			e.printStackTrace();
+			
 		}
 	}
 }

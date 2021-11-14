@@ -52,23 +52,23 @@ public class CosechaServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String action = request.getServletPath();
+		String action = request.getRequestURI();
 
 		try {
 			switch (action) {
-			case "/new":
+			case "/libroCampo/cosecha/new":
 				showNewForm(request, response);
 				break;
-			case "/insert":
+			case "/libroCampo/cosecha/insert":
 				insertarCosecha(request, response);
 				break;
-			case "/delete":
+			case "/libroCampo/cosecha/delete":
 				eliminarCosecha(request, response);
 				break;
-			case "/edit":
+			case "/libroCampo/cosecha/edit":
 				showEditForm(request, response);
 				break;
-			case "/update":
+			case "/libroCampo/cosecha/update":
 				actualizarCosecha(request, response);
 				break;
 			default:

@@ -21,7 +21,7 @@
 			</div>
 
 			<ul class="navbar-nav">
-				<li><a href="<%=request.getContextPath()%>/list"
+				<li><a href="<%=request.getContextPath()%>/propietario/list"
 					class="nav-link">Propietarios</a></li>
 			</ul>
 		</nav>
@@ -34,10 +34,10 @@
 				<div class="card-body">
 
 					<c:if test="${propietario != null}">
-						<form action="propietario/update" method="post">
+						<form action="<%=request.getContextPath()%>/propietario/update" method="post">
 					</c:if>
 					<c:if test="${propietario == null}">
-						<form action="propietario/insert" method="post">
+						<form action="<%=request.getContextPath()%>/propietario/insert" method="post">
 					</c:if>
 
 					<caption>

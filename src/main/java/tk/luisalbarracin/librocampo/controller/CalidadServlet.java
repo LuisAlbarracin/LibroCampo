@@ -49,23 +49,23 @@ public class CalidadServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String action = request.getServletPath();
+		String action = request.getRequestURI();
 
 		try {
 			switch (action) {
-			case "/new":
+			case "/libroCampo/calidad/new":
 				showNewForm(request, response);
 				break;
-			case "/insert":
+			case "/libroCampo/calidad/insert":
 				insertarCalidad(request, response);
 				break;
-			case "/delete":
+			case "/libroCampo/calidad/delete":
 				eliminarCalidad(request, response);
 				break;
-			case "/edit":
+			case "/libroCampo/calidad/edit":
 				showEditForm(request, response);
 				break;
-			case "/update":
+			case "/libroCampo/calidad/update":
 				actualizarCalidad(request, response);
 				break;
 			default:

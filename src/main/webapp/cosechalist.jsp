@@ -65,9 +65,9 @@
 								<td><c:out value="${cosecha.precioVenta} " /></td>
 
 								<td><a
-									href="cosecha/edit?id=<c:out value='${cosecha.id}' />">Editar</a>
+									href="<%=request.getContextPath()%>/cosecha/edit?id=<c:out value='${cosecha.id}' />">Editar</a>
 									&nbsp;&nbsp;&nbsp;&nbsp; <a
-									href="cosecha/delete?id=<c:out value='${cosecha.id}' />">Eliminar</a></td>
+									href="<%=request.getContextPath()%>/cosecha/delete?id=<c:out value='${cosecha.id}' />">Eliminar</a></td>
 							</tr>
 						</c:forEach>
 						<!-- } -->

@@ -45,34 +45,35 @@ public class PropietarioServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//String action = request.getServletPath();
-		String action = request.getServletPath();
+		String action = request.getRequestURI();
 		System.out.println(action);
 
 		
 		try {
 			switch (action) {
-			case "propietario/new":
+			case "/libroCampo/propietario/new":
 				showNewForm(request, response);
 				break;
-			case "propietario/insert":
+			case "/libroCampo/propietario/insert":
 				insertarPropietario(request, response);
 				break;
-			case "propietario/registrar":
+			case "/libroCampo/propietario/registrar":
 				registrarPropietario(request, response);
 				break;
-			case "propietario/delete":
+			case "/libroCampo/propietario/delete":
 				eliminarPropietario(request, response);
 				break;
-			case "propietario/edit":
+			case "/libroCampo/propietario/edit":
 				showEditForm(request, response);
 				break;
-			case "propietario/update":
+			case "/libroCampo/propietario/update":
 				actualizarPropietario(request, response);
 				break;
-			case "propietario/login":
+			case "/libroCampo/propietario/login":
 				loginPropietario(request, response);
 				break;
 			default:
+				System.out.println("Seleccion por defecto");
 				listPropietarios(request, response);
 				break;
 
@@ -153,12 +154,13 @@ public class PropietarioServlet extends HttpServlet {
 		
 		this.propietarioDao.insertar(propietario);
 		
-		response.sendRedirect("/propietario");
+		response.sendRedirect("list");
 	}
 
 	private void showNewForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
+		System.out.println("SHow New Form");
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/propietario.jsp");
 		dispatcher.forward(request, response);
 	}
@@ -178,7 +180,7 @@ public class PropietarioServlet extends HttpServlet {
 	
 	private void registrarPropietario(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
 		// TODO Auto-generated method stub
-		
+		System.out.println("Entra en sel servlet registrar propietario");
 		String nombre = request.getParameter("nombre");
 		String apellido = request.getParameter("apellido");
 		String coCedula = request.getParameter("noCedula");

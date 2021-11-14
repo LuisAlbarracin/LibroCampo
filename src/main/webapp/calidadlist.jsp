@@ -68,9 +68,9 @@
 								<td><c:out value="${calidad.porcentajePedunculoLargo} " /></td>
 								<td><c:out value="${calidad.porcentajePodridos} " /></td>
 								<td><c:out value="${calidad.impurezas} " /></td>
-								<td><a href="calidad/edit?id=<c:out value='${calidad.id}' />">Editar</a>
+								<td><a href="<%=request.getContextPath()%>/calidad/edit?id=<c:out value='${calidad.id}' />">Editar</a>
 									&nbsp;&nbsp;&nbsp;&nbsp; <a
-									href="calidad/delete?id=<c:out value='${calidad.id}' />">Eliminar</a></td>
+									href="<%=request.getContextPath()%>/calidad/delete?id=<c:out value='${calidad.id}' />">Eliminar</a></td>
 							</tr>
 						</c:forEach>
 						<!-- } -->
