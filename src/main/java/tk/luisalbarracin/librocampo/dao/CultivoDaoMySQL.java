@@ -14,8 +14,8 @@ public class CultivoDaoMySQL implements CultivoDao {
 
 	private ConexionMySQL conexion;
 
-	private static final String INSERTAR = "INSERT INTO cultivo (finca, numero) VALUES (?, ?);";
-	private static final String ACTUALIZAR = "UPDATE cultivo SET finca = ?, numero = ? WHERE id = ?;";
+	private static final String INSERTAR = "INSERT INTO cultivo (finca, numero, nombre) VALUES (?, ?, ?);";
+	private static final String ACTUALIZAR = "UPDATE cultivo SET finca = ?, numero = ?, set nombre = ? WHERE id = ?;";
 	private static final String ELIMINAR = "DELETE * FROM cultivo WHERE id = ?;";
 	private static final String BUSCAR = "SELECT * FROM cultivo WHERE id = ?;";
 	private static final String LISTAR = "SELECT * FROM cultivo";
@@ -57,11 +57,12 @@ public class CultivoDaoMySQL implements CultivoDao {
 			
 				Integer fincaId = rs.getInt("finca");
 				Integer numero = rs.getInt("numero");
+				String nombre = rs.getString("nombre");
 				
 				Finca finca = new Finca();
 				finca.setId(fincaId);
 				
-				cultivo = new Cultivo(id, finca, numero);
+				cultivo = new Cultivo(id, finca, numero, nombre);
 			}
 
 		} catch (SQLException e) {
@@ -86,11 +87,12 @@ public class CultivoDaoMySQL implements CultivoDao {
 				Integer id = rs.getInt("id");
 				Integer fincaId = rs.getInt("finca");
 				Integer numero = rs.getInt("numero");
+				String nombre = rs.getString("nombre");
 				
 				Finca finca = new Finca();
 				finca.setId(fincaId);
 				
-				cultivos.add(new Cultivo(id, finca, numero));
+				cultivos.add(new Cultivo(id, finca, numero, nombre));
 			
 			}
 		} catch (SQLException e) {
@@ -150,11 +152,12 @@ public class CultivoDaoMySQL implements CultivoDao {
 				Integer id = rs.getInt("id");
 				Integer fincaId = rs.getInt("finca");
 				Integer numero = rs.getInt("numero");
+				String nombre = rs.getString("nombre");
 				
 				Finca finca = new Finca();
 				finca.setId(fincaId);
 				
-				cultivos.add(new Cultivo(id, finca, numero));
+				cultivos.add(new Cultivo(id, finca, numero, nombre));
 			
 			}
 		} catch (SQLException e) {

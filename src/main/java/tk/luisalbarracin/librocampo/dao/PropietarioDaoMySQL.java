@@ -17,7 +17,7 @@ public class PropietarioDaoMySQL implements PropietarioDao {
 	private static final String ACTUALIZAR = "UPDATE propietario SET nombre = ?, apellido = ?, noCedula = ?, telefono = ?, expedicionCedula = ?, email = ?, contrasenia = ? WHERE id = ?;";
 	private static final String ELIMINAR = "DELETE * FROM propietario WHERE id = ?;";
 	private static final String BUSCAR = "SELECT * FROM propietario WHERE id = ?;";
-	private static final String LISTAR = "SELECT * FROM propietario";
+	private static final String LISTAR = "SELECT * FROM propietario;";
 	private static final String LOGIN = "SELECT id FROM propietario WHERE email=? AND contrasenia=?";
 	private static final String REGISTRAR = "INSERT INTO propietario (nombre, apellido, noCedula, email, contrasenia) VALUES (?, ?, ?, ?, ?);";
 	
@@ -56,7 +56,7 @@ public class PropietarioDaoMySQL implements PropietarioDao {
 			preparedStatement.setString(5, propietario.getExpedicionCedula());
 			preparedStatement.setString(6, propietario.getEmail());
 			preparedStatement.setString(7, propietario.getContrasenia());
-			preparedStatement.setInt(6, propietario.getId());
+			preparedStatement.setInt(8, propietario.getId());
 
 			conexion.execute();
 
@@ -175,7 +175,6 @@ public class PropietarioDaoMySQL implements PropietarioDao {
 			preparedStatement.setString(4, propietario.getEmail());
 			preparedStatement.setString(5, propietario.getContrasenia());
 
-			System.out.println("Entre en Registrar DAO");
 			conexion.execute();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

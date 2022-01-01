@@ -4,22 +4,25 @@ public class Cultivo {
 	private Integer id;
 	private Finca finca;
 	private Integer numero;
+	private String nombre;
 	
 	public Cultivo() {
 		super();
 	}
 	
-	public Cultivo(Integer id, Finca finca, Integer numero) {
+	public Cultivo(Integer id, Finca finca, Integer numero, String nombre) {
 		super();
 		this.id = id;
 		this.finca = finca;
 		this.numero = numero;
+		this.nombre = nombre;
 	}
 	
-	public Cultivo(Finca finca, Integer numero) {
+	public Cultivo(Finca finca, Integer numero, String nombre) {
 		super();
 		this.finca = finca;
 		this.numero = numero;
+		this.nombre = nombre;
 	}
 
 	public Integer getId() {
@@ -46,6 +49,12 @@ public class Cultivo {
 		this.numero = numero;
 	}
 	
+	public String getNombre() {
+		return this.nombre;
+	}
 	
-	
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
 }

@@ -42,7 +42,7 @@
 
 					<caption>
 						<h2>
-							<c:if test="${propíetario != null}">
+							<c:if test="${propietario != null}">
                                     Editar Propietario
                                 </c:if>
 							<c:if test="${propietario == null}">
@@ -57,43 +57,43 @@
 					</c:if>
 
 					<fieldset class="form-group">
-						<label>Nombre de Propietario</label> <input type="text"
+						<label>Nombre</label> <input type="text"
 							value="<c:out value='${propietario.nombre}' />"
 							class="form-control" name="nombre" required="required">
 					</fieldset>
 
 					<fieldset class="form-group">
-						<label>Apellido del Propietario</label> <input type="text"
+						<label>Apellido</label> <input type="text"
 							value="<c:out value='${propietario.apellido}' />"
 							class="form-control" name="apellido">
 					</fieldset>
 					
 					<fieldset class="form-group">
-						<label>Email del Propietario</label> <input type="email"
+						<label>Email</label> <input type="email"
 							value="<c:out value='${propietario.email}' />"
 							class="form-control" name="email">
 					</fieldset>
 					
 					<fieldset class="form-group">
-						<label>Contraseña del Propietario</label> <input type="password"
+						<label>Contraseña</label> <input type="password"
 							value="<c:out value='${propietario.contrasenia}' />"
 							class="form-control" name="contrasenia">
 					</fieldset>
 
 					<fieldset class="form-group">
-						<label>Número de Cedula del Propietario</label> <input type="text"
+						<label>Número de Cedula</label> <input type="text"
 							value="<c:out value='${propietario.noCedula}' />"
 							class="form-control" name="noCedula">
 					</fieldset>
 
 					<fieldset class="form-group">
-						<label>Telefono del Propietario</label> <input type="tel"
+						<label>Telefono</label> <input type="tel"
 							value="<c:out value='${propietario.telefono}' />"
 							class="form-control" name="telefono">
 					</fieldset>
 
 					<fieldset class="form-group">
-						<label>Expedicion de Cedula del Propietario</label> <input
+						<label>Expedicion de Cedula</label> <input
 							type="text"
 							value="<c:out value='${propietario.expedicionCedula}' />"
 							class="form-control" name="expedicionCedula">

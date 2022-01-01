@@ -63,7 +63,6 @@
 								<td><c:out value="${propietario.nombre}" /></td>
 								<td><c:out value="${propietario.apellido}" /></td>
 								<td><c:out value="${propietario.email}" /></td>
-								<td><c:out value="${propietario.contrasenia}" /></td>
 								<td><c:out value="${propietario.telefono}" /></td>
 								<td><c:out value="${propietario.noCedula}" /></td>
 								<td><c:out value="${propietario.expedicionCedula} " /></td>

@@ -113,10 +113,11 @@ public class CultivoServlet extends HttpServlet {
 		Integer id = Integer.parseInt(request.getParameter("id"));
 		Integer fincaId = Integer.parseInt(request.getParameter("finca"));
 		Integer numero = Integer.parseInt(request.getParameter("numero"));
+		String nombre = request.getParameter("nombre");
 		
 		Finca finca = this.fincaDao.buscar(fincaId);
 		
-		Cultivo cultivo = new Cultivo(id, finca, numero);
+		Cultivo cultivo = new Cultivo(id, finca, numero, nombre);
 		this.cultivoDao.actualizar(cultivo);
 		
 		response.sendRedirect("list");
@@ -135,10 +136,11 @@ public class CultivoServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		Integer fincaId = Integer.parseInt(request.getParameter("finca"));
 		Integer numero = Integer.parseInt(request.getParameter("numero"));
+		String nombre = request.getParameter("nombre");
 		
 		Finca finca = this.fincaDao.buscar(fincaId);
 		
-		Cultivo cultivo = new Cultivo(finca, numero);
+		Cultivo cultivo = new Cultivo(finca, numero, nombre);
 		
 		
 		this.cultivoDao.insertar(cultivo);
