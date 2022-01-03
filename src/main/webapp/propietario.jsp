@@ -13,6 +13,17 @@
 	crossorigin="anonymous">
 </head>
 <body>
+
+	<nav class="navbar navbar-light bg-light">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#"> <img
+				src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="30"
+				height="24" class="d-inline-block align-text-top"> Libro del
+				Campo
+			</a>
+		</div>
+	</nav>
+
 	<header>
 		<nav class="navbar navbar-expand-md navbar-dark"
 			style="background-color: tomato">
@@ -34,27 +45,29 @@
 				<div class="card-body">
 
 					<c:if test="${propietario != null}">
-						<form action="<%=request.getContextPath()%>/propietario/update" method="post">
+						<form action="<%=request.getContextPath()%>/propietario/update"
+							method="post">
 					</c:if>
 					<c:if test="${propietario == null}">
-						<form action="<%=request.getContextPath()%>/propietario/insert" method="post">
+						<form action="<%=request.getContextPath()%>/propietario/insert"
+							method="post">
 					</c:if>
 
 					<caption>
 						<h2>
 							<c:if test="${propietario != null}">
                                     Editar Propietario
-                                </c:if>
+                            </c:if>
 							<c:if test="${propietario == null}">
                                     Agregar Nuevo Propietario
-                                </c:if>
+                            </c:if>
 						</h2>
 					</caption>
 
-					<c:if test="${propietario != null}">
-						<input type="hidden" name="id"
-							value="<c:out value='${propietario.id}' />" />
-					</c:if>
+				<c:if test="${propietario != null}">
+					<input type="hidden" name="id"
+						value="<c:out value='${propietario.id}' />" />
+				</c:if>
 
 					<fieldset class="form-group">
 						<label>Nombre</label> <input type="text"
@@ -67,13 +80,13 @@
 							value="<c:out value='${propietario.apellido}' />"
 							class="form-control" name="apellido">
 					</fieldset>
-					
+
 					<fieldset class="form-group">
 						<label>Email</label> <input type="email"
 							value="<c:out value='${propietario.email}' />"
 							class="form-control" name="email">
 					</fieldset>
-					
+
 					<fieldset class="form-group">
 						<label>Contraseña</label> <input type="password"
 							value="<c:out value='${propietario.contrasenia}' />"
@@ -93,15 +106,15 @@
 					</fieldset>
 
 					<fieldset class="form-group">
-						<label>Expedicion de Cedula</label> <input
-							type="text"
+						<label>Expedicion de Cedula</label> <input type="text"
 							value="<c:out value='${propietario.expedicionCedula}' />"
 							class="form-control" name="expedicionCedula">
 					</fieldset>
-					
 
+					<div class="d-flex justify-content-end">
+						<button type="submit" class="btn btn-success m-3">Guardar</button>
+					</div>
 
-					<button type="submit" class="btn btn-success m-3">Guardar</button>
 					</form>
 				</div>
 			</div>

@@ -13,6 +13,16 @@
 	crossorigin="anonymous">
 </head>
 <body>
+
+	<nav class="navbar navbar-light bg-light">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#"> <img
+				src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="30"
+				height="24" class="d-inline-block align-text-top"> Libro del
+				Campo
+			</a>
+		</div>
+	</nav>
 	<header>
 		<nav class="navbar navbar-expand-md navbar-dark"
 			style="background-color: tomato">
@@ -34,10 +44,14 @@
 				<div class="card-body">
 
 					<c:if test="${planfertilizante != null}">
-						<form action="<%=request.getContextPath()%>/planfertilizante/update" method="post">
+						<form
+							action="<%=request.getContextPath()%>/planfertilizante/update"
+							method="post">
 					</c:if>
 					<c:if test="${planfertilizante == null}">
-						<form action="<%=request.getContextPath()%>/planfertilizante/insert" method="post">
+						<form
+							action="<%=request.getContextPath()%>/planfertilizante/insert"
+							method="post">
 					</c:if>
 
 					<caption>
@@ -79,11 +93,10 @@
 							class="form-control" name="gramosPalma">
 					</fieldset>
 
+					<div class="d-flex justify-content-end">
+						<button type="submit" class="btn btn-success m-3">Guardar</button>
+					</div>
 
-
-
-
-					<button type="submit" class="btn btn-success m-3">Guardar</button>
 					</form>
 				</div>
 			</div>

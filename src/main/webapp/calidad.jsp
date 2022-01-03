@@ -13,13 +13,20 @@
 	crossorigin="anonymous">
 </head>
 <body>
+
+	<nav class="navbar navbar-light bg-light">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#"> <img
+				src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="30"
+				height="24" class="d-inline-block align-text-top"> Libro del
+				Campo
+			</a>
+		</div>
+	</nav>
+
 	<header>
 		<nav class="navbar navbar-expand-md navbar-dark"
 			style="background-color: tomato">
-			<div>
-				<a href="#" class="navbar-brand"> Gestión de Calidad </a>
-			</div>
-
 			<ul class="navbar-nav">
 				<li><a href="<%=request.getContextPath()%>/list"
 					class="nav-link">Calidad</a></li>
@@ -34,10 +41,12 @@
 				<div class="card-body">
 
 					<c:if test="${calidad != null}">
-						<form action="<%=request.getContextPath()%>/calidad/update" method="post">
+						<form action="<%=request.getContextPath()%>/calidad/update"
+							method="post">
 					</c:if>
 					<c:if test="${calidad == null}">
-						<form action="<%=request.getContextPath()%>/calidad/insert" method="post">
+						<form action="<%=request.getContextPath()%>/calidad/insert"
+							method="post">
 					</c:if>
 
 					<caption>
@@ -99,7 +108,6 @@
 							class="form-control" name="porcentajePodridos">
 					</fieldset>
 
-
 					<select class="form-select" name="cultivo"
 						aria-label="Default select example">
 						<option value="1"
@@ -112,8 +120,10 @@
 								</c:if>>0</option>
 					</select>
 
-
-					<button type="submit" class="btn btn-success m-3">Guardar</button>
+					<div class="d-flex justify-content-end">
+						<button type="submit" class="btn btn-success m-3">Guardar</button>
+					</div>
+					
 					</form>
 				</div>
 			</div>

@@ -13,12 +13,20 @@
 	crossorigin="anonymous">
 </head>
 <body>
+
+	<nav class="navbar navbar-light bg-light">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#"> <img
+				src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="30"
+				height="24" class="d-inline-block align-text-top"> Libro del
+				Campo
+			</a>
+		</div>
+	</nav>
+
 	<header>
 		<nav class="navbar navbar-expand-md navbar-dark"
 			style="background-color: tomato">
-			<div>
-				<a href="#" class="navbar-brand"> Gestión de Cultivo Plan </a>
-			</div>
 
 			<ul class="navbar-nav">
 				<li><a href="<%=request.getContextPath()%>/list"
@@ -34,10 +42,12 @@
 				<div class="card-body">
 
 					<c:if test="${cultivoplan != null}">
-						<form action="<%=request.getContextPath()%>/cultivoplan/update" method="post">
+						<form action="<%=request.getContextPath()%>/cultivoplan/update"
+							method="post">
 					</c:if>
 					<c:if test="${cultivoplan == null}">
-						<form action="<%=request.getContextPath()%>/cultivoplan/insert" method="post">
+						<form action="<%=request.getContextPath()%>/cultivoplan/insert"
+							method="post">
 					</c:if>
 
 					<caption>
@@ -273,9 +283,10 @@
 								</c:if>>Diciembre</option>
 					</select>
 
+					<div class="d-flex justify-content-end">
+						<button type="submit" class="btn btn-success m-3">Guardar</button>
+					</div>
 
-
-					<button type="submit" class="btn btn-success m-3">Guardar</button>
 					</form>
 				</div>
 			</div>

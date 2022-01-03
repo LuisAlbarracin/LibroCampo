@@ -13,14 +13,14 @@
 </head>
 <body>
 
-	<header>
-		<nav class="navbar navbar-expand-md navbar-dark"
-			style="background-color: tomato">
-			<div>
-				<a href="#" class="navbar-brand"> LIBRO CAMPO </a>
-			</div>
-		</nav>
-	</header>
+	<nav class="navbar navbar-light bg-light">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#"> <img
+				src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="30"
+				height="24" class="d-inline-block align-text-top"> Libro del Campo
+			</a>
+		</div>
+	</nav>
 	<h1 class="text-center">BIENVENIDO A LIBRO CAMPO</h1>
 
 	<main class="container">
@@ -37,7 +37,7 @@
 						required>
 				</div>
 
-				<input type="submit" name="login" value="Iniciar Session" class="btn btn-success m-3">
+				<input type="submit" name="login" value="Iniciar Session" class="btn btn-primary m-3">
 
 			</form>
 		</section>
@@ -70,7 +70,9 @@
 					<input type="password" name="contrasenia" class="form-control" required>
 				</div>
 				
-				<input type="submit" name="registrar" value="Registrarme" class="btn btn-success m-3">
+				<div>
+					<input type="submit" name="registrar" value="Registrarme" class="btn btn-success m-3">				
+				</div>
 			
 			</form>
 			

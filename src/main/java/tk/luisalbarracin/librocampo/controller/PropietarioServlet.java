@@ -49,6 +49,8 @@ public class PropietarioServlet extends HttpServlet {
 		// String action = request.getServletPath();
 		String action = request.getRequestURI();
 		System.out.println(action);
+		String path = request.getServletPath();
+		System.out.println(path);
 		try {
 			switch (action) {
 			case "/libroCampo/propietario/new":
@@ -67,6 +69,7 @@ public class PropietarioServlet extends HttpServlet {
 				showEditForm(request, response);
 				break;
 			case "/libroCampo/propietario/update":
+				System.out.println("Entrando a actualizar");
 				actualizarPropietario(request, response);
 				break;
 			case "/libroCampo/propietario/login":
@@ -96,7 +99,7 @@ public class PropietarioServlet extends HttpServlet {
 	private void showEditForm(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		Integer id = Integer.parseInt(request.getParameter("id"));
+		int id = Integer.parseInt(request.getParameter("id"));
 
 		Propietario propietarioActual = (Propietario) this.propietarioDao.buscar(id);
 
@@ -117,10 +120,10 @@ public class PropietarioServlet extends HttpServlet {
 
 	private void actualizarPropietario(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException, ServletException {
-		// TODO Auto-generated method stub
-		System.out.println(request.getParameter("id"));
 
-		Integer id = Integer.parseInt(request.getParameter("id"));
+		System.out.println(request.getParameter("nombre"));		
+		/*
+		int id = Integer.parseInt(request.getParameter("id"));
 		String nombre = request.getParameter("nombre");
 		String apellido = request.getParameter("apellido");
 		String noCedula = request.getParameter("noCedula");
@@ -134,13 +137,13 @@ public class PropietarioServlet extends HttpServlet {
 		this.propietarioDao.actualizar(propietario);
 
 		response.sendRedirect("list");
-
+		 */
 	}
 
 	private void eliminarPropietario(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException, ServletException {
 		// TODO Auto-generated method stub
-		Integer id = Integer.parseInt(request.getParameter("id"));
+		int id = Integer.parseInt(request.getParameter("id"));
 
 		this.propietarioDao.eliminar(id);
 
@@ -182,8 +185,14 @@ public class PropietarioServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String contrasenia = request.getParameter("contrasenia");
 
-		this.propietarioDao.login(email, contrasenia);
+		Integer id = this.propietarioDao.login(email, contrasenia);
 
+		if(id == 0) {
+			
+		}else {
+			
+		}
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/propietariolist.jsp");
 		dispatcher.forward(request, response);
 	}
