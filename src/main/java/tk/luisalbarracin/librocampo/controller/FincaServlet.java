@@ -2,6 +2,9 @@ package tk.luisalbarracin.librocampo.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import jakarta.servlet.RequestDispatcher;
@@ -53,32 +56,33 @@ public class FincaServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String action = request.getRequestURI();
-
+		System.out.println(action);
+		
 		try {
 			switch (action) {
-			case "/libroCampo/finca/new":
-				showNewForm(request, response);
-				break;
-			case "/libroCampo/finca/insert":
-				insertarFinca(request, response);
-				break;
-			case "/libroCampo/finca/delete":
-				eliminarFinca(request, response);
-				break;
-			case "/libroCampo/finca/edit":
-				showEditForm(request, response);
-				break;
-			case "/libroCampo/finca/update":
-				actualizarFinca(request, response);
-				break;
-			default:
-				listFincas(request, response);
-				break;
-
-			}
+				case "/libroCampo/finca/new":
+					showNewForm(request, response);
+					break;
+				case "/libroCampo/finca/insert":
+					insertarFinca(request, response);
+					break;
+				case "/libroCampo/finca/delete":
+					eliminarFinca(request, response);
+					break;
+				case "/libroCampo/finca/edit":
+					showEditForm(request, response);
+					break;
+				case "/libroCampo/finca/update":
+					actualizarFinca(request, response);
+					break;
+				default:
+					listFincas(request, response);
+					break;
+				}
 		} catch (SQLException e) {
 			throw new ServletException(e);
 		}
+		
 	}
 
 	/**
@@ -96,7 +100,7 @@ public class FincaServlet extends HttpServlet {
 		Finca fincaActual = this.fincaDao.buscar(id);
 		
 		request.setAttribute("finca", fincaActual);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("finca.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/finca.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -105,7 +109,7 @@ public class FincaServlet extends HttpServlet {
 		List<Finca> fincas = this.fincaDao.selectByPropietario(1);
 		request.setAttribute("fincas", fincas);
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("fincalist.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/fincalist.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -118,12 +122,21 @@ public class FincaServlet extends HttpServlet {
 		Float areaPalma = Float.parseFloat(request.getParameter("areaPalma"));
 		Integer propietarioId = Integer.parseInt(request.getParameter("propietario"));
 		String vereda = request.getParameter("vereda");
-		//Date inicioSiembra = request.getParameter("inicioSiembra");
+		String fechaS = request.getParameter("inicioSiembra");
+		String plano = request.getParameter("plano");
+		
+		SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
+		Date inicioSiembra = null;
+		try {
+			inicioSiembra = formato.parse(fechaS);
+		} catch (ParseException ex) {
+			System.out.println(ex);
+		}
 		
 		Asociacion asociacion = this.asociacionDao.buscar(asociacionId);
 		Propietario propietario = this.propietarioDao.buscar(propietarioId);
 		
-		Finca finca = new Finca(id, nombre, area, asociacion, areaPalma, propietario, vereda);
+		Finca finca = new Finca(id, nombre, area, asociacion, areaPalma, plano, propietario, vereda, inicioSiembra);
 		this.fincaDao.actualizar(finca);
 		
 		response.sendRedirect("list");
@@ -147,20 +160,33 @@ public class FincaServlet extends HttpServlet {
 		Float areaPalma = Float.parseFloat(request.getParameter("areaPalma"));
 		Integer propietarioId = Integer.parseInt(request.getParameter("propietario"));
 		String vereda = request.getParameter("vereda");
-		//Date inicioSiembra = request.getParameter("inicioSiembra");
+		String fechaS = request.getParameter("inicioSiembra");
 		Asociacion asociacion = this.asociacionDao.buscar(asociacionId);
 		Propietario propietario = this.propietarioDao.buscar(propietarioId);
+		String plano = request.getParameter("plano");
 		
+
+		SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
+		Date inicioSiembra = null;
+		try {
+			inicioSiembra = formato.parse(fechaS);
+		} catch (ParseException ex) {
+			System.out.println(ex);
+		}
 		
-		Finca finca = new Finca(nombre, area, asociacion, areaPalma, propietario, vereda);
+		Finca finca = new Finca(nombre, area, asociacion, areaPalma, plano, propietario, vereda, inicioSiembra);
+		
 		this.fincaDao.insertar(finca);
 		
 		response.sendRedirect("list");
 	}
 
 	private void showNewForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		RequestDispatcher dispatcher = request.getRequestDispatcher("finca.jsp");
+
+		List<Asociacion> asociaciones = this.asociacionDao.selectAll();
+		request.setAttribute("asociaciones", asociaciones);
+
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/finca.jsp");
 		dispatcher.forward(request, response);
 	}
 

@@ -94,7 +94,7 @@ public class CultivoServlet extends HttpServlet {
 		
 		request.setAttribute("cultivo", cultivoActual);
 		request.setAttribute("fincas", fincas);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("cultivo.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/cultivo.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -104,7 +104,7 @@ public class CultivoServlet extends HttpServlet {
 		
 		request.setAttribute("cultivos", cultivos);
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("cultivolist.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/cultivolist.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -153,7 +153,7 @@ public class CultivoServlet extends HttpServlet {
 		List<Finca> fincas = this.fincaDao.selectAll();
 		request.setAttribute("fincas", fincas);
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("cultivo.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/cultivo.jsp");
 		dispatcher.forward(request, response);
 	}
 

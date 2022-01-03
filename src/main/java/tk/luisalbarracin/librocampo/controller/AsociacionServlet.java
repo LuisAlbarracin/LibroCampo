@@ -84,7 +84,7 @@ public class AsociacionServlet extends HttpServlet {
 		Asociacion asociacionActual = this.asociacionDao.buscar(id);
 		
 		request.setAttribute("asociacion", asociacionActual);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("asociacion.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/asociacion.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -93,7 +93,7 @@ public class AsociacionServlet extends HttpServlet {
 		List<Asociacion> asociaciones = this.asociacionDao.selectAll();
 		request.setAttribute("asociaciones", asociaciones);
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("asociacionlist.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/asociacionlist.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -131,8 +131,8 @@ public class AsociacionServlet extends HttpServlet {
 	}
 
 	private void showNewForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		RequestDispatcher dispatcher = request.getRequestDispatcher("asociacion.jsp");
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/asociacion.jsp");
 		dispatcher.forward(request, response);
 	}
 

@@ -49,36 +49,34 @@ public class PropietarioServlet extends HttpServlet {
 		// String action = request.getServletPath();
 		String action = request.getRequestURI();
 		System.out.println(action);
-		String path = request.getServletPath();
-		System.out.println(path);
+		
 		try {
 			switch (action) {
-			case "/libroCampo/propietario/new":
-				showNewForm(request, response);
-				break;
-			case "/libroCampo/propietario/insert":
-				insertarPropietario(request, response);
-				break;
-			case "/libroCampo/propietario/registrar":
-				registrarPropietario(request, response);
-				break;
-			case "/libroCampo/propietario/delete":
-				eliminarPropietario(request, response);
-				break;
-			case "/libroCampo/propietario/edit":
-				showEditForm(request, response);
-				break;
-			case "/libroCampo/propietario/update":
-				System.out.println("Entrando a actualizar");
-				actualizarPropietario(request, response);
-				break;
-			case "/libroCampo/propietario/login":
-				loginPropietario(request, response);
-				break;
-			default:
-				listPropietarios(request, response);
-				break;
-
+				case "/libroCampo/propietario/new":
+					showNewForm(request, response);
+					break;
+				case "/libroCampo/propietario/insert":
+					insertarPropietario(request, response);
+					break;
+				case "/libroCampo/propietario/registrar":
+					registrarPropietario(request, response);
+					break;
+				case "/libroCampo/propietario/delete":
+					eliminarPropietario(request, response);
+					break;
+				case "/libroCampo/propietario/edit":
+					showEditForm(request, response);
+					break;
+				case "/libroCampo/propietario/update":
+					System.out.println("Entrando a actualizar");
+					actualizarPropietario(request, response);
+					break;
+				case "/libroCampo/propietario/login":
+					loginPropietario(request, response);
+					break;
+				default:
+					listPropietarios(request, response);
+					break;
 			}
 		} catch (SQLException e) {
 			throw new ServletException(e);

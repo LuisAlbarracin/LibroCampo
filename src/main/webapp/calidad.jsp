@@ -28,7 +28,7 @@
 		<nav class="navbar navbar-expand-md navbar-dark"
 			style="background-color: tomato">
 			<ul class="navbar-nav">
-				<li><a href="<%=request.getContextPath()%>/list"
+				<li><a href="<%=request.getContextPath()%>/calidad/list"
 					class="nav-link">Calidad</a></li>
 			</ul>
 		</nav>
@@ -71,18 +71,19 @@
 							name="fecha" required="required">
 					</fieldset>
 
-
-
-					<select class="form-select" name="cultivo"
-						aria-label="Default select example">
-						<c:forEach var="cultivo" items="${cultivos}">
-							<option value="<c:out value='${cultivo.id}' />"
-								<c:if test="${cultivo.id == calidad.cultivo.id}">
+					<fieldset class="form-group">
+						<label>Cultivo</label> <select class="form-select" name="cultivo"
+							aria-label="Default select example">
+							<c:forEach var="cultivo" items="${cultivos}">
+								<option value="<c:out value='${cultivo.id}' />"
+									<c:if test="${cultivo.id == calidad.cultivo.id}">
 									selected
 								</c:if>><c:out
-									value='${cultivo.id}' /></option>
-						</c:forEach>
-					</select>
+										value='${cultivo.id}' /></option>
+							</c:forEach>
+						</select>
+					</fieldset>
+
 
 					<fieldset class="form-group">
 						<label>Porcentaje Verdes</label> <input type="number"
@@ -108,22 +109,25 @@
 							class="form-control" name="porcentajePodridos">
 					</fieldset>
 
-					<select class="form-select" name="cultivo"
-						aria-label="Default select example">
-						<option value="1"
-							<c:if test="${1 == calidad.impurezas}">
+					<fieldset class="form-group">
+						<label>Impurezas</label> <select class="form-select"
+							name="impurezas">
+							<option value="Si"
+								<c:if test="${1 == calidad.impurezas}">
 									selected
-								</c:if>>1</option>
-						<option value="0"
-							<c:if test="${0 == calidad.impurezas}">
+								</c:if>>Si</option>
+							<option value="No"
+								<c:if test="${0 == calidad.impurezas}">
 									selected
-								</c:if>>0</option>
-					</select>
+								</c:if>>No</option>
+						</select>
+					</fieldset>
+
 
 					<div class="d-flex justify-content-end">
 						<button type="submit" class="btn btn-success m-3">Guardar</button>
 					</div>
-					
+
 					</form>
 				</div>
 			</div>

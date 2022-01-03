@@ -29,7 +29,7 @@
 			style="background-color: tomato">
 
 			<ul class="navbar-nav">
-				<li><a href="<%=request.getContextPath()%>/list"
+				<li><a href="<%=request.getContextPath()%>/cosecha/list"
 					class="nav-link">Cosecha</a></li>
 			</ul>
 		</nav>
@@ -66,19 +66,21 @@
 							value="<c:out value='${cosecha.id}' />" />
 					</c:if>
 
-					<select class="form-select" name="cultivo"
-						aria-label="Default select example">
-						<c:forEach var="cultivo" items="${cultivos}">
-							<option value="<c:out value='${cultivo.id}' />"
-								<c:if test="${cultivo.id == cosecha.cultivo.id}">
+					<fieldset class="form-group">
+						<label>Cultivo</label> <select class="form-select" name="cultivo"
+							aria-label="Default select example">
+							<c:forEach var="cultivo" items="${cultivos}">
+								<option value="<c:out value='${cultivo.id}' />"
+									<c:if test="${cultivo.id == cosecha.cultivo.id}">
 									selected
 								</c:if>><c:out
-									value='${cultivo.id}' /></option>
-						</c:forEach>
-					</select>
+										value='${cultivo.id}' /></option>
+							</c:forEach>
+						</select>
+					</fieldset>
 
 					<fieldset class="form-group">
-						<label>Fecha</label> <input type="text"
+						<label>Fecha</label> <input type="date"
 							value="<c:out value='${cosecha.fecha}' />" class="form-control"
 							name="fecha">
 					</fieldset>
@@ -104,7 +106,7 @@
 					<div class="d-flex justify-content-end">
 						<button type="submit" class="btn btn-success m-3">Guardar</button>
 					</div>
-					
+
 					</form>
 				</div>
 			</div>

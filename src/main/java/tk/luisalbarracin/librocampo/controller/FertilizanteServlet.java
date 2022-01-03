@@ -84,7 +84,7 @@ public class FertilizanteServlet extends HttpServlet {
 		Fertilizante fertilizanteActual = this.fertilizanteDao.buscar(id);
 		
 		request.setAttribute("fertilizante", fertilizanteActual);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("fertilizante.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/fertilizante.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -93,7 +93,7 @@ public class FertilizanteServlet extends HttpServlet {
 		List<Fertilizante> fertilizantes = this.fertilizanteDao.selectAll();
 		request.setAttribute("fertilizantes", fertilizantes);
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("fertilizantelist.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/fertilizantelist.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -132,7 +132,7 @@ public class FertilizanteServlet extends HttpServlet {
 
 	private void showNewForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		RequestDispatcher dispatcher = request.getRequestDispatcher("fertilizante.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/fertilizante.jsp");
 		dispatcher.forward(request, response);
 	}
 

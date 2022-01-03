@@ -78,16 +78,20 @@
 							name="area">
 					</fieldset>
 
-					<select class="form-select" name="asociacion"
-						aria-label="Default select example">
-						<c:forEach var="asociacion" items="${asociaciones}">
-							<option value="<c:out value='${asociacion.id}' />"
-								<c:if test="${asociacion.id == finca.asociacion.id}">
-									selected
-								</c:if>><c:out
-									value='${asociacion.id}' /></option>
-						</c:forEach>
-					</select>
+					<fieldset class=form-group">
+						<label>Asociación</label>
+						<select class="form-select" name="asociacion"
+							aria-label="Default select example">
+							<c:forEach var="asociacion" items="${asociaciones}">
+								<option value="<c:out value='${asociacion.id}' />"
+									<c:if test="${asociacion.id == finca.asociacion.id}">
+										selected
+									</c:if>><c:out
+										value='${asociacion.id}' /></option>
+							</c:forEach>
+						</select>
+					</fieldset>
+					
 
 					<fieldset class="form-group">
 						<label>Vereda</label> <input type="text"

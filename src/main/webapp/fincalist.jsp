@@ -27,7 +27,7 @@
 			style="background-color: tomato">
 
 			<ul class="navbar-nav">
-				<li><a href="<%=request.getContextPath()%>/list"
+				<li><a href="<%=request.getContextPath()%>/finca/list"
 					class="nav-link">Fincas</a></li>
 			</ul>
 
@@ -44,7 +44,7 @@
 				<div class="container text-left">
 
 					<a href="<%=request.getContextPath()%>/finca/new" class="btn btn-success">Agregar
-						Nuevo Finca</a>
+						Nueva Finca</a>
 				</div>
 				<br>
 				<table class="table table-bordered">

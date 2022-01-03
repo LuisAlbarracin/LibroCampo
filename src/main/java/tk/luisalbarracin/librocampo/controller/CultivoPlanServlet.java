@@ -101,7 +101,7 @@ public class CultivoPlanServlet extends HttpServlet {
 		request.setAttribute("cultivoplan", cultivoPlan);
 		request.setAttribute("planesfertilizantes", planFertilizantes);
 		request.setAttribute("cultivos", cultivos);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("cultivoplan.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/cultivoplan.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -115,7 +115,7 @@ public class CultivoPlanServlet extends HttpServlet {
 		request.setAttribute("planesfertilizantes", planFertilizantes);
 		request.setAttribute("cultivos", cultivos);
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("cultivoplanlist.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/cultivoplanlist.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -167,7 +167,7 @@ public class CultivoPlanServlet extends HttpServlet {
 
 	private void showNewForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		RequestDispatcher dispatcher = request.getRequestDispatcher("cultivoplan.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/cultivoplan.jsp");
 		dispatcher.forward(request, response);
 	}
 	

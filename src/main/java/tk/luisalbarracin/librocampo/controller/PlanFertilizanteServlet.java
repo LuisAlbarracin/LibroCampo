@@ -93,7 +93,7 @@ public class PlanFertilizanteServlet extends HttpServlet {
 		
 		request.setAttribute("planfertilizante", planFertilizanteActual);
 		request.setAttribute("fertilizantes", fertilizantes);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("planfertilizante.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/planfertilizante.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -102,7 +102,7 @@ public class PlanFertilizanteServlet extends HttpServlet {
 		List<PlanFertilizante> planesFertilizantes = this.planFertilizanteDao.selectAll();
 		request.setAttribute("planesfertilizantes", planesFertilizantes);
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("planfertilizantelist.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/planfertilizantelist.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -153,7 +153,7 @@ public class PlanFertilizanteServlet extends HttpServlet {
 		List<Fertilizante> fertilizantes = this.fertilizanteDao.selectAll();
 		request.setAttribute("fertilizante", fertilizantes);
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("planfertilizante.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/planfertilizante.jsp");
 		dispatcher.forward(request, response);
 	}
 

@@ -32,7 +32,7 @@
 			</div>
 
 			<ul class="navbar-nav">
-				<li><a href="<%=request.getContextPath()%>/list"
+				<li><a href="<%=request.getContextPath()%>/fertilizante/list"
 					class="nav-link">Fertilizante</a></li>
 			</ul>
 		</nav>

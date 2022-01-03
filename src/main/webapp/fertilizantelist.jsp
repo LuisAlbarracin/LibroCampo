@@ -28,7 +28,7 @@
 			style="background-color: tomato">
 
 			<ul class="navbar-nav">
-				<li><a href="<%=request.getContextPath()%>/list"
+				<li><a href="<%=request.getContextPath()%>/fertilizante/list"
 					class="nav-link">Fertilizantes</a></li>
 			</ul>
 
@@ -58,7 +58,7 @@
 					</thead>
 					<tbody>
 						<!--   for (Todo todo: todos) {  -->
-						<c:forEach var="fertilizante" items="${fertilizante}">
+						<c:forEach var="fertilizante" items="${fertilizantes}">
 
 							<tr>
 								<td><c:out value="${fertilizante.id}" /></td>

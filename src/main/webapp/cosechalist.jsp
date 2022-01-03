@@ -29,7 +29,7 @@
 			style="background-color: tomato">
 
 			<ul class="navbar-nav">
-				<li><a href="<%=request.getContextPath()%>/list"
+				<li><a href="<%=request.getContextPath()%>/cosecha/list"
 					class="nav-link">Cosechas</a></li>
 			</ul>
 
@@ -41,12 +41,12 @@
 			<!-- <div class="alert alert-success" *ngIf='message'>{{message}}</div> -->
 
 			<div class="container">
-				<h3 class="text-center">Listado de Cosecha</h3>
+				<h3 class="text-center">Listado de Cosechas</h3>
 				<hr>
 				<div class="container text-left">
 
 					<a href="<%=request.getContextPath()%>/cosecha/new"
-						class="btn btn-success">Agregar Nuevo Cosecha</a>
+						class="btn btn-success">Agregar Nueva Cosecha</a>
 				</div>
 				<br>
 				<table class="table table-bordered">

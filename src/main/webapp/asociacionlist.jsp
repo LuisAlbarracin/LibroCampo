@@ -29,7 +29,7 @@
 			style="background-color: tomato">
 
 			<ul class="navbar-nav">
-				<li><a href="<%=request.getContextPath()%>/list"
+				<li><a href="<%=request.getContextPath()%>/asociacion/list"
 					class="nav-link">Asociaciones</a></li>
 			</ul>
 

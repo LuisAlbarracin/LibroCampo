@@ -51,6 +51,7 @@
 					<thead>
 						<tr>
 							<th>ID</th>
+							<th>Nombre</th>
 							<th>Fertilizante</th>
 							<th>Número Bultos</th>
 							<th>Gramos Palma</th>
@@ -62,6 +63,7 @@
 
 							<tr>
 								<td><c:out value="${planfertilizante.id}" /></td>
+								<td><c:out value="${planfertilizante.nombre}"></c:out></td>
 								<td><c:out value="${planfertilizante.fertilizante.nombre}" /></td>
 								<td><c:out value="${planfertilizante.numeroBultos}" /></td>
 								<td><c:out value="${planfertilizante.gramosPalma}" /></td>

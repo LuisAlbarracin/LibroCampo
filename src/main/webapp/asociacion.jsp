@@ -29,8 +29,8 @@
 			style="background-color: tomato">
 
 			<ul class="navbar-nav">
-				<li><a href="<%=request.getContextPath()%>/list"
-					class="nav-link">Asociacion</a></li>
+				<li><a href="<%=request.getContextPath()%>/asociacion/list"
+					class="nav-link">Asociación</a></li>
 			</ul>
 		</nav>
 	</header>

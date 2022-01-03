@@ -31,7 +31,8 @@
 			</div>
 
 			<ul class="navbar-nav">
-				<li><a href="<%=request.getContextPath()%>/list"
+				<li><a
+					href="<%=request.getContextPath()%>/planfertilizante/list"
 					class="nav-link">Plan Fertilizante</a></li>
 			</ul>
 		</nav>
@@ -70,16 +71,25 @@
 							value="<c:out value='${planfertilizante.id}' />" />
 					</c:if>
 
-					<select class="form-select" name="fertilizante"
-						aria-label="Default select example">
-						<c:forEach var="fertilizante" items="${fertilizantes}">
-							<option value="<c:out value='${fertilizante.id}' />"
-								<c:if test="${fertilizante.id == planfertilizante.fertilizante.id}">
+					<fieldset class="form-group">
+						<label>Nombre</label> <input type="text"
+							value="<c:out value='${planfertilizante.nombre}' />"
+							class="form-control" name="nombre" required="required">
+					</fieldset>
+
+					<fieldset class=form-group>
+					<label>Fertilizante</label>
+						<select class="form-select" name="fertilizante"
+							aria-label="Default select example">
+							<c:forEach var="fertilizante" items="${fertilizantes}">
+								<option value="<c:out value='${fertilizante.id}' />"
+									<c:if test="${fertilizante.id == planfertilizante.fertilizante.id}">
 									selected
 								</c:if>><c:out
-									value='${fertilizante.id}' /></option>
-						</c:forEach>
-					</select>
+										value='${fertilizante.id}' /></option>
+							</c:forEach>
+						</select>
+					</fieldset>
 
 					<fieldset class="form-group">
 						<label>Número de Bultos</label> <input type="text"

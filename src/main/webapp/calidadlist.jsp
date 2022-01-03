@@ -28,7 +28,7 @@
 			style="background-color: tomato">
 
 			<ul class="navbar-nav">
-				<li><a href="<%=request.getContextPath()%>/list"
+				<li><a href="<%=request.getContextPath()%>/calidad/list"
 					class="nav-link">Calidad</a></li>
 			</ul>
 
@@ -45,7 +45,7 @@
 				<div class="container text-left">
 
 					<a href="<%=request.getContextPath()%>/calidad/new"
-						class="btn btn-success">Agregar Nuevo Calidad</a>
+						class="btn btn-success">Agregar Nueva Calidad</a>
 				</div>
 				<br>
 				<table class="table table-bordered">

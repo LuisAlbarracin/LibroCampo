@@ -29,7 +29,7 @@
 			style="background-color: tomato">
 
 			<ul class="navbar-nav">
-				<li><a href="<%=request.getContextPath()%>/list"
+				<li><a href="<%=request.getContextPath()%>/cultivo/list"
 					class="nav-link">Cultivos</a></li>
 			</ul>
 		</nav>
@@ -66,20 +66,28 @@
 							value="<c:out value='${cultivo.id}' />" />
 					</c:if>
 
-					<select class="form-select" name="finca"
-						aria-label="Default select example">
-						<c:forEach var="finca" items="${fincas}">
-							<option value="<c:out value='${asociacion.id}' />"
-								<c:if test="${finca.id == cultivo.finca.id}">
-									selected
-								</c:if>><c:out
-									value='${finca.id}' /></option>
-						</c:forEach>
-					</select>
+					<fieldset class="form-group">
+						<label>Nombre</label> <input type="text"
+							value="<c:out value='${cultivo.nombre}' />" class="form-control"
+							name="nombre">
+					</fieldset>
 
 					<fieldset class="form-group">
-						<label>Número identificador cultivo</label> <input type="number"
-							value="<c:out value='${finca.numero}' />" class="form-control"
+						<label>Finca</label>
+						<select class="form-select" name="finca">
+							<c:forEach var="finca" items="${fincas}">
+								<option value="<c:out value='${finca.nombre}' />"
+									<c:if test="${finca.id == cultivo.finca.id}">
+									selected
+								</c:if>><c:out
+										value='${finca.id}' /></option>
+							</c:forEach>
+						</select>
+					</fieldset>
+
+					<fieldset class="form-group">
+						<label>Número</label> <input type="number"
+							value="<c:out value='${cultivo.numero}' />" class="form-control"
 							name="numero">
 					</fieldset>
 

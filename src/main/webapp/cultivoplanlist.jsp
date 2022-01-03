@@ -29,7 +29,7 @@
 			style="background-color: tomato">
 
 			<ul class="navbar-nav">
-				<li><a href="<%=request.getContextPath()%>/list"
+				<li><a href="<%=request.getContextPath()%>/cultivoplan/list"
 					class="nav-link">Cultivo Plan</a></li>
 			</ul>
 
@@ -46,7 +46,7 @@
 				<div class="container text-left">
 
 					<a href="<%=request.getContextPath()%>/cultivoplan/new"
-						class="btn btn-success">Agregar Nuevo Propietario</a>
+						class="btn btn-success">Agregar Nuevo Plan de Cultivo</a>
 				</div>
 				<br>
 				<table class="table table-bordered">
