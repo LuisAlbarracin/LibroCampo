@@ -16,7 +16,7 @@ public class CultivoDaoMySQL implements CultivoDao {
 
 	private static final String INSERTAR = "INSERT INTO cultivo (finca, numero, nombre) VALUES (?, ?, ?);";
 	private static final String ACTUALIZAR = "UPDATE cultivo SET finca = ?, numero = ?, set nombre = ? WHERE id = ?;";
-	private static final String ELIMINAR = "DELETE * FROM cultivo WHERE id = ?;";
+	private static final String ELIMINAR = "DELETE FROM cultivo WHERE id = ?;";
 	private static final String BUSCAR = "SELECT * FROM cultivo WHERE id = ?;";
 	private static final String LISTAR = "SELECT * FROM cultivo";
 	private static final String LISTAR_BY_FINCA = "SELECT * FROM cultivo WHERE finca = ?";

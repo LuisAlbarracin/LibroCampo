@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
+
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
@@ -104,7 +106,12 @@ public class AsociacionServlet extends HttpServlet {
 		String descripcion = request.getParameter("descripcion");
 		
 		Asociacion asociacion = new Asociacion(id, nombre, descripcion);
-		this.asociacionDao.actualizar(asociacion);
+		
+		try {
+			this.asociacionDao.actualizar(asociacion);
+		} catch (MySQLIntegrityConstraintViolationException exMysql) {
+			request.setAttribute("error", exMysql.getMessage());
+		}
 		
 		response.sendRedirect("list");
 	}
@@ -125,7 +132,12 @@ public class AsociacionServlet extends HttpServlet {
 		String descripcion = request.getParameter("descripcion");
 		
 		Asociacion asociacion = new Asociacion(nombre, descripcion);
-		this.asociacionDao.insertar(asociacion);
+		
+		try {
+			this.asociacionDao.insertar(asociacion);
+		} catch (MySQLIntegrityConstraintViolationException exMysql) {
+			request.setAttribute("error", exMysql.getMessage());
+		}
 		
 		response.sendRedirect("list");
 	}

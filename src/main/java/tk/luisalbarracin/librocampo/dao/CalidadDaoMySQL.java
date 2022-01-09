@@ -17,7 +17,7 @@ public class CalidadDaoMySQL implements CalidadDao {
 
 	private static final String INSERTAR = "INSERT INTO calidad (cultivo, fecha, porcentajeVerdes, porcentajeSobremaduros, porcentajePedunculoLargo, porcentajePodridos, impurezas) VALUES (?, ?, ?, ?, ?, ?, ?);";
 	private static final String ACTUALIZAR = "UPDATE calidad SET cultivo = ?, fecha = ?, porcentajeVerdes = ?, porcentajeSobremaduros = ?, porcentajePedunculoLargo = ?, porcentajePodridos, impurezas = ? WHERE id = ?;";
-	private static final String ELIMINAR = "DELETE * FROM calidad WHERE id = ?;";
+	private static final String ELIMINAR = "DELETE FROM calidad WHERE id = ?;";
 	private static final String BUSCAR = "SELECT * FROM calidad WHERE id = ?;";
 	private static final String LISTAR = "SELECT * FROM calidad";
 	private static final String LISTAR_BY_CULTIVO = "SELECT * FROM calidad WHERE cultivo = ?";

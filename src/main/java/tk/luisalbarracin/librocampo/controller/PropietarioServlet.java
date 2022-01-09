@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
+
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
@@ -49,34 +51,34 @@ public class PropietarioServlet extends HttpServlet {
 		// String action = request.getServletPath();
 		String action = request.getRequestURI();
 		System.out.println(action);
-		
+
 		try {
 			switch (action) {
-				case "/libroCampo/propietario/new":
-					showNewForm(request, response);
-					break;
-				case "/libroCampo/propietario/insert":
-					insertarPropietario(request, response);
-					break;
-				case "/libroCampo/propietario/registrar":
-					registrarPropietario(request, response);
-					break;
-				case "/libroCampo/propietario/delete":
-					eliminarPropietario(request, response);
-					break;
-				case "/libroCampo/propietario/edit":
-					showEditForm(request, response);
-					break;
-				case "/libroCampo/propietario/update":
-					System.out.println("Entrando a actualizar");
-					actualizarPropietario(request, response);
-					break;
-				case "/libroCampo/propietario/login":
-					loginPropietario(request, response);
-					break;
-				default:
-					listPropietarios(request, response);
-					break;
+			case "/libroCampo/propietario/new":
+				showNewForm(request, response);
+				break;
+			case "/libroCampo/propietario/insert":
+				insertarPropietario(request, response);
+				break;
+			case "/libroCampo/propietario/registrar":
+				registrarPropietario(request, response);
+				break;
+			case "/libroCampo/propietario/delete":
+				eliminarPropietario(request, response);
+				break;
+			case "/libroCampo/propietario/edit":
+				showEditForm(request, response);
+				break;
+			case "/libroCampo/propietario/update":
+				System.out.println("Entrando a actualizar");
+				actualizarPropietario(request, response);
+				break;
+			case "/libroCampo/propietario/login":
+				loginPropietario(request, response);
+				break;
+			default:
+				listPropietarios(request, response);
+				break;
 			}
 		} catch (SQLException e) {
 			throw new ServletException(e);
@@ -96,10 +98,10 @@ public class PropietarioServlet extends HttpServlet {
 
 	private void showEditForm(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		int id = Integer.parseInt(request.getParameter("id"));
 
-		Propietario propietarioActual = (Propietario) this.propietarioDao.buscar(id);
+		Integer id = Integer.parseInt(request.getParameter("id"));
+
+		Propietario propietarioActual = this.propietarioDao.buscar(id);
 
 		request.setAttribute("propietario", propietarioActual);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/propietario.jsp");
@@ -119,9 +121,7 @@ public class PropietarioServlet extends HttpServlet {
 	private void actualizarPropietario(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException, ServletException {
 
-		System.out.println(request.getParameter("nombre"));		
-		/*
-		int id = Integer.parseInt(request.getParameter("id"));
+		Integer id = Integer.parseInt(request.getParameter("id"));
 		String nombre = request.getParameter("nombre");
 		String apellido = request.getParameter("apellido");
 		String noCedula = request.getParameter("noCedula");
@@ -132,16 +132,19 @@ public class PropietarioServlet extends HttpServlet {
 
 		Propietario propietario = new Propietario(id, nombre, apellido, noCedula, telefono, expedicionCedula, email,
 				contrasenia);
-		this.propietarioDao.actualizar(propietario);
-
+		try {
+			this.propietarioDao.actualizar(propietario);
+		} catch (MySQLIntegrityConstraintViolationException exMysql) {
+			request.setAttribute("error", exMysql.getMessage());
+		}
 		response.sendRedirect("list");
-		 */
+
 	}
 
 	private void eliminarPropietario(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException, ServletException {
-		// TODO Auto-generated method stub
-		int id = Integer.parseInt(request.getParameter("id"));
+
+		Integer id = Integer.parseInt(request.getParameter("id"));
 
 		this.propietarioDao.eliminar(id);
 
@@ -163,7 +166,11 @@ public class PropietarioServlet extends HttpServlet {
 		Propietario propietario = new Propietario(nombre, apellido, coCedula, telefono, expedicionCedula, email,
 				contrasenia);
 
-		this.propietarioDao.insertar(propietario);
+		try {
+			this.propietarioDao.insertar(propietario);
+		} catch (MySQLIntegrityConstraintViolationException exMysql) {
+			request.setAttribute("error", exMysql.getMessage());
+		}
 
 		response.sendRedirect("list");
 	}
@@ -185,12 +192,12 @@ public class PropietarioServlet extends HttpServlet {
 
 		Integer id = this.propietarioDao.login(email, contrasenia);
 
-		if(id == 0) {
-			
-		}else {
-			
+		if (id == 0) {
+
+		} else {
+
 		}
-		
+
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/propietariolist.jsp");
 		dispatcher.forward(request, response);
 	}
@@ -210,7 +217,11 @@ public class PropietarioServlet extends HttpServlet {
 		propietario.setEmail(email);
 		propietario.setContrasenia(contrasenia);
 
-		this.propietarioDao.registrar(propietario);
+		try {
+			this.propietarioDao.registrar(propietario);
+		} catch (MySQLIntegrityConstraintViolationException exMysql) {
+			request.setAttribute("error", exMysql.getMessage());
+		}
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/propietariolist.jsp");
 		dispatcher.forward(request, response);

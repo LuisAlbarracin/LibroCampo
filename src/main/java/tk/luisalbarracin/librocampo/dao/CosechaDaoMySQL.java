@@ -17,7 +17,7 @@ public class CosechaDaoMySQL implements CosechaDao {
 
 	private static final String INSERTAR = "INSERT INTO cosecha (cultivo, fecha, numeroRacimos, pesoTotal, precioVenta) VALUES (?, ?, ?, ?, ?);";
 	private static final String ACTUALIZAR = "UPDATE cosecha SET cultivo = ?, fecha = ?, numeroRacimos = ?, pesoTotal = ?, precioVenta = ? WHERE id = ?;";
-	private static final String ELIMINAR = "DELETE * FROM cosecha WHERE id = ?;";
+	private static final String ELIMINAR = "DELETE FROM cosecha WHERE id = ?;";
 	private static final String BUSCAR = "SELECT * FROM cosecha WHERE id = ?;";
 	private static final String LISTAR = "SELECT * FROM cosecha";
 	private static final String LISTAR_BY_CULTIVO = "SELECT * FROM cosecha WHERE cosecha = ?";

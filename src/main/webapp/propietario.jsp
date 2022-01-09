@@ -64,10 +64,10 @@
 						</h2>
 					</caption>
 
-				<c:if test="${propietario != null}">
-					<input type="hidden" name="id"
-						value="<c:out value='${propietario.id}' />" />
-				</c:if>
+					<c:if test="${propietario != null}">
+						<input type="hidden" name="id"
+							value="<c:out value='${propietario.id}' />" />
+					</c:if>
 
 					<fieldset class="form-group">
 						<label>Nombre</label> <input type="text"
