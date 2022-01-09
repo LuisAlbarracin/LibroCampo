@@ -18,7 +18,7 @@ public class FincaDaoMySQL implements FincaDao {
 
 	private static final String INSERTAR = "INSERT INTO finca (nombre, area, asociacion, areaPalma, plano, propietario, vereda, inicioSiembra) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
 	private static final String ACTUALIZAR = "UPDATE finca SET nombre = ?, area = ?, asociacion = ?, areaPalma = ?, plano = ?, propietario = ?, vereda = ?, inicioSiembra = ? WHERE id = ?;";
-	private static final String ELIMINAR = "DELETE * FROM finca WHERE id = ?;";
+	private static final String ELIMINAR = "DELETE FROM finca WHERE id = ?;";
 	private static final String BUSCAR = "SELECT * FROM finca WHERE id = ?;";
 	private static final String LISTAR = "SELECT * FROM finca";
 	private static final String LISTAR_BY_PROPIETARIO = "SELECT * FROM finca WHERE propietario = ?";

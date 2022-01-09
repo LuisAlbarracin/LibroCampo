@@ -17,7 +17,7 @@ public class CultivoPlanDaoMySQL implements CultivoPlanDao {
 
 	private static final String INSERTAR = "INSERT INTO cultivoplan (cultivo, plan, mes, anio) VALUES (?, ?, ?, ?);";
 	private static final String ACTUALIZAR = "UPDATE cultivoplan SET cultivo = ?, plan = ?, mes = ?, anio = ?, WHERE id = ?;";
-	private static final String ELIMINAR = "DELETE * FROM cultivoplan WHERE id = ?;";
+	private static final String ELIMINAR = "DELETE FROM cultivoplan WHERE id = ?;";
 	private static final String BUSCAR = "SELECT * FROM cultivoplan WHERE id = ?;";
 	private static final String LISTAR = "SELECT * FROM cultivoplan";
 	private static final String LISTAR_BY_CULTIVO = "SELECT * FROM cultivoplan WHERE cultivo = ?";
@@ -72,7 +72,7 @@ public class CultivoPlanDaoMySQL implements CultivoPlanDao {
 				PlanFertilizante plan = new PlanFertilizante();
 				plan.setId(planId);
 				
-				cultivoPlan = new CultivoPlan(cultivo, plan, mes, anio);
+				cultivoPlan = new CultivoPlan(id, cultivo, plan, mes, anio);
 			}
 
 		} catch (SQLException e) {

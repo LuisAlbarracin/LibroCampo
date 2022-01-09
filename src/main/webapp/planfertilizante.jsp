@@ -13,6 +13,16 @@
 	crossorigin="anonymous">
 </head>
 <body>
+
+	<nav class="navbar navbar-light bg-light">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#"> <img
+				src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="30"
+				height="24" class="d-inline-block align-text-top"> Libro del
+				Campo
+			</a>
+		</div>
+	</nav>
 	<header>
 		<nav class="navbar navbar-expand-md navbar-dark"
 			style="background-color: tomato">
@@ -21,7 +31,8 @@
 			</div>
 
 			<ul class="navbar-nav">
-				<li><a href="<%=request.getContextPath()%>/list"
+				<li><a
+					href="<%=request.getContextPath()%>/planfertilizante/list"
 					class="nav-link">Plan Fertilizante</a></li>
 			</ul>
 		</nav>
@@ -34,10 +45,14 @@
 				<div class="card-body">
 
 					<c:if test="${planfertilizante != null}">
-						<form action="<%=request.getContextPath()%>/planfertilizante/update" method="post">
+						<form
+							action="<%=request.getContextPath()%>/planfertilizante/update"
+							method="post">
 					</c:if>
 					<c:if test="${planfertilizante == null}">
-						<form action="<%=request.getContextPath()%>/planfertilizante/insert" method="post">
+						<form
+							action="<%=request.getContextPath()%>/planfertilizante/insert"
+							method="post">
 					</c:if>
 
 					<caption>
@@ -56,16 +71,25 @@
 							value="<c:out value='${planfertilizante.id}' />" />
 					</c:if>
 
-					<select class="form-select" name="fertilizante"
-						aria-label="Default select example">
-						<c:forEach var="fertilizante" items="${fertilizantes}">
-							<option value="<c:out value='${fertilizante.id}' />"
-								<c:if test="${fertilizante.id == planfertilizante.fertilizante.id}">
+					<fieldset class="form-group">
+						<label>Nombre</label> <input type="text"
+							value="<c:out value='${planfertilizante.nombre}' />"
+							class="form-control" name="nombre" required="required">
+					</fieldset>
+
+					<fieldset class=form-group>
+					<label>Fertilizante</label>
+						<select class="form-select" name="fertilizante"
+							aria-label="Default select example">
+							<c:forEach var="fertilizante" items="${fertilizantes}">
+								<option value="<c:out value='${fertilizante.id}' />"
+									<c:if test="${fertilizante.id == planfertilizante.fertilizante.id}">
 									selected
 								</c:if>><c:out
-									value='${fertilizante.id}' /></option>
-						</c:forEach>
-					</select>
+										value='${fertilizante.id}' /></option>
+							</c:forEach>
+						</select>
+					</fieldset>
 
 					<fieldset class="form-group">
 						<label>Número de Bultos</label> <input type="text"
@@ -79,11 +103,10 @@
 							class="form-control" name="gramosPalma">
 					</fieldset>
 
+					<div class="d-flex justify-content-end">
+						<button type="submit" class="btn btn-success m-3">Guardar</button>
+					</div>
 
-
-
-
-					<button type="submit" class="btn btn-success m-3">Guardar</button>
 					</form>
 				</div>
 			</div>

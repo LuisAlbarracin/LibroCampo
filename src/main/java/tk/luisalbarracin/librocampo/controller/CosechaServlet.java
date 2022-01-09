@@ -103,7 +103,7 @@ public class CosechaServlet extends HttpServlet {
 		request.setAttribute("cosecha", cosechaActual);
 		request.setAttribute("cultivos", cultivos);
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("cosecha.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/cosecha.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -113,7 +113,7 @@ public class CosechaServlet extends HttpServlet {
 		List<Cosecha> cosechas = this.cosechaDao.selectAll();
 		request.setAttribute("cosechas", cosechas);
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("cosechaList.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/cosechalist.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -129,7 +129,7 @@ public class CosechaServlet extends HttpServlet {
 
 		Cultivo cultivo = this.cultivoDao.buscar(cultivoId);
 
-		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+		SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
 		Date fecha = null;
 		try {
 			fecha = formato.parse(fechaS);
@@ -166,7 +166,7 @@ public class CosechaServlet extends HttpServlet {
 
 		Cultivo cultivo = this.cultivoDao.buscar(cultivoId);
 
-		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+		SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
 		Date fecha = null;
 		try {
 			fecha = formato.parse(fechaS);
@@ -188,7 +188,7 @@ public class CosechaServlet extends HttpServlet {
 		
 		request.setAttribute("cultivos", cultivos);
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("cosecha.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/cosecha.jsp");
 		dispatcher.forward(request, response);
 	}
 

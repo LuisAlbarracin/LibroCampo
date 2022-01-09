@@ -13,12 +13,18 @@
 	crossorigin="anonymous">
 </head>
 <body>
+
+	<nav class="navbar navbar-light bg-light">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#"> <img
+				src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="30"
+				height="24" class="d-inline-block align-text-top"> Libro del Campo
+			</a>
+		</div>
+	</nav>
 	<header>
 		<nav class="navbar navbar-expand-md navbar-dark"
 			style="background-color: tomato">
-			<div>
-				<a href="#" class="navbar-brand"> Gestión de Planes de Fertilización </a>
-			</div>
 
 			<ul class="navbar-nav">
 				<li><a href="<%=request.getContextPath()%>/planfertilizante/list"
@@ -45,6 +51,7 @@
 					<thead>
 						<tr>
 							<th>ID</th>
+							<th>Nombre</th>
 							<th>Fertilizante</th>
 							<th>Número Bultos</th>
 							<th>Gramos Palma</th>
@@ -56,6 +63,7 @@
 
 							<tr>
 								<td><c:out value="${planfertilizante.id}" /></td>
+								<td><c:out value="${planfertilizante.nombre}"></c:out></td>
 								<td><c:out value="${planfertilizante.fertilizante.nombre}" /></td>
 								<td><c:out value="${planfertilizante.numeroBultos}" /></td>
 								<td><c:out value="${planfertilizante.gramosPalma}" /></td>

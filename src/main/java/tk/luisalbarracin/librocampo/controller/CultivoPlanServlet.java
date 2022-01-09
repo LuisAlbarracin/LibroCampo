@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
+
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
@@ -31,12 +33,12 @@ public class CultivoPlanServlet extends HttpServlet {
 	private PlanFertilizanteDao planFertilizanteDao;
 	private CultivoDao cultivoDao;
 
-    /**
-     * Default constructor. 
-     */
-    public CultivoPlanServlet() {
-        // TODO Auto-generated constructor stub
-    }
+	/**
+	 * Default constructor.
+	 */
+	public CultivoPlanServlet() {
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see Servlet#init(ServletConfig)
@@ -48,10 +50,12 @@ public class CultivoPlanServlet extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		String action = request.getRequestURI();
 
 		try {
@@ -79,97 +83,111 @@ public class CultivoPlanServlet extends HttpServlet {
 		} catch (SQLException e) {
 			throw new ServletException(e);
 		}
-		
+
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-	
-	private void showEditForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	private void showEditForm(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		Integer id = Integer.parseInt(request.getParameter("id"));
-		
+
 		CultivoPlan cultivoPlan = this.cultivoPlanDao.buscar(id);
 		List<PlanFertilizante> planFertilizantes = this.planFertilizanteDao.selectAll();
 		List<Cultivo> cultivos = this.cultivoDao.selectAll();
-		
+
 		request.setAttribute("cultivoplan", cultivoPlan);
 		request.setAttribute("planesfertilizantes", planFertilizantes);
 		request.setAttribute("cultivos", cultivos);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("cultivoplan.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/cultivoplan.jsp");
 		dispatcher.forward(request, response);
 	}
 
-	private void listCultivoPlanes(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
+	private void listCultivoPlanes(HttpServletRequest request, HttpServletResponse response)
+			throws SQLException, IOException, ServletException {
 		// TODO Auto-generated method stub
 		List<CultivoPlan> cultivoPlanes = this.cultivoPlanDao.selectAll();
 		List<PlanFertilizante> planFertilizantes = this.planFertilizanteDao.selectAll();
 		List<Cultivo> cultivos = this.cultivoDao.selectAll();
-		
+
 		request.setAttribute("cultivoplanes", cultivoPlanes);
 		request.setAttribute("planesfertilizantes", planFertilizantes);
 		request.setAttribute("cultivos", cultivos);
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("cultivoplanlist.jsp");
+
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/cultivoplanlist.jsp");
 		dispatcher.forward(request, response);
 	}
 
-	private void actualizarCultivoPlan(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
+	private void actualizarCultivoPlan(HttpServletRequest request, HttpServletResponse response)
+			throws SQLException, IOException, ServletException {
 		// TODO Auto-generated method stub
 		Integer id = Integer.parseInt(request.getParameter("id"));
 		Integer cultivoId = Integer.parseInt(request.getParameter("cultivo"));
 		Integer planFertilizanteId = Integer.parseInt(request.getParameter("planFertilizante"));
 		Integer mes = Integer.parseInt(request.getParameter("mes"));
 		Integer anio = Integer.parseInt(request.getParameter("anio"));
-		
+
 		Cultivo cultivo = this.cultivoDao.buscar(cultivoId);
 		PlanFertilizante planFertilizante = this.planFertilizanteDao.buscar(planFertilizanteId);
-		
-		
+
 		CultivoPlan cultivoPlan = new CultivoPlan(id, cultivo, planFertilizante, mes, anio);
-		this.cultivoPlanDao.actualizar(cultivoPlan);
-		
+
+		try {
+			this.cultivoPlanDao.actualizar(cultivoPlan);
+		} catch (MySQLIntegrityConstraintViolationException exMysql) {
+			request.setAttribute("error", exMysql.getMessage());
+		}
+
 		response.sendRedirect("list");
 	}
 
-	private void eliminarCultivoPlan(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
+	private void eliminarCultivoPlan(HttpServletRequest request, HttpServletResponse response)
+			throws SQLException, IOException, ServletException {
 		// TODO Auto-generated method stub
 		Integer id = Integer.parseInt(request.getParameter("id"));
-		
+
 		this.cultivoPlanDao.eliminar(id);
-		
+
 		response.sendRedirect("list");
 	}
 
-	private void insertarCultivoPlan(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
+	private void insertarCultivoPlan(HttpServletRequest request, HttpServletResponse response)
+			throws SQLException, IOException, ServletException {
 		// TODO Auto-generated method stub
-		
+
 		Integer cultivoId = Integer.parseInt(request.getParameter("cultivo"));
 		Integer planFertilizanteId = Integer.parseInt(request.getParameter("planFertilizante"));
 		Integer mes = Integer.parseInt(request.getParameter("mes"));
 		Integer anio = Integer.parseInt(request.getParameter("anio"));
-		
+
 		Cultivo cultivo = this.cultivoDao.buscar(cultivoId);
 		PlanFertilizante planFertilizante = this.planFertilizanteDao.buscar(planFertilizanteId);
-		
-		
+
 		CultivoPlan cultivoPlan = new CultivoPlan(cultivo, planFertilizante, mes, anio);
-		
-		this.cultivoPlanDao.insertar(cultivoPlan);
-		
+
+		try {
+			this.cultivoPlanDao.insertar(cultivoPlan);
+		} catch (MySQLIntegrityConstraintViolationException exMysql) {
+			request.setAttribute("error", exMysql.getMessage());
+		}
+
 		response.sendRedirect("list");
 	}
 
-	private void showNewForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private void showNewForm(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		RequestDispatcher dispatcher = request.getRequestDispatcher("cultivoplan.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/cultivoplan.jsp");
 		dispatcher.forward(request, response);
 	}
-	
 
 }

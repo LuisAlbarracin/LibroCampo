@@ -13,15 +13,23 @@
 	crossorigin="anonymous">
 </head>
 <body>
+
+	<nav class="navbar navbar-light bg-light">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#"> <img
+				src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="30"
+				height="24" class="d-inline-block align-text-top"> Libro del
+				Campo
+			</a>
+		</div>
+	</nav>
+
 	<header>
 		<nav class="navbar navbar-expand-md navbar-dark"
 			style="background-color: tomato">
-			<div>
-				<a href="#" class="navbar-brand"> Gestión de Cosechas </a>
-			</div>
 
 			<ul class="navbar-nav">
-				<li><a href="<%=request.getContextPath()%>/list"
+				<li><a href="<%=request.getContextPath()%>/cosecha/list"
 					class="nav-link">Cosechas</a></li>
 			</ul>
 
@@ -33,12 +41,12 @@
 			<!-- <div class="alert alert-success" *ngIf='message'>{{message}}</div> -->
 
 			<div class="container">
-				<h3 class="text-center">Listado de Cosecha</h3>
+				<h3 class="text-center">Listado de Cosechas</h3>
 				<hr>
 				<div class="container text-left">
 
 					<a href="<%=request.getContextPath()%>/cosecha/new"
-						class="btn btn-success">Agregar Nuevo Cosecha</a>
+						class="btn btn-success">Agregar Nueva Cosecha</a>
 				</div>
 				<br>
 				<table class="table table-bordered">

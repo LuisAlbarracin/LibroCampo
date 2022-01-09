@@ -96,7 +96,7 @@ public class CalidadServlet extends HttpServlet {
 		request.setAttribute("calidad", calidadActual);
 		request.setAttribute("cultivos", cultivos);
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("calidad.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/calidad.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -105,7 +105,7 @@ public class CalidadServlet extends HttpServlet {
 		List<Calidad> calidades = this.calidadDao.selectAll();
 		request.setAttribute("calidades", calidades);
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("calidadlist.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/calidadlist.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -122,7 +122,7 @@ public class CalidadServlet extends HttpServlet {
 		
 		Cultivo cultivo = this.cultivoDao.buscar(cultivoId);
 		
-		 SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+		 SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
 			Date fecha = null;
 	        try {
 	            fecha = formato.parse(fechaS);
@@ -160,7 +160,7 @@ public class CalidadServlet extends HttpServlet {
 		Boolean impurezas = Boolean.parseBoolean(request.getParameter("impurezas"));
 		Cultivo cultivo = this.cultivoDao.buscar(cultivoId);
 		
-		 SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+		 SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
 			Date fecha = null;
 	        try {
 	            fecha = formato.parse(fechaS);
@@ -183,7 +183,7 @@ public class CalidadServlet extends HttpServlet {
 		List<Cultivo> cultivos = this.cultivoDao.selectByFinca(1);
 		request.setAttribute("cultivos", cultivos);
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("calidad.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/calidad.jsp");
 		dispatcher.forward(request, response);
 	}
 

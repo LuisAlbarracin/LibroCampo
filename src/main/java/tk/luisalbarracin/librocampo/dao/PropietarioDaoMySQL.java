@@ -15,7 +15,7 @@ public class PropietarioDaoMySQL implements PropietarioDao {
 
 	private static final String INSERTAR = "INSERT INTO propietario (nombre, apellido, noCedula, telefono, expedicionCedula, email, contrasenia) VALUES (?, ?, ?, ?, ?, ?, ?);";
 	private static final String ACTUALIZAR = "UPDATE propietario SET nombre = ?, apellido = ?, noCedula = ?, telefono = ?, expedicionCedula = ?, email = ?, contrasenia = ? WHERE id = ?;";
-	private static final String ELIMINAR = "DELETE * FROM propietario WHERE id = ?;";
+	private static final String ELIMINAR = "DELETE FROM propietario WHERE id = ?;";
 	private static final String BUSCAR = "SELECT * FROM propietario WHERE id = ?;";
 	private static final String LISTAR = "SELECT * FROM propietario;";
 	private static final String LOGIN = "SELECT id FROM propietario WHERE email=? AND contrasenia=?";
@@ -100,7 +100,7 @@ public class PropietarioDaoMySQL implements PropietarioDao {
 				String email = rs.getString("email");
 				String contrasenia = rs.getString("contrasenia");
 
-				propietario = new Propietario(nombre, apellido, noCedula, telefono, expedicionCedula, email, contrasenia);
+				propietario = new Propietario(id, nombre, apellido, noCedula, telefono, expedicionCedula, email, contrasenia);
 			}
 
 		} catch (SQLException e) {

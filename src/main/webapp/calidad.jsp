@@ -13,15 +13,22 @@
 	crossorigin="anonymous">
 </head>
 <body>
+
+	<nav class="navbar navbar-light bg-light">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#"> <img
+				src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="30"
+				height="24" class="d-inline-block align-text-top"> Libro del
+				Campo
+			</a>
+		</div>
+	</nav>
+
 	<header>
 		<nav class="navbar navbar-expand-md navbar-dark"
 			style="background-color: tomato">
-			<div>
-				<a href="#" class="navbar-brand"> Gestión de Calidad </a>
-			</div>
-
 			<ul class="navbar-nav">
-				<li><a href="<%=request.getContextPath()%>/list"
+				<li><a href="<%=request.getContextPath()%>/calidad/list"
 					class="nav-link">Calidad</a></li>
 			</ul>
 		</nav>
@@ -34,10 +41,12 @@
 				<div class="card-body">
 
 					<c:if test="${calidad != null}">
-						<form action="<%=request.getContextPath()%>/calidad/update" method="post">
+						<form action="<%=request.getContextPath()%>/calidad/update"
+							method="post">
 					</c:if>
 					<c:if test="${calidad == null}">
-						<form action="<%=request.getContextPath()%>/calidad/insert" method="post">
+						<form action="<%=request.getContextPath()%>/calidad/insert"
+							method="post">
 					</c:if>
 
 					<caption>
@@ -62,18 +71,19 @@
 							name="fecha" required="required">
 					</fieldset>
 
-
-
-					<select class="form-select" name="cultivo"
-						aria-label="Default select example">
-						<c:forEach var="cultivo" items="${cultivos}">
-							<option value="<c:out value='${cultivo.id}' />"
-								<c:if test="${cultivo.id == calidad.cultivo.id}">
+					<fieldset class="form-group">
+						<label>Cultivo</label> <select class="form-select" name="cultivo"
+							aria-label="Default select example">
+							<c:forEach var="cultivo" items="${cultivos}">
+								<option value="<c:out value='${cultivo.id}' />"
+									<c:if test="${cultivo.id == calidad.cultivo.id}">
 									selected
 								</c:if>><c:out
-									value='${cultivo.id}' /></option>
-						</c:forEach>
-					</select>
+										value='${cultivo.id}' /></option>
+							</c:forEach>
+						</select>
+					</fieldset>
+
 
 					<fieldset class="form-group">
 						<label>Porcentaje Verdes</label> <input type="number"
@@ -99,21 +109,25 @@
 							class="form-control" name="porcentajePodridos">
 					</fieldset>
 
-
-					<select class="form-select" name="cultivo"
-						aria-label="Default select example">
-						<option value="1"
-							<c:if test="${1 == calidad.impurezas}">
+					<fieldset class="form-group">
+						<label>Impurezas</label> <select class="form-select"
+							name="impurezas">
+							<option value="Si"
+								<c:if test="${1 == calidad.impurezas}">
 									selected
-								</c:if>>1</option>
-						<option value="0"
-							<c:if test="${0 == calidad.impurezas}">
+								</c:if>>Si</option>
+							<option value="No"
+								<c:if test="${0 == calidad.impurezas}">
 									selected
-								</c:if>>0</option>
-					</select>
+								</c:if>>No</option>
+						</select>
+					</fieldset>
 
 
-					<button type="submit" class="btn btn-success m-3">Guardar</button>
+					<div class="d-flex justify-content-end">
+						<button type="submit" class="btn btn-success m-3">Guardar</button>
+					</div>
+
 					</form>
 				</div>
 			</div>

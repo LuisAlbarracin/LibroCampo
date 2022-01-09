@@ -13,15 +13,23 @@
 	crossorigin="anonymous">
 </head>
 <body>
+
+	<nav class="navbar navbar-light bg-light">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#"> <img
+				src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="30"
+				height="24" class="d-inline-block align-text-top"> Libro del
+				Campo
+			</a>
+		</div>
+	</nav>
+
 	<header>
 		<nav class="navbar navbar-expand-md navbar-dark"
 			style="background-color: tomato">
-			<div>
-				<a href="#" class="navbar-brand"> Gestión de Cultivo Plan </a>
-			</div>
 
 			<ul class="navbar-nav">
-				<li><a href="<%=request.getContextPath()%>/list"
+				<li><a href="<%=request.getContextPath()%>/cultivoplan/list"
 					class="nav-link">Cultivo Plan</a></li>
 			</ul>
 
@@ -37,8 +45,8 @@
 				<hr>
 				<div class="container text-left">
 
-					<a href="<%=request.getContextPath()%>/cultivoplan/new" class="btn btn-success">Agregar
-						Nuevo Propietario</a>
+					<a href="<%=request.getContextPath()%>/cultivoplan/new"
+						class="btn btn-success">Agregar Nuevo Plan de Cultivo</a>
 				</div>
 				<br>
 				<table class="table table-bordered">
@@ -61,7 +69,8 @@
 								<td><c:out value="${cultivoplan.plan}" /></td>
 								<td><c:out value="${cultivoplan.anio}" /></td>
 								<td><c:out value="${cultivoplan.mes} " /></td>
-								<td><a href="<%=request.getContextPath()%>/cultivoplan/edit?id=<c:out value='${cultivoplan.id}' />">Editar</a>
+								<td><a
+									href="<%=request.getContextPath()%>/cultivoplan/edit?id=<c:out value='${cultivoplan.id}' />">Editar</a>
 									&nbsp;&nbsp;&nbsp;&nbsp; <a
 									href="<%=request.getContextPath()%>/cultivoplan/delete?id=<c:out value='${cultivoplan.id}' />">Eliminar</a></td>
 							</tr>

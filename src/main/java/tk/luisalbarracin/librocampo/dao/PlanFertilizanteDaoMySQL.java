@@ -16,7 +16,7 @@ public class PlanFertilizanteDaoMySQL implements PlanFertilizanteDao {
 
 	private static final String INSERTAR = "INSERT INTO planfertilizante (nombre, fertilizante, numeroBultos, gramosPalma) VALUES (?, ?, ?, ?);";
 	private static final String ACTUALIZAR = "UPDATE planfertilizante SET fertilizante = ?, numeroBultos = ?, gramosPalma = ?WHERE id = ?;";
-	private static final String ELIMINAR = "DELETE * FROM planfertilizante WHERE id = ?;";
+	private static final String ELIMINAR = "DELETE FROM planfertilizante WHERE id = ?;";
 	private static final String BUSCAR = "SELECT * FROM planfertilizante WHERE id = ?;";
 	private static final String LISTAR = "SELECT * FROM planfertilizante";
 	private static final String LISTAR_BY_FERTILIZANTE = "SELECT * FROM planfertilizante WHERE fertilizante = ?";

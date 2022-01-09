@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
+
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
@@ -22,12 +24,13 @@ import tk.luisalbarracin.librocampo.modelo.Fertilizante;
 public class FertilizanteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private FertilizanteDao fertilizanteDao;
-    /**
-     * Default constructor. 
-     */
-    public FertilizanteServlet() {
-        // TODO Auto-generated constructor stub
-    }
+
+	/**
+	 * Default constructor.
+	 */
+	public FertilizanteServlet() {
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see Servlet#init(ServletConfig)
@@ -37,9 +40,11 @@ public class FertilizanteServlet extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String action = request.getRequestURI();
 
 		try {
@@ -70,69 +75,85 @@ public class FertilizanteServlet extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-	
-	private void showEditForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+
+	private void showEditForm(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		Integer id = Integer.parseInt(request.getParameter("id"));
-		
+
 		Fertilizante fertilizanteActual = this.fertilizanteDao.buscar(id);
-		
+
 		request.setAttribute("fertilizante", fertilizanteActual);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("fertilizante.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/fertilizante.jsp");
 		dispatcher.forward(request, response);
 	}
 
-	private void listFertilizantes(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
+	private void listFertilizantes(HttpServletRequest request, HttpServletResponse response)
+			throws SQLException, IOException, ServletException {
 		// TODO Auto-generated method stub
 		List<Fertilizante> fertilizantes = this.fertilizanteDao.selectAll();
 		request.setAttribute("fertilizantes", fertilizantes);
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("fertilizantelist.jsp");
+
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/fertilizantelist.jsp");
 		dispatcher.forward(request, response);
 	}
 
-	private void actualizarFertilizante(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
+	private void actualizarFertilizante(HttpServletRequest request, HttpServletResponse response)
+			throws SQLException, IOException, ServletException {
 		// TODO Auto-generated method stub
 		Integer id = Integer.parseInt(request.getParameter("id"));
 		String nombre = request.getParameter("nombre");
 		String descripcion = request.getParameter("descripcion");
-		
+
 		Fertilizante fertilizante = new Fertilizante(id, nombre, descripcion);
-		this.fertilizanteDao.actualizar(fertilizante);
-		
+		try {
+			this.fertilizanteDao.actualizar(fertilizante);
+		} catch (MySQLIntegrityConstraintViolationException exMysql) {
+			request.setAttribute("error", exMysql.getMessage());
+		}
+
 		response.sendRedirect("list");
 	}
 
-	private void eliminarFertilizante(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
+	private void eliminarFertilizante(HttpServletRequest request, HttpServletResponse response)
+			throws SQLException, IOException, ServletException {
 		// TODO Auto-generated method stub
 		Integer id = Integer.parseInt(request.getParameter("id"));
-		
+
 		this.fertilizanteDao.eliminar(id);
-		
+
 		response.sendRedirect("list");
 	}
 
-	private void insertarFertilizante(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
+	private void insertarFertilizante(HttpServletRequest request, HttpServletResponse response)
+			throws SQLException, IOException, ServletException {
 		// TODO Auto-generated method stub
-		
+
 		String nombre = request.getParameter("nombre");
 		String descripcion = request.getParameter("descripcion");
-		
+
 		Fertilizante fertilizante = new Fertilizante(nombre, descripcion);
-		this.fertilizanteDao.insertar(fertilizante);
-		
+		try {
+			this.fertilizanteDao.insertar(fertilizante);
+		} catch (MySQLIntegrityConstraintViolationException exMysql) {
+			request.setAttribute("error", exMysql.getMessage());
+		}
+
 		response.sendRedirect("list");
 	}
 
-	private void showNewForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private void showNewForm(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		RequestDispatcher dispatcher = request.getRequestDispatcher("fertilizante.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/fertilizante.jsp");
 		dispatcher.forward(request, response);
 	}
 

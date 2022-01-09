@@ -13,15 +13,22 @@
 	crossorigin="anonymous">
 </head>
 <body>
+
+	<nav class="navbar navbar-light bg-light">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#"> <img
+				src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="30"
+				height="24" class="d-inline-block align-text-top"> Libro del Campo
+			</a>
+		</div>
+	</nav>
+
 	<header>
 		<nav class="navbar navbar-expand-md navbar-dark"
 			style="background-color: tomato">
-			<div>
-				<a href="#" class="navbar-brand"> Gestión de Calidad </a>
-			</div>
 
 			<ul class="navbar-nav">
-				<li><a href="<%=request.getContextPath()%>/list"
+				<li><a href="<%=request.getContextPath()%>/calidad/list"
 					class="nav-link">Calidad</a></li>
 			</ul>
 
@@ -37,8 +44,8 @@
 				<hr>
 				<div class="container text-left">
 
-					<a href="<%=request.getContextPath()%>/calidad/new" class="btn btn-success">Agregar
-						Nuevo Calidad</a>
+					<a href="<%=request.getContextPath()%>/calidad/new"
+						class="btn btn-success">Agregar Nueva Calidad</a>
 				</div>
 				<br>
 				<table class="table table-bordered">
@@ -68,7 +75,8 @@
 								<td><c:out value="${calidad.porcentajePedunculoLargo} " /></td>
 								<td><c:out value="${calidad.porcentajePodridos} " /></td>
 								<td><c:out value="${calidad.impurezas} " /></td>
-								<td><a href="<%=request.getContextPath()%>/calidad/edit?id=<c:out value='${calidad.id}' />">Editar</a>
+								<td><a
+									href="<%=request.getContextPath()%>/calidad/edit?id=<c:out value='${calidad.id}' />">Editar</a>
 									&nbsp;&nbsp;&nbsp;&nbsp; <a
 									href="<%=request.getContextPath()%>/calidad/delete?id=<c:out value='${calidad.id}' />">Eliminar</a></td>
 							</tr>

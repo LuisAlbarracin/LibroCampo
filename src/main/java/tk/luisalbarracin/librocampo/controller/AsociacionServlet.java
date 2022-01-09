@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
+
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
@@ -84,7 +86,7 @@ public class AsociacionServlet extends HttpServlet {
 		Asociacion asociacionActual = this.asociacionDao.buscar(id);
 		
 		request.setAttribute("asociacion", asociacionActual);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("asociacion.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/asociacion.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -93,7 +95,7 @@ public class AsociacionServlet extends HttpServlet {
 		List<Asociacion> asociaciones = this.asociacionDao.selectAll();
 		request.setAttribute("asociaciones", asociaciones);
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("asociacionlist.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/asociacionlist.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -104,7 +106,12 @@ public class AsociacionServlet extends HttpServlet {
 		String descripcion = request.getParameter("descripcion");
 		
 		Asociacion asociacion = new Asociacion(id, nombre, descripcion);
-		this.asociacionDao.actualizar(asociacion);
+		
+		try {
+			this.asociacionDao.actualizar(asociacion);
+		} catch (MySQLIntegrityConstraintViolationException exMysql) {
+			request.setAttribute("error", exMysql.getMessage());
+		}
 		
 		response.sendRedirect("list");
 	}
@@ -125,14 +132,19 @@ public class AsociacionServlet extends HttpServlet {
 		String descripcion = request.getParameter("descripcion");
 		
 		Asociacion asociacion = new Asociacion(nombre, descripcion);
-		this.asociacionDao.insertar(asociacion);
+		
+		try {
+			this.asociacionDao.insertar(asociacion);
+		} catch (MySQLIntegrityConstraintViolationException exMysql) {
+			request.setAttribute("error", exMysql.getMessage());
+		}
 		
 		response.sendRedirect("list");
 	}
 
 	private void showNewForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		RequestDispatcher dispatcher = request.getRequestDispatcher("asociacion.jsp");
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/asociacion.jsp");
 		dispatcher.forward(request, response);
 	}
 

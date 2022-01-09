@@ -15,7 +15,7 @@ private ConexionMySQL conexion;
 	
 	private static final String INSERTAR = "INSERT INTO asociacion (nombre, descripcion) VALUES (?, ?);";
 	private static final String ACTUALIZAR = "UPDATE asociacion SET nombre = ?, descripcion = ? WHERE id = ?;";
-	private static final String ELIMINAR = "DELETE * FROM asociacion WHERE id = ?;";
+	private static final String ELIMINAR = "DELETE FROM asociacion WHERE id = ?;";
 	private static final String BUSCAR = "SELECT * FROM asociacion WHERE id = ?;";
 	private static final String LISTAR = "SELECT * FROM asociacion";
 	
@@ -82,7 +82,7 @@ private ConexionMySQL conexion;
 				String nombre = rs.getString("nombre");
 				String apellido = rs.getString("descripcion");
 				
-				asociacion = new Asociacion(nombre, apellido);
+				asociacion = new Asociacion(id, nombre, apellido);
 			}
 			
 		} catch (SQLException e) {

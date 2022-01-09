@@ -13,12 +13,20 @@
 	crossorigin="anonymous">
 </head>
 <body>
+
+	<nav class="navbar navbar-light bg-light">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#"> <img
+				src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="30"
+				height="24" class="d-inline-block align-text-top"> Libro del
+				Campo
+			</a>
+		</div>
+	</nav>
+
 	<header>
 		<nav class="navbar navbar-expand-md navbar-dark"
 			style="background-color: tomato">
-			<div>
-				<a href="#" class="navbar-brand"> Gestión de Fincas </a>
-			</div>
 
 			<ul class="navbar-nav">
 				<li><a href="<%=request.getContextPath()%>/list"
@@ -34,10 +42,12 @@
 				<div class="card-body">
 
 					<c:if test="${finca != null}">
-						<form action="<%=request.getContextPath()%>/finca/update" method="post">
+						<form action="<%=request.getContextPath()%>/finca/update"
+							method="post">
 					</c:if>
 					<c:if test="${finca == null}">
-						<form action="<%=request.getContextPath()%>/finca/insert" method="post">
+						<form action="<%=request.getContextPath()%>/finca/insert"
+							method="post">
 					</c:if>
 
 					<caption>
@@ -64,24 +74,29 @@
 
 					<fieldset class="form-group">
 						<label>Area de la Finca</label> <input type="text"
-							value="<c:out value='${finca.area}' />"
-							class="form-control" name="area">
+							value="<c:out value='${finca.area}' />" class="form-control"
+							name="area">
 					</fieldset>
 
-					<select class="form-select" name="asociacion" aria-label="Default select example">
-						<c:forEach var="asociacion" items="${asociaciones}">
-							<option value="<c:out value='${asociacion.id}' />"
-								<c:if test="${asociacion.id == finca.asociacion.id}">
-									selected
-								</c:if>><c:out
-									value='${asociacion.id}' /></option>
-						</c:forEach>
-					</select>
+					<fieldset class=form-group">
+						<label>Asociación</label>
+						<select class="form-select" name="asociacion"
+							aria-label="Default select example">
+							<c:forEach var="asociacion" items="${asociaciones}">
+								<option value="<c:out value='${asociacion.id}' />"
+									<c:if test="${asociacion.id == finca.asociacion.id}">
+										selected
+									</c:if>><c:out
+										value='${asociacion.id}' /></option>
+							</c:forEach>
+						</select>
+					</fieldset>
+					
 
 					<fieldset class="form-group">
 						<label>Vereda</label> <input type="text"
-							value="<c:out value='${finca.vereda}' />"
-							class="form-control" name="vereda">
+							value="<c:out value='${finca.vereda}' />" class="form-control"
+							name="vereda">
 					</fieldset>
 
 					<fieldset class="form-group">
@@ -95,14 +110,17 @@
 							value="<c:out value='${finca.plano}' />" class="form-control"
 							name="plano">
 					</fieldset>
-					
+
 					<fieldset class="form-group">
 						<label>Fecha Inicio Siembra</label> <input type="date"
-							value="<c:out value='${finca.inicioSiembra}' />" class="form-control"
-							name="plano">
+							value="<c:out value='${finca.inicioSiembra}' />"
+							class="form-control" name="plano">
 					</fieldset>
 
-					<button type="submit" class="btn btn-success m-3">Guardar</button>
+					<div class="d-flex justify-content-end">
+						<button type="submit" class="btn btn-success m-3">Guardar</button>
+					</div>
+
 					</form>
 				</div>
 			</div>

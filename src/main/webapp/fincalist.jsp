@@ -13,15 +13,21 @@
 	crossorigin="anonymous">
 </head>
 <body>
+
+<nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <img src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24" class="d-inline-block align-text-top">
+      Libro del Campo
+    </a>
+  </div>
+</nav>
 	<header>
 		<nav class="navbar navbar-expand-md navbar-dark"
 			style="background-color: tomato">
-			<div>
-				<a href="#" class="navbar-brand"> Gestión de Fincas </a>
-			</div>
 
 			<ul class="navbar-nav">
-				<li><a href="<%=request.getContextPath()%>/list"
+				<li><a href="<%=request.getContextPath()%>/finca/list"
 					class="nav-link">Fincas</a></li>
 			</ul>
 
@@ -38,7 +44,7 @@
 				<div class="container text-left">
 
 					<a href="<%=request.getContextPath()%>/finca/new" class="btn btn-success">Agregar
-						Nuevo Finca</a>
+						Nueva Finca</a>
 				</div>
 				<br>
 				<table class="table table-bordered">

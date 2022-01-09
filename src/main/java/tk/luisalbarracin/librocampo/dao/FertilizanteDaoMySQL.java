@@ -15,7 +15,7 @@ public class FertilizanteDaoMySQL implements FertilizanteDao{
 
 	private static final String INSERTAR = "INSERT INTO fertilizante (nombre, descripcion) VALUES (?, ?);";
 	private static final String ACTUALIZAR = "UPDATE fertilizante SET nombre = ?, descripcion = ? WHERE id = ?;";
-	private static final String ELIMINAR = "DELETE * FROM fertilizante WHERE id = ?;";
+	private static final String ELIMINAR = "DELETE FROM fertilizante WHERE id = ?;";
 	private static final String BUSCAR = "SELECT * FROM fertilizante WHERE id = ?;";
 	private static final String LISTAR = "SELECT * FROM fertilizante";
 	

@@ -13,15 +13,23 @@
 	crossorigin="anonymous">
 </head>
 <body>
+
+	<nav class="navbar navbar-light bg-light">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#"> <img
+				src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="30"
+				height="24" class="d-inline-block align-text-top"> Libro del
+				Campo
+			</a>
+		</div>
+	</nav>
+
 	<header>
 		<nav class="navbar navbar-expand-md navbar-dark"
 			style="background-color: tomato">
-			<div>
-				<a href="#" class="navbar-brand"> Gestión de Cosecha </a>
-			</div>
 
 			<ul class="navbar-nav">
-				<li><a href="<%=request.getContextPath()%>/list"
+				<li><a href="<%=request.getContextPath()%>/cosecha/list"
 					class="nav-link">Cosecha</a></li>
 			</ul>
 		</nav>
@@ -34,10 +42,12 @@
 				<div class="card-body">
 
 					<c:if test="${cosecha != null}">
-						<form action="<%=request.getContextPath()%>/cosecha/update" method="post">
+						<form action="<%=request.getContextPath()%>/cosecha/update"
+							method="post">
 					</c:if>
 					<c:if test="${cosecha == null}">
-						<form action="<%=request.getContextPath()%>/cosecha/insert" method="post">
+						<form action="<%=request.getContextPath()%>/cosecha/insert"
+							method="post">
 					</c:if>
 
 					<caption>
@@ -55,42 +65,48 @@
 						<input type="hidden" name="id"
 							value="<c:out value='${cosecha.id}' />" />
 					</c:if>
-					
-					<select class="form-select" name="cultivo" aria-label="Default select example">
-						<c:forEach var="cultivo" items="${cultivos}">
-							<option value="<c:out value='${cultivo.id}' />"
-								<c:if test="${cultivo.id == cosecha.cultivo.id}">
-									selected
-								</c:if>><c:out
-									value='${cultivo.id}' /></option>
-						</c:forEach>
-					</select>
 
 					<fieldset class="form-group">
-						<label>Fecha</label> <input type="text"
-							value="<c:out value='${cosecha.fecha}' />"
-							class="form-control" name="fecha">
+						<label>Cultivo</label> <select class="form-select" name="cultivo"
+							aria-label="Default select example">
+							<c:forEach var="cultivo" items="${cultivos}">
+								<option value="<c:out value='${cultivo.id}' />"
+									<c:if test="${cultivo.id == cosecha.cultivo.id}">
+									selected
+								</c:if>><c:out
+										value='${cultivo.id}' /></option>
+							</c:forEach>
+						</select>
+					</fieldset>
+
+					<fieldset class="form-group">
+						<label>Fecha</label> <input type="date"
+							value="<c:out value='${cosecha.fecha}' />" class="form-control"
+							name="fecha">
 					</fieldset>
 
 					<fieldset class="form-group">
 						<label>Número de Racimos</label> <input type="number"
-							value="<c:out value='${cosecha.numeroRacimos}' />" class="form-control"
-							name="numeroRacimos">
+							value="<c:out value='${cosecha.numeroRacimos}' />"
+							class="form-control" name="numeroRacimos">
 					</fieldset>
 
 					<fieldset class="form-group">
 						<label>Peso Total</label> <input type="number"
-							value="<c:out value='${cosecha.pesoTotal}' />" class="form-control"
-							name="pesoTotal">
-					</fieldset>
-					
-					<fieldset class="form-group">
-						<label>Precio Venta</label> <input type="number"
-							value="<c:out value='${cosecha.precioVenta}' />" class="form-control"
-							name="precioVenta">
+							value="<c:out value='${cosecha.pesoTotal}' />"
+							class="form-control" name="pesoTotal">
 					</fieldset>
 
-					<button type="submit" class="btn btn-success m-3">Guardar</button>
+					<fieldset class="form-group">
+						<label>Precio Venta</label> <input type="number"
+							value="<c:out value='${cosecha.precioVenta}' />"
+							class="form-control" name="precioVenta">
+					</fieldset>
+
+					<div class="d-flex justify-content-end">
+						<button type="submit" class="btn btn-success m-3">Guardar</button>
+					</div>
+
 					</form>
 				</div>
 			</div>
