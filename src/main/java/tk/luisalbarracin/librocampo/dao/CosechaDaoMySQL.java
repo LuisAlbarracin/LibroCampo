@@ -43,6 +43,7 @@ public class CosechaDaoMySQL implements CosechaDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
 		}
 	}
 
@@ -73,6 +74,7 @@ public class CosechaDaoMySQL implements CosechaDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
 		}
 
 		return cosecha;
@@ -103,6 +105,7 @@ public class CosechaDaoMySQL implements CosechaDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
 		}
 
 		return cosechas;
@@ -121,6 +124,7 @@ public class CosechaDaoMySQL implements CosechaDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
 		}
 	}
 
@@ -142,6 +146,7 @@ public class CosechaDaoMySQL implements CosechaDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
 		}
 	}
 
@@ -171,6 +176,7 @@ public class CosechaDaoMySQL implements CosechaDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
 		}
 
 		return cosechas;

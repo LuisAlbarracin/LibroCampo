@@ -190,16 +190,15 @@ public class PropietarioServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String contrasenia = request.getParameter("contrasenia");
 
-		Integer id = this.propietarioDao.login(email, contrasenia);
-
-		if (id == 0) {
-
+		Boolean isExist = this.propietarioDao.login(email, contrasenia);
+		
+		if (isExist) {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/propietariolist.jsp");
+			dispatcher.forward(request, response);
 		} else {
-
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/iniciarsesion.jsp");
+			dispatcher.forward(request, response);
 		}
-
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/propietariolist.jsp");
-		dispatcher.forward(request, response);
 	}
 
 	private void registrarPropietario(HttpServletRequest request, HttpServletResponse response)

@@ -19,5 +19,5 @@ public interface PropietarioDao {
 	public List<Propietario> selectAll();
 	public void eliminar(Integer id) throws SQLException;
 	public void actualizar(Propietario propietario) throws SQLException;
-	public Integer login(String email, String contrasenia);
+	public Boolean login(String email, String contrasenia);
 }

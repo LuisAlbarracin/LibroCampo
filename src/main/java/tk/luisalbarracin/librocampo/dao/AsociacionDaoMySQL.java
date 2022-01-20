@@ -34,6 +34,7 @@ private ConexionMySQL conexion;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
 		}
 	}
 	
@@ -50,6 +51,7 @@ private ConexionMySQL conexion;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
 		}
 	}
 	
@@ -64,6 +66,7 @@ private ConexionMySQL conexion;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
 		}
 		
 	}
@@ -88,6 +91,7 @@ private ConexionMySQL conexion;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
 		}
 		
 		return asociacion;
@@ -111,6 +115,7 @@ private ConexionMySQL conexion;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
 		}
 		
 		return asociacion;

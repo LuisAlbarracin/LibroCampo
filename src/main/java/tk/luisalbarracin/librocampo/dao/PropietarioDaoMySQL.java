@@ -42,6 +42,7 @@ public class PropietarioDaoMySQL implements PropietarioDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
 		}
 	}
 
@@ -63,6 +64,7 @@ public class PropietarioDaoMySQL implements PropietarioDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
 		}
 	}
 
@@ -77,6 +79,7 @@ public class PropietarioDaoMySQL implements PropietarioDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
 		}
 
 	}
@@ -106,6 +109,7 @@ public class PropietarioDaoMySQL implements PropietarioDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
 		}
 
 		return propietario;
@@ -140,8 +144,7 @@ public class PropietarioDaoMySQL implements PropietarioDao {
 
 	}
 	
-	public Integer login(String email, String contrasenia) {
-		Integer idPropietario = 0;
+	public Boolean login(String email, String contrasenia) {
 		try {
 			PreparedStatement preparedStatement = conexion.setPreparedStatement(LOGIN);
 
@@ -149,19 +152,26 @@ public class PropietarioDaoMySQL implements PropietarioDao {
 			preparedStatement.setString(2, contrasenia);
 
 			ResultSet rs = conexion.query();
+			
+
+			System.out.println(email);
+			System.out.println(contrasenia);
 
 			while (rs.next()) {
 
-				idPropietario = rs.getInt("id");
-
+				System.out.println(rs.getInt("id"));
+				return true;
 			}
+			
+			return false;
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
 		}
 
-		return idPropietario;
+		return false;
 		
 	}
 	
@@ -181,6 +191,7 @@ public class PropietarioDaoMySQL implements PropietarioDao {
 			e.getMessage();
 			e.printStackTrace();
 			
+		}finally {
 		}
 	}
 }

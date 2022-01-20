@@ -48,6 +48,7 @@ public class FincaDaoMySQL implements FincaDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
 		}
 	}
 
@@ -85,6 +86,7 @@ public class FincaDaoMySQL implements FincaDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
 		}
 
 		return finca;
@@ -122,6 +124,7 @@ public class FincaDaoMySQL implements FincaDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
 		}
 
 		return fincas;
@@ -165,6 +168,7 @@ public class FincaDaoMySQL implements FincaDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
 		}
 	}
 
@@ -201,6 +205,7 @@ public class FincaDaoMySQL implements FincaDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
 		}
 
 		return fincas;
@@ -239,6 +244,8 @@ public class FincaDaoMySQL implements FincaDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
+			
 		}
 		return fincas;
 	}

@@ -42,6 +42,7 @@ public class PlanFertilizanteDaoMySQL implements PlanFertilizanteDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
 		}
 	}
 
@@ -72,6 +73,7 @@ public class PlanFertilizanteDaoMySQL implements PlanFertilizanteDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
 		}
 
 		return planFertilizante;
@@ -103,6 +105,7 @@ public class PlanFertilizanteDaoMySQL implements PlanFertilizanteDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
 		}
 
 		return planesFertilizantes;
@@ -141,6 +144,7 @@ public class PlanFertilizanteDaoMySQL implements PlanFertilizanteDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
 		}
 	}
 
@@ -171,6 +175,7 @@ public class PlanFertilizanteDaoMySQL implements PlanFertilizanteDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
 		}
 
 		return planesFertilizantes;

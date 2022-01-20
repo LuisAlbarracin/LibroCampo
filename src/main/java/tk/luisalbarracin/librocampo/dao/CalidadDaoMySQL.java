@@ -45,6 +45,7 @@ public class CalidadDaoMySQL implements CalidadDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
 		}
 	}
 
@@ -78,6 +79,7 @@ public class CalidadDaoMySQL implements CalidadDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
 		}
 
 		return calidad;
@@ -110,6 +112,7 @@ public class CalidadDaoMySQL implements CalidadDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
 		}
 
 		return calidades;
@@ -129,6 +132,7 @@ public class CalidadDaoMySQL implements CalidadDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
 		}
 
 	}
@@ -153,6 +157,7 @@ public class CalidadDaoMySQL implements CalidadDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
 		}
 	}
 
@@ -184,6 +189,7 @@ public class CalidadDaoMySQL implements CalidadDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
 		}
 
 		return calidades;

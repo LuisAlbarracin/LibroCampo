@@ -39,6 +39,7 @@ public class CultivoDaoMySQL implements CultivoDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
 		}
 	}
 
@@ -68,6 +69,7 @@ public class CultivoDaoMySQL implements CultivoDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
 		}
 
 		return cultivo;
@@ -98,6 +100,7 @@ public class CultivoDaoMySQL implements CultivoDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
 		}
 
 		return cultivos;
@@ -116,6 +119,7 @@ public class CultivoDaoMySQL implements CultivoDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
 		}
 	}
 
@@ -134,6 +138,7 @@ public class CultivoDaoMySQL implements CultivoDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
 		}
 	}
 
@@ -163,6 +168,7 @@ public class CultivoDaoMySQL implements CultivoDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
 		}
 
 		return cultivos;

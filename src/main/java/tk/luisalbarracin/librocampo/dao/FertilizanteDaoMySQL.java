@@ -38,6 +38,7 @@ public class FertilizanteDaoMySQL implements FertilizanteDao{
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
 		}
 	}
 
@@ -63,6 +64,7 @@ public class FertilizanteDaoMySQL implements FertilizanteDao{
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
 		}
 
 		return fertilizante;
@@ -87,6 +89,7 @@ public class FertilizanteDaoMySQL implements FertilizanteDao{
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
 		}
 
 		return fertilizantes;
@@ -105,6 +108,7 @@ public class FertilizanteDaoMySQL implements FertilizanteDao{
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
 		}
 	}
 
@@ -124,6 +128,7 @@ public class FertilizanteDaoMySQL implements FertilizanteDao{
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
 		}
 	}
 
