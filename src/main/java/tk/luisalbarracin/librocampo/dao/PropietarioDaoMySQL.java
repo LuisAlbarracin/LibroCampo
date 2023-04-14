@@ -197,8 +197,8 @@ public class PropietarioDaoMySQL implements PropietarioDao {
 	}
 
 	@Override
-	public Integer getPropietarioId(String email) {
-		Integer propietario = null;
+	public Propietario getPropietarioId(String email) {
+		Propietario propietario = null;
 		try {
 			PreparedStatement preparedStatement = conexion.setPreparedStatement(BUSCAR_BY_EMAIL);
 
@@ -207,7 +207,16 @@ public class PropietarioDaoMySQL implements PropietarioDao {
 			ResultSet rs = conexion.query();
 
 			while (rs.next()) {
-				propietario = rs.getInt("id");
+				Integer id = rs.getInt("id");
+				String nombre = rs.getString("nombre");
+				String apellido = rs.getString("apellido");
+				String noCedula = rs.getString("noCedula");
+				String telefono = rs.getString("telefono");
+				String expedicionCedula = rs.getString("expedicionCedula");
+				String contrasenia = rs.getString("contrasenia");
+
+				propietario = new Propietario(id, nombre, apellido, noCedula, telefono, expedicionCedula, email, contrasenia);
+			
 			}
 
 		} catch (SQLException e) {

@@ -14,6 +14,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import tk.luisalbarracin.librocampo.dao.AsociacionDao;
 import tk.luisalbarracin.librocampo.dao.AsociacionDaoMySQL;
 import tk.luisalbarracin.librocampo.dao.FincaDao;
@@ -33,6 +34,7 @@ public class FincaServlet extends HttpServlet {
 	private FincaDao fincaDao;
 	private AsociacionDao asociacionDao;
 	private PropietarioDao propietarioDao;
+	HttpSession session;
 
     /**
      * Default constructor. 
@@ -153,6 +155,7 @@ public class FincaServlet extends HttpServlet {
 
 	private void insertarFinca(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
 		// TODO Auto-generated method stub
+		session = request.getSession();
 		Asociacion asociacion = null;
 		String nombre = request.getParameter("nombre");
 		Float area = Float.parseFloat(request.getParameter("area"));
@@ -166,7 +169,9 @@ public class FincaServlet extends HttpServlet {
 		String vereda = request.getParameter("vereda");
 		String fechaS = request.getParameter("inicioSiembra");
 		
-		Propietario propietario = this.propietarioDao.buscar(propietarioId);
+		String email = (String) this.session.getAttribute("propietario");
+		
+		Propietario propietario = this.propietarioDao.getPropietarioId(email);
 		String plano = request.getParameter("plano");
 		
 
