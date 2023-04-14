@@ -13,6 +13,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import tk.luisalbarracin.librocampo.dao.PropietarioDao;
 import tk.luisalbarracin.librocampo.dao.PropietarioDaoFactory;
 import tk.luisalbarracin.librocampo.modelo.Propietario;
@@ -24,6 +25,7 @@ import tk.luisalbarracin.librocampo.modelo.Propietario;
 public class PropietarioServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private PropietarioDao propietarioDao;
+	
 
 	/**
 	 * Default constructor.
@@ -193,6 +195,8 @@ public class PropietarioServlet extends HttpServlet {
 		Boolean isExist = this.propietarioDao.login(email, contrasenia);
 		
 		if (isExist) {
+			HttpSession session = request.getSession();
+			session.setAttribute("propietario", email);
 			this.listPropietarios(request, response);
 		} else {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
@@ -224,5 +228,6 @@ public class PropietarioServlet extends HttpServlet {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/propietariolist.jsp");
 		dispatcher.forward(request, response);
 	}
+	
 
 }

@@ -153,15 +153,19 @@ public class FincaServlet extends HttpServlet {
 
 	private void insertarFinca(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
 		// TODO Auto-generated method stub
-		
+		Asociacion asociacion = null;
 		String nombre = request.getParameter("nombre");
 		Float area = Float.parseFloat(request.getParameter("area"));
-		Integer asociacionId = Integer.parseInt(request.getParameter("asociacion"));
+		if(request.getParameter("asociacion") != null) {
+			Integer asociacionId = Integer.parseInt(request.getParameter("asociacion"));
+			asociacion = this.asociacionDao.buscar(asociacionId);
+		}
+
 		Float areaPalma = Float.parseFloat(request.getParameter("areaPalma"));
 		Integer propietarioId = Integer.parseInt(request.getParameter("propietario"));
 		String vereda = request.getParameter("vereda");
 		String fechaS = request.getParameter("inicioSiembra");
-		Asociacion asociacion = this.asociacionDao.buscar(asociacionId);
+		
 		Propietario propietario = this.propietarioDao.buscar(propietarioId);
 		String plano = request.getParameter("plano");
 		
