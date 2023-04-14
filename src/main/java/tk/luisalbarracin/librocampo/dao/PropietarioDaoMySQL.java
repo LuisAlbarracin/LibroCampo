@@ -20,6 +20,7 @@ public class PropietarioDaoMySQL implements PropietarioDao {
 	private static final String LISTAR = "SELECT * FROM propietario;";
 	private static final String LOGIN = "SELECT id FROM propietario WHERE email=? AND contrasenia=?";
 	private static final String REGISTRAR = "INSERT INTO propietario (nombre, apellido, noCedula, email, contrasenia) VALUES (?, ?, ?, ?, ?);";
+	private static final String BUSCAR_BY_EMAIL = "SELECT id FROM propietario WHERE email = ?;";
 	
 
 	public PropietarioDaoMySQL() {
@@ -193,5 +194,28 @@ public class PropietarioDaoMySQL implements PropietarioDao {
 			
 		}finally {
 		}
+	}
+
+	@Override
+	public Integer getPropietarioId(String email) {
+		Integer propietario = null;
+		try {
+			PreparedStatement preparedStatement = conexion.setPreparedStatement(BUSCAR_BY_EMAIL);
+
+			preparedStatement.setString(1, email);
+
+			ResultSet rs = conexion.query();
+
+			while (rs.next()) {
+				propietario = rs.getInt("id");
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+		}
+
+		return propietario;
 	}
 }

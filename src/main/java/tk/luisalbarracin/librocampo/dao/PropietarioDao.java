@@ -20,4 +20,5 @@ public interface PropietarioDao {
 	public void eliminar(Integer id) throws SQLException;
 	public void actualizar(Propietario propietario) throws SQLException;
 	public Boolean login(String email, String contrasenia);
+	public Integer getPropietarioId(String email);
 }
