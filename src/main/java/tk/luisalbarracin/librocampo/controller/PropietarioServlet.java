@@ -193,10 +193,9 @@ public class PropietarioServlet extends HttpServlet {
 		Boolean isExist = this.propietarioDao.login(email, contrasenia);
 		
 		if (isExist) {
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/propietariolist.jsp");
-			dispatcher.forward(request, response);
+			this.listPropietarios(request, response);
 		} else {
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/iniciarsesion.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
 			dispatcher.forward(request, response);
 		}
 	}
