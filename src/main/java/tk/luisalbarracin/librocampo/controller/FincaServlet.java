@@ -165,13 +165,18 @@ public class FincaServlet extends HttpServlet {
 		}
 
 		Float areaPalma = Float.parseFloat(request.getParameter("areaPalma"));
-		Integer propietarioId = Integer.parseInt(request.getParameter("propietario"));
 		String vereda = request.getParameter("vereda");
 		String fechaS = request.getParameter("inicioSiembra");
 		
+		System.out.println(fechaS);
+		
 		String email = (String) this.session.getAttribute("propietario");
+		System.out.println(email);
 		
 		Propietario propietario = this.propietarioDao.getPropietarioId(email);
+		
+
+		
 		String plano = request.getParameter("plano");
 		
 

@@ -37,7 +37,10 @@ public class FincaDaoMySQL implements FincaDao {
 
 			preparedStatement.setString(1, finca.getNombre());
 			preparedStatement.setFloat(2, finca.getArea());
-			preparedStatement.setInt(3, finca.getAsociacion().getId());
+			if(finca.getAsociacion() != null)
+				preparedStatement.setInt(3, finca.getAsociacion().getId());
+			else
+				preparedStatement.setInt(3, -1);
 			preparedStatement.setFloat(4, finca.getAreaPalma());
 			preparedStatement.setString(5, finca.getPlano());
 			preparedStatement.setInt(6, finca.getPropietario().getId());

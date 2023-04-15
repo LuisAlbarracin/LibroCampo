@@ -25,6 +25,7 @@ import tk.luisalbarracin.librocampo.modelo.Propietario;
 public class PropietarioServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private PropietarioDao propietarioDao;
+	HttpSession session;
 	
 
 	/**
@@ -195,7 +196,7 @@ public class PropietarioServlet extends HttpServlet {
 		Boolean isExist = this.propietarioDao.login(email, contrasenia);
 		
 		if (isExist) {
-			HttpSession session = request.getSession();
+			session = request.getSession();
 			session.setAttribute("propietario", email);
 			this.listPropietarios(request, response);
 		} else {

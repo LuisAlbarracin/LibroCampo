@@ -20,7 +20,7 @@ public class PropietarioDaoMySQL implements PropietarioDao {
 	private static final String LISTAR = "SELECT * FROM propietario;";
 	private static final String LOGIN = "SELECT id FROM propietario WHERE email=? AND contrasenia=?";
 	private static final String REGISTRAR = "INSERT INTO propietario (nombre, apellido, noCedula, email, contrasenia) VALUES (?, ?, ?, ?, ?);";
-	private static final String BUSCAR_BY_EMAIL = "SELECT id FROM propietario WHERE email = ?;";
+	private static final String BUSCAR_BY_EMAIL = "SELECT * FROM propietario WHERE email = ?;";
 	
 
 	public PropietarioDaoMySQL() {

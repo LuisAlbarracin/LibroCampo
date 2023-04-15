@@ -101,7 +101,7 @@
 					<fieldset class="form-group">
 						<label>Fecha Inicio Siembra</label> <input type="date"
 							value="<c:out value='${finca.inicioSiembra}' />"
-							class="form-control" name="plano">
+							class="form-control" name="inicioSiembra">
 					</fieldset>
 
 					<div class="d-flex justify-content-end">
