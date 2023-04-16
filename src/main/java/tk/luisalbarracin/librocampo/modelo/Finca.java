@@ -1,6 +1,6 @@
 package tk.luisalbarracin.librocampo.modelo;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Finca {
 	private Integer id;
@@ -11,16 +11,14 @@ public class Finca {
 	private String plano;
 	private Propietario propietario;
 	private String vereda;
-	private Date inicioSiembra;
-	
-	
+	private LocalDate inicioSiembra;
+
 	public Finca() {
 		super();
 	}
 
-
 	public Finca(Integer id, String nombre, Float area, Asociacion asociacion, Float areaPalma, String plano,
-			Propietario propietario, String vereda, Date inicioSiembra) {
+			Propietario propietario, String vereda, LocalDate inicioSiembra) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -33,9 +31,8 @@ public class Finca {
 		this.inicioSiembra = inicioSiembra;
 	}
 
-
 	public Finca(String nombre, Float area, Asociacion asociacion, Float areaPalma, String plano,
-			Propietario propietario, String vereda, Date inicioSiembra) {
+			Propietario propietario, String vereda, LocalDate inicioSiembra) {
 		super();
 		this.nombre = nombre;
 		this.area = area;
@@ -46,7 +43,6 @@ public class Finca {
 		this.vereda = vereda;
 		this.inicioSiembra = inicioSiembra;
 	}
-
 
 	public Finca(Integer id, String nombre, Float area, Asociacion asociacion, Float areaPalma, Propietario propietario,
 			String vereda) {
@@ -60,7 +56,6 @@ public class Finca {
 		this.vereda = vereda;
 	}
 
-
 	public Finca(String nombre, Float area, Asociacion asociacion, Float areaPalma, Propietario propietario,
 			String vereda) {
 		super();
@@ -72,96 +67,76 @@ public class Finca {
 		this.vereda = vereda;
 	}
 
-
 	public Integer getId() {
 		return id;
 	}
-
 
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
-
 	public String getNombre() {
 		return nombre;
 	}
-
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 
-
 	public Float getArea() {
 		return area;
 	}
-
 
 	public void setArea(Float area) {
 		this.area = area;
 	}
 
-
 	public Asociacion getAsociacion() {
 		return asociacion;
 	}
-
 
 	public void setAsociacion(Asociacion asociacion) {
 		this.asociacion = asociacion;
 	}
 
-
 	public Float getAreaPalma() {
 		return areaPalma;
 	}
-
 
 	public void setAreaPalma(Float areaPalma) {
 		this.areaPalma = areaPalma;
 	}
 
-
 	public String getPlano() {
 		return plano;
 	}
-
 
 	public void setPlano(String plano) {
 		this.plano = plano;
 	}
 
-
 	public Propietario getPropietario() {
 		return propietario;
 	}
-
 
 	public void setPropietario(Propietario propietario) {
 		this.propietario = propietario;
 	}
 
-
 	public String getVereda() {
 		return vereda;
 	}
-
 
 	public void setVereda(String vereda) {
 		this.vereda = vereda;
 	}
 
-
-	public Date getInicioSiembra() {
+	public LocalDate getInicioSiembra() {
 		return inicioSiembra;
 	}
 
-
-	public void setInicioSiembra(Date inicioSiembra) {
+	public void setInicioSiembra(LocalDate inicioSiembra) {
 		this.inicioSiembra = inicioSiembra;
 	}
-	
-	
-	
+
 }

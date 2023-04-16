@@ -188,6 +188,7 @@ public class FincaServlet extends HttpServlet {
 			System.out.println(ex);
 		}
 		
+		System.out.println(inicioSiembra);
 		Finca finca = new Finca(nombre, area, asociacion, areaPalma, plano, propietario, vereda, inicioSiembra);
 		
 		this.fincaDao.insertar(finca);

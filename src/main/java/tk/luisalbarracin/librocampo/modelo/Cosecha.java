@@ -1,16 +1,17 @@
 package tk.luisalbarracin.librocampo.modelo;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Cosecha {
 	private Integer id;
 	private Cultivo cultivo;
-	private Date fecha;
+	private LocalDate fecha;
 	private Integer numeroRacimos;
 	private Float pesoTotal;
 	private Float precioVenta;
-	
-	public Cosecha(Integer id, Cultivo cultivo, Date fecha, Integer numeroRacimos, Float pesoTotal, Float precioVenta) {
+
+	public Cosecha(Integer id, Cultivo cultivo, LocalDate fecha, Integer numeroRacimos, Float pesoTotal,
+			Float precioVenta) {
 		super();
 		this.id = id;
 		this.cultivo = cultivo;
@@ -19,12 +20,12 @@ public class Cosecha {
 		this.pesoTotal = pesoTotal;
 		this.precioVenta = precioVenta;
 	}
-	
+
 	public Cosecha() {
 		super();
 	}
-	
-	public Cosecha(Cultivo cultivo, Date fecha, Integer numeroRacimos, Float pesoTotal, Float precioVenta) {
+
+	public Cosecha(Cultivo cultivo, LocalDate fecha, Integer numeroRacimos, Float pesoTotal, Float precioVenta) {
 		super();
 		this.cultivo = cultivo;
 		this.fecha = fecha;
@@ -49,11 +50,11 @@ public class Cosecha {
 		this.cultivo = cultivo;
 	}
 
-	public Date getFecha() {
+	public LocalDate getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(Date fecha) {
+	public void setFecha(LocalDate fecha) {
 		this.fecha = fecha;
 	}
 
@@ -80,7 +81,5 @@ public class Cosecha {
 	public void setPrecioVenta(Float precioVenta) {
 		this.precioVenta = precioVenta;
 	}
-	
-	
-	
+
 }
