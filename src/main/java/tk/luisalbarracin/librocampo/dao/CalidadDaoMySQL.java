@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,7 +35,7 @@ public class CalidadDaoMySQL implements CalidadDao {
 			PreparedStatement preparedStatement = conexion.setPreparedStatement(INSERTAR);
 
 			preparedStatement.setInt(1, calidad.getCultivo().getId());
-			preparedStatement.setDate(2, (Date) calidad.getFecha());
+			preparedStatement.setDate(2, Date.valueOf(calidad.getFecha()));
 			preparedStatement.setFloat(3, calidad.getPorcentajeVerdes());
 			preparedStatement.setFloat(4, calidad.getPorcentajeSobremaduros());
 			preparedStatement.setFloat(5, calidad.getPorcentajePedunculoLargo());
@@ -63,7 +64,7 @@ public class CalidadDaoMySQL implements CalidadDao {
 			while (rs.next()) {
 
 				Integer idCultivo = rs.getInt("cultivo");
-				Date fecha = rs.getDate("fecha");
+				LocalDate fecha = rs.getDate("fecha").toLocalDate();
 				Float porcentajeVerdes = rs.getFloat("porcentajeVerdes");
 				Float porcentajeSobremaduros = rs.getFloat("porcentajeSobremaduros");
 				Float porcentajePedunculoLargo = rs.getFloat("porcentajePedunculoLargo");
@@ -97,7 +98,7 @@ public class CalidadDaoMySQL implements CalidadDao {
 			while (rs.next()) {
 				Integer id = rs.getInt("id");
 				Integer idCultivo = rs.getInt("cultivo");
-				Date fecha = rs.getDate("fecha");
+				LocalDate fecha = rs.getDate("fecha").toLocalDate();
 				Float porcentajeVerdes = rs.getFloat("porcentajeVerdes");
 				Float porcentajeSobremaduros = rs.getFloat("porcentajeSobremaduros");
 				Float porcentajePedunculoLargo = rs.getFloat("porcentajePedunculoLargo");
@@ -143,7 +144,7 @@ public class CalidadDaoMySQL implements CalidadDao {
 		try {
 			PreparedStatement preparedStatement = conexion.setPreparedStatement(ACTUALIZAR);
 			preparedStatement.setInt(1, calidad.getCultivo().getId());
-			preparedStatement.setDate(2, (Date) calidad.getFecha());
+			preparedStatement.setDate(2, Date.valueOf(calidad.getFecha()));
 			preparedStatement.setFloat(3, calidad.getPorcentajeVerdes());
 			preparedStatement.setFloat(4, calidad.getPorcentajeSobremaduros());
 			preparedStatement.setFloat(5, calidad.getPorcentajePedunculoLargo());
@@ -174,7 +175,7 @@ public class CalidadDaoMySQL implements CalidadDao {
 			while (rs.next()) {
 				Integer id = rs.getInt("id");
 				Integer idCultivo = rs.getInt("cultivo");
-				Date fecha = rs.getDate("fecha");
+				LocalDate fecha = rs.getDate("fecha").toLocalDate();
 				Float porcentajeVerdes = rs.getFloat("porcentajeVerdes");
 				Float porcentajeSobremaduros = rs.getFloat("porcentajeSobremaduros");
 				Float porcentajePedunculoLargo = rs.getFloat("porcentajePedunculoLargo");

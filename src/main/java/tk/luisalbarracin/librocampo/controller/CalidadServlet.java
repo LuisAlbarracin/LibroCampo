@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -113,7 +114,7 @@ public class CalidadServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		Integer id = Integer.parseInt(request.getParameter("id"));
 		Integer cultivoId = Integer.parseInt(request.getParameter("cultivo"));
-		String fechaS = request.getParameter("fecha");
+		LocalDate fechaS = LocalDate.parse(request.getParameter("fecha"));
 		Float porcentajeVerdes = Float.parseFloat(request.getParameter("porcentajeVerdes"));
 		Float porcentajeSobremaduros = Float.parseFloat(request.getParameter("porcentajeSobremaduros"));
 		Float porcentajePedunculoLargo = Float.parseFloat(request.getParameter("porcentajePedunculoLargo"));
@@ -122,17 +123,7 @@ public class CalidadServlet extends HttpServlet {
 		
 		Cultivo cultivo = this.cultivoDao.buscar(cultivoId);
 		
-		 SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
-			Date fecha = null;
-	        try {
-	            fecha = formato.parse(fechaS);
-	        } 
-	        catch (ParseException ex) 
-	        {
-	            System.out.println(ex);
-	        }
-		
-		Calidad calidad = new Calidad(id, cultivo, fecha, porcentajeVerdes, porcentajeSobremaduros, porcentajePedunculoLargo, porcentajePodridos, impurezas);
+		Calidad calidad = new Calidad(id, cultivo, fechaS, porcentajeVerdes, porcentajeSobremaduros, porcentajePedunculoLargo, porcentajePodridos, impurezas);
 		
 		this.calidadDao.actualizar(calidad);
 		
@@ -152,7 +143,7 @@ public class CalidadServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		Integer cultivoId = Integer.parseInt(request.getParameter("cultivo"));
-		String fechaS = request.getParameter("fecha");
+		LocalDate fechaS = LocalDate.parse(request.getParameter("fecha"));
 		Float porcentajeVerdes = Float.parseFloat(request.getParameter("porcentajeVerdes"));
 		Float porcentajeSobremaduros = Float.parseFloat(request.getParameter("porcentajeSobremaduros"));
 		Float porcentajePedunculoLargo = Float.parseFloat(request.getParameter("porcentajePedunculoLargo"));
@@ -160,17 +151,7 @@ public class CalidadServlet extends HttpServlet {
 		Boolean impurezas = Boolean.parseBoolean(request.getParameter("impurezas"));
 		Cultivo cultivo = this.cultivoDao.buscar(cultivoId);
 		
-		 SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
-			Date fecha = null;
-	        try {
-	            fecha = formato.parse(fechaS);
-	        } 
-	        catch (ParseException ex) 
-	        {
-	            System.out.println(ex);
-	        }
-		
-		Calidad calidad = new Calidad(cultivo, fecha, porcentajeVerdes, porcentajeSobremaduros, porcentajePedunculoLargo, porcentajePodridos, impurezas);
+		Calidad calidad = new Calidad(cultivo, fechaS, porcentajeVerdes, porcentajeSobremaduros, porcentajePedunculoLargo, porcentajePodridos, impurezas);
 		
 		this.calidadDao.insertar(calidad);
 		

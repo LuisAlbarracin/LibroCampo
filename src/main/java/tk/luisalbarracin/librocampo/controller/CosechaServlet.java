@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -122,22 +123,15 @@ public class CosechaServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		Integer id = Integer.parseInt(request.getParameter("id"));
 		Integer cultivoId = Integer.parseInt(request.getParameter("cultivo"));
-		String fechaS = request.getParameter("fecha");
+		LocalDate fechaS = LocalDate.parse(request.getParameter("fecha"));
 		Integer numeroRacimos = Integer.parseInt(request.getParameter("numeroRacimos"));
 		Float pesoTotal = Float.parseFloat(request.getParameter("pesoTotal"));
 		Float precioVenta = Float.parseFloat(request.getParameter("precioVenta"));
 
 		Cultivo cultivo = this.cultivoDao.buscar(cultivoId);
 
-		SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
-		Date fecha = null;
-		try {
-			fecha = formato.parse(fechaS);
-		} catch (ParseException ex) {
-			System.out.println(ex);
-		}
 
-		Cosecha cosecha = new Cosecha(id, cultivo, fecha, numeroRacimos, pesoTotal, precioVenta);
+		Cosecha cosecha = new Cosecha(id, cultivo, fechaS, numeroRacimos, pesoTotal, precioVenta);
 
 		this.cosechaDao.actualizar(cosecha);
 
@@ -159,22 +153,14 @@ public class CosechaServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 
 		Integer cultivoId = Integer.parseInt(request.getParameter("cultivo"));
-		String fechaS = request.getParameter("fecha");
+		LocalDate fechaS = LocalDate.parse(request.getParameter("fecha"));
 		Integer numeroRacimos = Integer.parseInt(request.getParameter("numeroRacimos"));
 		Float pesoTotal = Float.parseFloat(request.getParameter("pesoTotal"));
 		Float precioVenta = Float.parseFloat(request.getParameter("precioVenta"));
 
 		Cultivo cultivo = this.cultivoDao.buscar(cultivoId);
 
-		SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
-		Date fecha = null;
-		try {
-			fecha = formato.parse(fechaS);
-		} catch (ParseException ex) {
-			System.out.println(ex);
-		}
-
-		Cosecha cosecha = new Cosecha(cultivo, fecha, numeroRacimos, pesoTotal, precioVenta);
+		Cosecha cosecha = new Cosecha(cultivo, fechaS, numeroRacimos, pesoTotal, precioVenta);
 
 		this.cosechaDao.insertar(cosecha);
 

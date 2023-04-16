@@ -11,12 +11,13 @@ public class Calidad {
 	private Float porcentajePedunculoLargo;
 	private Float porcentajePodridos;
 	private Boolean impurezas;
-
+	
+	
 	public Calidad() {
 		super();
 	}
-
-	public Calidad(Integer id, Cultivo cultivo, LocalDate fecha, Float porcentajeVerdes, Float porcentajeSobremaduros,
+	
+	public Calidad(Integer id, Cultivo cultivo, LocalDate  fecha, Float porcentajeVerdes, Float porcentajeSobremaduros,
 			Float porcentajePedunculoLargo, Float porcentajePodridos, Boolean impurezas) {
 		super();
 		this.id = id;
@@ -28,8 +29,8 @@ public class Calidad {
 		this.porcentajePodridos = porcentajePodridos;
 		this.impurezas = impurezas;
 	}
-
-	public Calidad(Cultivo cultivo, LocalDate fecha, Float porcentajeVerdes, Float porcentajeSobremaduros,
+	
+	public Calidad(Cultivo cultivo, LocalDate  fecha, Float porcentajeVerdes, Float porcentajeSobremaduros,
 			Float porcentajePedunculoLargo, Float porcentajePodridos, Boolean impurezas) {
 		super();
 		this.cultivo = cultivo;
@@ -57,11 +58,11 @@ public class Calidad {
 		this.cultivo = cultivo;
 	}
 
-	public LocalDate getFecha() {
+	public LocalDate  getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(LocalDate fecha) {
+	public void setFecha(LocalDate  fecha) {
 		this.fecha = fecha;
 	}
 
@@ -104,5 +105,8 @@ public class Calidad {
 	public void setImpurezas(Boolean impurezas) {
 		this.impurezas = impurezas;
 	}
-
+	
+	
+	
+	
 }

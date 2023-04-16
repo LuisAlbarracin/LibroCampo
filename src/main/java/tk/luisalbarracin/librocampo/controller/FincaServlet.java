@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -124,21 +125,14 @@ public class FincaServlet extends HttpServlet {
 		Float areaPalma = Float.parseFloat(request.getParameter("areaPalma"));
 		Integer propietarioId = Integer.parseInt(request.getParameter("propietario"));
 		String vereda = request.getParameter("vereda");
-		String fechaS = request.getParameter("inicioSiembra");
+		LocalDate fechaS = LocalDate.parse(request.getParameter("inicioSiembra"));
 		String plano = request.getParameter("plano");
 		
-		SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
-		Date inicioSiembra = null;
-		try {
-			inicioSiembra = formato.parse(fechaS);
-		} catch (ParseException ex) {
-			System.out.println(ex);
-		}
 		
 		Asociacion asociacion = this.asociacionDao.buscar(asociacionId);
 		Propietario propietario = this.propietarioDao.buscar(propietarioId);
 		
-		Finca finca = new Finca(id, nombre, area, asociacion, areaPalma, plano, propietario, vereda, inicioSiembra);
+		Finca finca = new Finca(id, nombre, area, asociacion, areaPalma, plano, propietario, vereda, fechaS);
 		this.fincaDao.actualizar(finca);
 		
 		response.sendRedirect("list");
@@ -166,7 +160,7 @@ public class FincaServlet extends HttpServlet {
 
 		Float areaPalma = Float.parseFloat(request.getParameter("areaPalma"));
 		String vereda = request.getParameter("vereda");
-		String fechaS = request.getParameter("inicioSiembra");
+		LocalDate fechaS = LocalDate.parse(request.getParameter("inicioSiembra"));
 		
 		System.out.println(fechaS);
 		
@@ -180,16 +174,7 @@ public class FincaServlet extends HttpServlet {
 		String plano = request.getParameter("plano");
 		
 
-		SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
-		Date inicioSiembra = null;
-		try {
-			inicioSiembra = formato.parse(fechaS);
-		} catch (ParseException ex) {
-			System.out.println(ex);
-		}
-		
-		System.out.println(inicioSiembra);
-		Finca finca = new Finca(nombre, area, asociacion, areaPalma, plano, propietario, vereda, inicioSiembra);
+		Finca finca = new Finca(nombre, area, asociacion, areaPalma, plano, propietario, vereda, fechaS);
 		
 		this.fincaDao.insertar(finca);
 		

@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,7 +35,7 @@ public class CosechaDaoMySQL implements CosechaDao {
 			PreparedStatement preparedStatement = conexion.setPreparedStatement(INSERTAR);
 
 			preparedStatement.setInt(1, cosecha.getCultivo().getId());
-			preparedStatement.setDate(2, (Date) cosecha.getFecha());
+			preparedStatement.setDate(2, Date.valueOf(cosecha.getFecha()));
 			preparedStatement.setInt(3, cosecha.getNumeroRacimos());
 			preparedStatement.setFloat(4, cosecha.getPesoTotal());
 			preparedStatement.setFloat(5, cosecha.getPrecioVenta());
@@ -61,7 +62,7 @@ public class CosechaDaoMySQL implements CosechaDao {
 			while (rs.next()) {
 
 				Integer cultivoId = rs.getInt("cultivo");
-				Date fecha = rs.getDate("fecha");
+				LocalDate fecha = rs.getDate("fecha").toLocalDate();
 				Integer numeroRacimos = rs.getInt("numeroRacimos");
 				Float pesoTotal = rs.getFloat("pesoTotal");
 				Float precioVenta = rs.getFloat("precioVenta");
@@ -92,7 +93,7 @@ public class CosechaDaoMySQL implements CosechaDao {
 			while (rs.next()) {
 				Integer id = rs.getInt("id");
 				Integer cultivoId = rs.getInt("cultivo");
-				Date fecha = rs.getDate("fecha");
+				LocalDate fecha = rs.getDate("fecha").toLocalDate();
 				Integer numeroRacimos = rs.getInt("numeroRacimos");
 				Float pesoTotal = rs.getFloat("pesoTotal");
 				Float precioVenta = rs.getFloat("precioVenta");
@@ -135,7 +136,7 @@ public class CosechaDaoMySQL implements CosechaDao {
 			PreparedStatement preparedStatement = conexion.setPreparedStatement(ACTUALIZAR);
 
 			preparedStatement.setInt(1, cosecha.getCultivo().getId());
-			preparedStatement.setDate(2, (Date) cosecha.getFecha());
+			preparedStatement.setDate(2, Date.valueOf(cosecha.getFecha()));
 			preparedStatement.setInt(3, cosecha.getNumeroRacimos());
 			preparedStatement.setFloat(4, cosecha.getPesoTotal());
 			preparedStatement.setFloat(5, cosecha.getPrecioVenta());
@@ -163,7 +164,7 @@ public class CosechaDaoMySQL implements CosechaDao {
 			while (rs.next()) {
 				Integer id = rs.getInt("id");
 				Integer cultivoId = rs.getInt("cultivo");
-				Date fecha = rs.getDate("fecha");
+				LocalDate fecha = rs.getDate("fecha").toLocalDate();
 				Integer numeroRacimos = rs.getInt("numeroRacimos");
 				Float pesoTotal = rs.getFloat("pesoTotal");
 				Float precioVenta = rs.getFloat("precioVenta");

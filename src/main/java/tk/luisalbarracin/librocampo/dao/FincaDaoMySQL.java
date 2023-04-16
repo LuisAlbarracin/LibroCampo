@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,7 +46,7 @@ public class FincaDaoMySQL implements FincaDao {
 			preparedStatement.setString(5, finca.getPlano());
 			preparedStatement.setInt(6, finca.getPropietario().getId());
 			preparedStatement.setString(7, finca.getVereda());
-			preparedStatement.setDate(8, new java.sql.Date(finca.getInicioSiembra().getTime()));
+			preparedStatement.setDate(8, Date.valueOf(finca.getInicioSiembra()));
 			
 			conexion.execute();
 		} catch (SQLException e) {
@@ -75,7 +76,7 @@ public class FincaDaoMySQL implements FincaDao {
 				String plano = rs.getString("plano");
 				Integer propietarioId = rs.getInt("propietario");
 				String vereda = rs.getString("vereda");
-				Date inicioSiembra = rs.getDate("inicioSiembra");
+				LocalDate inicioSiembra = rs.getDate("inicioSiembra").toLocalDate();
 				
 				Asociacion asociacion = new Asociacion();
 				asociacion.setId(asociacionId);
@@ -113,7 +114,7 @@ public class FincaDaoMySQL implements FincaDao {
 				String plano = rs.getString("plano");
 				Integer propietarioId = rs.getInt("propietario");
 				String vereda = rs.getString("vereda");
-				Date inicioSiembra = rs.getDate("inicioSiembra");
+				LocalDate inicioSiembra = rs.getDate("inicioSiembra").toLocalDate();
 				
 				Asociacion asociacion = new Asociacion();
 				asociacion.setId(asociacionId);
@@ -163,7 +164,7 @@ public class FincaDaoMySQL implements FincaDao {
 			preparedStatement.setString(5, finca.getPlano());
 			preparedStatement.setInt(6, finca.getPropietario().getId());
 			preparedStatement.setString(7, finca.getVereda());
-			preparedStatement.setDate(8, new java.sql.Date(finca.getInicioSiembra().getTime()));
+			preparedStatement.setDate(8, Date.valueOf(finca.getInicioSiembra()));
 			preparedStatement.setInt(9, finca.getId());
 
 			conexion.execute();
@@ -194,7 +195,7 @@ public class FincaDaoMySQL implements FincaDao {
 				String plano = rs.getString("plano");
 				Integer propietarioId = rs.getInt("propietario");
 				String vereda = rs.getString("vereda");
-				Date inicioSiembra = rs.getDate("inicioSiembra");
+				LocalDate inicioSiembra = rs.getDate("inicioSiembra").toLocalDate();
 				
 				Asociacion asociacion = new Asociacion();
 				asociacion.setId(asociacionId);
@@ -233,7 +234,7 @@ public class FincaDaoMySQL implements FincaDao {
 				String plano = rs.getString("plano");
 				Integer propietarioId = rs.getInt("propietario");
 				String vereda = rs.getString("vereda");
-				Date inicioSiembra = rs.getDate("inicioSiembra");
+				LocalDate inicioSiembra = rs.getDate("inicioSiembra").toLocalDate();
 				
 				Asociacion asociacion = new Asociacion();
 				asociacion.setId(asociacionId);
