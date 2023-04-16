@@ -45,7 +45,7 @@ public class FincaDaoMySQL implements FincaDao {
 			preparedStatement.setString(5, finca.getPlano());
 			preparedStatement.setInt(6, finca.getPropietario().getId());
 			preparedStatement.setString(7, finca.getVereda());
-			preparedStatement.setDate(8, (Date) finca.getInicioSiembra());
+			preparedStatement.setDate(8, new java.sql.Date(finca.getInicioSiembra().getTime()));
 			
 			conexion.execute();
 		} catch (SQLException e) {
@@ -163,7 +163,7 @@ public class FincaDaoMySQL implements FincaDao {
 			preparedStatement.setString(5, finca.getPlano());
 			preparedStatement.setInt(6, finca.getPropietario().getId());
 			preparedStatement.setString(7, finca.getVereda());
-			preparedStatement.setDate(8, (Date) finca.getInicioSiembra());
+			preparedStatement.setDate(8, new java.sql.Date(finca.getInicioSiembra().getTime()));
 			preparedStatement.setInt(9, finca.getId());
 
 			conexion.execute();
