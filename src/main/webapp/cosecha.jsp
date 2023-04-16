@@ -13,14 +13,7 @@
 
 
 	<header>
-		<nav class="navbar navbar-expand-md navbar-dark"
-			style="background-color: tomato">
-
-			<ul class="navbar-nav">
-				<li><a href="<%=request.getContextPath()%>/cosecha/list"
-					class="nav-link">Cosecha</a></li>
-			</ul>
-		</nav>
+		<%@ include file = "partials/menu.jsp" %>
 	</header>
 
 	<main>

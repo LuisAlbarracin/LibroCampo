@@ -14,17 +14,7 @@
 
 
 	<header>
-		<nav class="navbar navbar-expand-md navbar-dark"
-			style="background-color: tomato">
-			<div>
-				<a href="#" class="navbar-brand"> Gestión de Propietarios </a>
-			</div>
-
-			<ul class="navbar-nav">
-				<li><a href="<%=request.getContextPath()%>/propietario/list"
-					class="nav-link">Propietarios</a></li>
-			</ul>
-		</nav>
+		<%@ include file = "partials/menu.jsp" %>
 	</header>
 
 	<main>

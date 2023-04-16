@@ -12,18 +12,7 @@
 <body>
 
 	<header>
-		<nav class="navbar navbar-expand-md navbar-dark"
-			style="background-color: tomato">
-			<div>
-				<a href="#" class="navbar-brand"> Gestión de Plan Fertilizante </a>
-			</div>
-
-			<ul class="navbar-nav">
-				<li><a
-					href="<%=request.getContextPath()%>/planfertilizante/list"
-					class="nav-link">Plan Fertilizante</a></li>
-			</ul>
-		</nav>
+		<%@ include file = "partials/menu.jsp" %>
 	</header>
 
 	<main>

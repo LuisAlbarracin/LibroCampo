@@ -13,14 +13,7 @@
 
 
 	<header>
-		<nav class="navbar navbar-expand-md navbar-dark"
-			style="background-color: tomato">
-
-			<ul class="navbar-nav">
-				<li><a href="<%=request.getContextPath()%>/cultivoplan/list"
-					class="nav-link">Cultivo Plan</a></li>
-			</ul>
-		</nav>
+		<%@ include file = "partials/menu.jsp" %>
 	</header>
 
 	<main>
