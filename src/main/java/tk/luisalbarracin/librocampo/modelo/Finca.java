@@ -1,6 +1,7 @@
 package tk.luisalbarracin.librocampo.modelo;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class Finca {
 	private Integer id;
@@ -12,6 +13,7 @@ public class Finca {
 	private Propietario propietario;
 	private String vereda;
 	private LocalDate inicioSiembra;
+	private List<Cultivo> cultivos;
 
 	public Finca() {
 		super();
@@ -137,6 +139,14 @@ public class Finca {
 
 	public void setInicioSiembra(LocalDate inicioSiembra) {
 		this.inicioSiembra = inicioSiembra;
+	}
+
+	public List<Cultivo> getCultivos() {
+		return cultivos;
+	}
+
+	public void setCultivos(List<Cultivo> cultivos) {
+		this.cultivos = cultivos;
 	}
 
 }

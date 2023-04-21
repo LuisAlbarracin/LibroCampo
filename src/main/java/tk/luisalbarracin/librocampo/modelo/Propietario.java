@@ -1,6 +1,7 @@
 package tk.luisalbarracin.librocampo.modelo;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Propietario implements Serializable {
 
@@ -16,6 +17,7 @@ public class Propietario implements Serializable {
 	private String expedicionCedula;
 	private String email;
 	private String contrasenia;
+	private List<Finca> fincas;
 
 	public Propietario() {
 		super();
@@ -129,6 +131,15 @@ public class Propietario implements Serializable {
 
 	public void setExpedicionCedula(String expedicionCedula) {
 		this.expedicionCedula = expedicionCedula;
+	}
+	
+
+	public List<Finca> getFincas() {
+		return fincas;
+	}
+
+	public void setFincas(List<Finca> fincas) {
+		this.fincas = fincas;
 	}
 
 	@Override
